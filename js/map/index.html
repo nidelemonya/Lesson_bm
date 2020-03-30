@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ScGKXmcGmKXUDqToy259HhlnUgcLmdNS">
+    </script>
+    <style>
+        /* 元素有些默认属性，我们将它重置掉css reset 工作流程 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            /* 占据整个屏幕 */
+            width: 80vw;
+            /* 来自移动时代的新单位 px已经过时 vierport width
+            根据视窗出相对单位 iPhonex  */
+            height: 100vh;
+            background-color: pink;
+            /* css调试技巧 */
+        }
+
+        .suggestion {
+            position: absolute;
+            top: 0;
+            right: 10vw;
+            width: 10vw;
+            height: 10vh;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1.展示一个地图 来自百度 -->
+    <!-- emmet hyml 快捷方式 -->
+    <!-- div#map ->  div id="map" 快捷方式-->
+    <!-- 容器 地图 在这里显示 -->
+    <div>
+        <div id="map"></div>
+        <div class="suggestion">
+            <div id="r-result">请输入:
+                <input type="text" id="suggestid" size="20" value="百度">
+            </div>
+        </div>
+    </div>
+    <script>
+        //js 的编程 html, css, js 都加载完成了
+        //
+        window.onload = function () {
+            // 405 错误 来自于用户端的错误
+            // 500 服务器端错误
+            // 404 Not Found
+            // console.log('ready')
+            var map = new BMap.Map('map');//实例化地图
+            map.centerAndZoom("武汉大学", 17)//中心设置zoom
+        }
+    </script>
+</body>
+
+</html>

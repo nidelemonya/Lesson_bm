@@ -1,0 +1,16 @@
+{
+  "name": "map",
+  "version": "1.0.0",
+  "description": "- 南昌\r  1. map 百度地图\r  - http://lbsyun.baidu.com/apiconsole/center#/home\r  lbs location base server 用户体验\r  计算距离\r  向百度申请使用百度地图\r  工具，东西做出来\r   ScGKXmcGmKXUDqToy259HhlnUgcLmdNS 授权码\r  - 再引入baidu js sdk\r  - 相对单位 vw, vh 移动开发，尺寸不一样哦 相对大小的设置\r  - 前端的f12 console 移动端和pc端的切换下，机型切换一下\r  - 文件打开方式\r   http 访问方式， baidu sdk 才能使用\r   npm 安装工具， 提供http服务",
+  "main": "index.js",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
