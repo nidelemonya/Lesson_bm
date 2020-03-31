@@ -67,20 +67,15 @@
         }
 
         .stars {
-            position: absolute;
-            top: 0;
-            left:0;
-            width: 1.15rem;
-            height: 0.33rem;
-            letter-spacing: 0.2px;
-            background-image: url("./material/stars1.png");
-            background-position:center;
-            background-repeat: repeat-x;
+            /* 对元素设置display：inline-block ，元素不会脱离文本流 */
+            /* 不独占一行的块级元素 */
+            display: inline-block;
+            color: #fa952f;
         }
 
         .grade {
             position: absolute;
-            left:25%;
+            left: 25%;
             height: 0.33rem;
             line-height: 0.33rem;
             font-size: 0.24rem;
@@ -88,9 +83,10 @@
             color: #666666;
             letter-spacing: 0.2px;
         }
-          .price {
+
+        .price {
             position: absolute;
-            left:50%;
+            left: 50%;
             height: 0.33rem;
             line-height: 0.33rem;
             font-size: 0.24rem;
@@ -128,7 +124,22 @@
                 <div class="poi-info">
                     <div class="poi-name"></div>
                     <div class="price-wrapper">
-                        <span class="stars"><i></i><i></i><i></i><i></i><i></i></span>
+                        <span class="stars">
+                            <i class="" style="width: 0.24rem; height: 0.24rem;">
+                                <img src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/star1.png" alt="">
+                            </i>
+                            <i class="" style="width: 0.24rem; height: 0.24rem;">
+                                <img src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/star1.png" alt="">
+                            </i>
+                            <i class="" style="width: 0.24rem; height: 0.24rem;">
+                                <img src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/star1.png" alt="">
+                            </i>
+                            <i class="" style="width: 0.24rem; height: 0.24rem;">
+                                <img src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/star1.png" alt="">
+                            </i>
+                            <i class="" style="width: 0.24rem; height: 0.24rem;">
+                                <img src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/star1.png" alt="">
+                            </i></span>
                         <span class="grade">5.0分</span>
                         <span class="price">￥28/人</span>
                         <div class="location"></div>
