@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- action/class:属性,attribute 
+action: 表单提交到哪里去-->
+</body>
+<form action="https://www.baidu.com" class="form" name="myform">
+    <!-- for 使label标签和输入框变成一个整体  提升用户体验-->
+    <div>
+        <label for="userName">用户名：</label>
+        <!-- 提供可描述输入字段预期值的提示信息（hint）
+            该提示会在输入字段为空时显示，并会在字段获得焦点时消失。 -->
+        <input type="text" placeholder="输入用户名" id="userName" name="userName">
+    </div>
+    <div>
+        <label for="pwd">密码：</label>
+        <input type="password" placeholder="输入密码" id="pwd" name="pwd">
+    </div>
+    <div>
+        <label for="repwd">确认密码：</label>
+        <input type="password" placeholder="再次输入密码" id="repwd" name="repwd">
+    </div>
+    <div>
+        <label for="sex">性别：</label>
+        <!-- checked 默认选中 -->
+        <!-- name 都是 sex的选项 -->
+        <input type="radio" value="nan" name="sex" id="nan" checked>
+        <label for="nan">男</label>
+        <input type="radio" value="nv" name="sex" id="nv">
+        <label for="nv">女</label>
+    </div>
+    <div>
+        <label for="hobby">爱好</label>
+        <select name="hobby" id="hobby">
+            <option value="dog">dog</option>
+            <option value="cat" selected>cat</option>
+        </select>
+    </div>
+    <button type="submit">提交</button>
+</form>
+<a href="https://www.baidu.com">baidu</a>
+<div>
+    <span>用户名：123</span>
+    <span>密码：456</span>
+    <span>性别：nan</span>
+    <span>爱好：dog</span>
+</div>
+<script>
+    // 1. 拿到form
+    // document.forms 取到所有表单
+    // forms.myform 取到叫myform的表单
+    // const 定义一个常量 不能改变
+    const form = document.forms.myform
+    console.log(form);
+    const hobby = form.hobby.value
+    console.log(hobby);
+    // 提交的时候 创建监听事件addEventListener 监听submit 表单的提交
+    form.addEventListener('submit', function (ev) {
+        console.log('提交了');
+        // 不想跳转
+        // 阻止 html 表单默认的特点、事件 阻止元素发生默认的行为
+        // event 默认形参 回调函数
+        // event.preventDefault();
+        ev.preventDefault();
+        const userName = form.userName.value;
+        const pwd = form.pwd.value;
+        const repwd = form.repwd.value;
+        const sex = form.sex.value;
+        const hobby = form.hobby.value;
+        // trim() 去掉空格
+        if (userName.trim().length === 0) {
+            alert('userName 不能为空');
+            return;
+        }
+        if (repwd.trim() !== pwd) {
+            alert('两次密码输入不一致');
+            form.repwd.value = "";
+            return;
+        }
+        // conslole.log(userName,pwd,repwd,sex,hobby);
+        // 显示： 动态构造 html 结构
+        // 构造一个div
+        const div = document.createElement('div');
+        // `` 反引号代表一个字符串
+        // ${}引入变量 字符串替换
+        div.innerHTML = `
+        <span>用户名：${userName}</span>
+    <span>密码：${repwd}</span>
+    <span>性别：${sex}</span>
+    <span>爱好：${hobby}</span>
+    `
+        // 插入到页面中
+        document.body.appendChild(div);
+    })
+</script>
+
+</html>
