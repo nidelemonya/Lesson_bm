@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- UTF-8 编码格式 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- . 代表当前文件夹 / 代表下 引入相对路径 -->
+    <link rel="stylesheet" href="./style.css">
+    <title>kiss</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- div 是块级容器 -->
+        <!-- dom 结构 -->
+        <div class="ball" id="l-ball">
+            <div class="face face-l">
+                <!-- .eye*2 ->  -->
+                <div class="eye eye-l"></div>
+                <div class="eye eye-r"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+        <div class="ball" id="r-ball">
+            <div class="face face-r">
+                <!-- 用 eye-r-p 覆盖掉样式 -->
+                <div class="eye eye-l eye-r-p"></div>
+                <div class="eye eye-r eye-r-p"></div>
+                <div class="mouth mouth-r"></div>
+                <div class="kiss-m">
+                    <div class="kiss"></div>
+                    <div class="kiss"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

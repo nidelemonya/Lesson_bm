@@ -1,0 +1,196 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color:#78e08f;
+ }
+
+ .container{
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     width: 232px;
+     background-color: #fff;
+     /* 微调 使其处于正中间 - -> 左 */
+     /* 方法1: 已知宽度 margin-left: -116px; */
+     /* margin-left 也设为原来的一半 根据父容器来定的*/
+     /* 方法二： 未知宽度 */
+     transform:translate3d(-50%,-50%,0);
+     /* 取消间距  原因：代码之间有空格*/
+     font-size: 0;
+ }
+ 
+ .ball{
+     /* 相对定位 */
+     position: relative;
+     border:8px solid;
+     width: 100px;
+     height: 100px;
+     border-radius: 50%;
+     background-color: #fff;
+     display: inline-block;
+     /* 设置元素的垂直对齐方式 */
+     vertical-align: top;
+
+ }
+
+ .face{
+     position: absolute;
+     width: 70px;
+     height: 30px;
+     right: 0;
+     top: 30px;
+     border-top-right-radius: 15px;
+ }
+ /* 伪类 ::before */
+ .face::before{
+     position: absolute;
+     content: "";
+     width: 18px;
+     height: 8px;
+     background-color: #badc58;
+     right: -8px;
+     top: 20px;
+     border-radius: 50%;
+
+ }
+ /* 伪类 ::after 和前面的是一对 */
+ .face::after{
+    position: absolute;
+    content: "";
+    width: 18px;
+    height: 8px;
+    background-color: #badc58;
+    left: -5px;
+    top: 20px;
+    border-radius: 50%;
+ }
+
+ .eye{
+    position: absolute;
+    width: 15px;
+    height: 14px;
+    border-radius: 50%;
+    /* 取出 border-bottom 设置为黑色 其他为透明 */
+    border-bottom: 5px solid #000;
+ }
+
+ .eye-l{
+    left: 10px;
+ }
+
+ .eye-r{
+    right: 5px;
+ }
+ 
+ .mouth{
+     position: absolute;
+     width: 30px;
+     height: 14px;
+     border-radius: 50%;
+     border-bottom: 5px solid #000;
+     bottom: -5px;
+     left: 0;
+     right: 0;
+     margin: 0 auto;
+     transform: translate3d(3px,0,0);
+ }
+
+ .face-r{
+     left: 0;
+     top: 37px;
+ }
+
+ .face-r::before{
+    width: 10px;
+    height: 10px;
+    right: -4px;
+ }
+
+ .face-r::after{
+    width: 10px;
+    height: 10px;
+    left: 5px;
+ }
+
+ .eye-r-p{
+    border-top: 5px solid #000;
+    border-bottom: none;
+ }
+
+ .kiss-m{
+     position: absolute;
+     left: 20px;
+     top: 22px;
+     /* 透明度 变成全透明状态 */
+     opacity: 0;
+     animation: kiss-m 4s ease infinite;
+ }
+
+ @keyframes kiss-m{
+     0%{opacity: 0;}
+     55%{opacity: 0;}
+     55.1%{opacity: 1;}
+     66%{opacity: 1;}
+     66.1%{opacity: 0;}
+ }
+
+ .kiss{
+     width: 13px;
+     height: 10px;
+     background-color: #fff;
+     border-radius: 50%;
+     border-left: 5px solid #000;
+ }
+ 
+ #l-ball{
+     animation: close 4s ease infinite;
+     z-index: 50;
+ }
+ .face-l{
+     animation: face 4s ease infinite;
+ }
+
+ #r-ball{
+    animation: kiss 4s ease infinite;
+}
+
+ @keyframes close{
+    0%{transform: translate3d(0,0,0);}
+    20%{transform: translate3d(20px,0,0);}
+    35%{transform: translate3d(20px,0,0);}
+    55%{transform: translate3d(0,0,0);}
+    100%{transform: translate3d(0,0,0);}
+ }
+
+ @keyframes face{
+     0%{transform: translate3d(0,0,0)rotate(0);}
+     10%{transform: translate3d(0,0,0) rotate(0);}
+     20%{transform: translate3d(5px,0,0)rotate(-2deg);}
+     28%{transform: translate3d(0,0,0)rotate(0);}
+     35%{transform: translate3d(5px,0,0)rotate(-2deg);}
+     50%{transform: translate3d(0,0,0)rotate(0);}
+     100%{transform: translate3d(0,0,0)rotate(0);}
+ }
+
+@keyframes kiss{
+    40%{transform: translate3d(0,0,0);}
+    /* transform-origin:bottom 把旋转点设置在圆的下面中心的位置*/
+    50%{transform: translate3d(30px,0,0) rotate(20deg);}
+    60%{transform: translate3d(-33px,0,0) rotate(-2.5deg);;}
+    67%{transform: translate3d(-33px,0,0) rotate(-2.5deg);}
+    77%{transform: translate3d(0,0,0);}
+}
+
+.mouth-r{
+    animation: mouth-m 4s ease infinite;
+}
+@keyframes mouth-m{
+    0%{opacity: 1;}
+    54.9%{opacity: 1;}
+    55%{opacity: 0;}
+    66%{opacity: 0;}
+    66.1%{opacity: 1;}
+}
