@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <title>Swiper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            /* view width */
+            /* view height */
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .swiper-container .swiper-wrapper .swiper-slide .box{
+            position: absolute;
+            left: 50%;
+            bottom: 5%;
+        }
+
+        em {
+            color: #df493a;
+            /* 取消斜体 font-style: normal */
+            font-style: normal;
+        }
+
+        p {
+            transform: translateY(6px);
+            opacity: 0;
+            transition: opacity 1.2s, transform 1s;
+            /* 和上面的类似 transform: all 1s; */
+        }
+
+        .swiper-slide-active p {
+            /* 代表在第一屏 让他们显示出来 */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* nth-child(1) 第几个孩子 这里指第一个孩子 */
+        p:nth-child(1) {
+            transition-delay: 0.2s;
+        }
+
+        p:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+
+        p:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+
+        p:nth-child(4) {
+            transition-delay: 0.5s;
+        }
+
+        p:nth-child(5) {
+            transition-delay: 0.6s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="box">
+                    <p>
+                        <!-- <em></em>  强调 -->
+                        <em>11月1日</em></p>
+                    <p>大概是很特别的一天</p>
+                    <p>这一天里</p>
+                    <p>TA把Richard Clayderma...的 《梦中的婚礼》</p>
+                    <p>反复听了 <em>10次</em></p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <p>
+                        <!-- <em></em>  强调 -->
+                        <em>11月1日</em></p>
+                    <p>大概是很特别的一天</p>
+                    <p>这一天里</p>
+                    <p>TA把Richard Clayderma...的 《梦中的婚礼》</p>
+                    <p>反复听了 <em>10次</em></p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <p>
+                        <!-- <em></em>  强调 -->
+                        <em>11月1日</em></p>
+                    <p>大概是很特别的一天</p>
+                    <p>这一天里</p>
+                    <p>TA把Richard Clayderma...的 《梦中的婚礼》</p>
+                    <p>反复听了 <em>10次</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- swiper -->
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"> </script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'vertical', // 垂直切换选项
+        })
+    </script>
+</body>
+
+</html>
