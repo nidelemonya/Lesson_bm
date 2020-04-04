@@ -55,13 +55,45 @@ img {
     white-space: nowrap;
 }
 
-.poi-item-wrapper .poi-info .prices-wrapper{
+.poi-item-wrapper .poi-info .delivery-wrapper{
     position: relative;
-    height: 1.21rem;
+    height: 0.40rem;
+    /* 设置行间距离 行高 */
     font-size: 0.24rem;
     font-family: PingFangSC-Regular;
-    margin-top: 0.06rem;
+    margin-top: 0.02rem;
     /* 超出隐藏 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.poi-item-wrapper .poi-info .reduction-wrapper {
+    position: relative;
+    height: 0.40rem;
+    margin-top: 0.02rem;
+}
+.poi-item-wrapper .poi-info .discount-wrapper{
+    position: relative;
+    height: 0.40rem;
+    margin-top: 0.02rem;
+}
+
+ .price-img{
+    position: absolute;
+    margin-top: 0.01rem;
+    margin-bottom: 0.01rem;
+    width: 0.38rem;
+    height: 0.38rem;
+
+}
+
+.dire{
+    margin-left: 9%;
+    width: 80%;
+    font-size: 0.24rem;
+    font-family: PingFangSC-Regular;
+    margin-top: 0.02rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -119,6 +151,23 @@ img {
     font-family: PingFangSC-Regular;
     color: #666666;
     letter-spacing: 0.2px;
+}
+
+.mtzs{
+    position: absolute;
+    right: 0.15rem;
+    width: 100px;
+    height: 30px;
+}
+
+.special_line:not(:first-child):before {
+    content: "";
+    display: inline-block;
+    margin: 0.03rem 0.03rem;
+    margin-bottom: 0rem;
+    height: 0.18rem;
+    width: 0.02rem;
+    background: #ccc;
 }
 
 .vote-star {

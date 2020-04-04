@@ -10,14 +10,18 @@ const myLatitude = '25.686969',
     kfcLongitude = '114.311825';
 // 坐标 店名 评分, ... {} JSON 对象字面量
 const shops = [{
-        name: '窑鸡王(崇义店)',
+        name: '肯德基(崇义店)',
         pos: [114.311825, 25.686969],
-        logo: 'https://img.meituan.net//msmerchant/485f0f50e51c1a8f02f8e6e44cc6e92531766.jpg@188w_106h_1e_1c',
+        logo: 'https://img.meituan.net/600.600/msmerchant/ac8497ed2a3cdf27113f3e5120b6496a654741.jpg@220w_125h_1e_1c',
         score: 4.5,
         amount:1800,
         time:30,
-        price: '起送45 | 配送5 | 人均￥48',
-        discount:'满'
+        start_deliv:45,
+        on_deliv:5,
+        average:40,
+        mtzs:1,
+        reduction:'满40减6;满60减10;满90减16',
+        discount:'折扣商品6折起'
     },
     {
         name: '牛男手造(崇义店)',
@@ -26,7 +30,12 @@ const shops = [{
         score: 4.8,
         amount:2800,
         time:30,
-        price: '起送25 | 配送5 | 人均￥20',
+        start_deliv:45,
+        on_deliv:5,
+        average:30,
+        mtzs:1,
+        reduction:'满50减6;满80减10;满100减18',
+        discount:'折扣商品6折起'
     },
     {
         name: '麻辣香锅(崇义店)',
@@ -35,64 +44,104 @@ const shops = [{
         score: 4.2,
         amount:3400,
         time:30,
-        price: '起送35 | 配送5 | 人均￥35',
+        start_deliv:25,
+        on_deliv:5,
+        average:40,
+        mtzs:0,
+        reduction:'满50减6;满80减10;满100减16',
+        discount:'折扣商品6折起'
     },
     {
-        name: '川西坝子',
+        name: '川西坝子(崇义店)',
         pos: [114.318988,25.691822],
         logo: 'https://img.meituan.net//msmerchant/526235ea490f56d823cd05eab59ce559367109.jpg@188w_106h_1e_1c',
         score: 4.9,
         amount:5800,
         time:30,
-        price: '起送40 | 配送0 | 人均￥65',
+        start_deliv:50,
+        on_deliv:5,
+        average:40,
+        mtzs:0,
+        reduction:'满50减6;满80减10;满100减16',
+        discount:'折扣商品6折起'
     }, {
-        name: '小就坎',
+        name: '小就坎(崇义店)',
         pos: [114.313517,25.709745],
         logo: 'https://img.meituan.net//msmerchant/5e09ea9aea69db584d778f2b8155a7d6432541.png@188w_106h_1e_1c',
         score: 3.3,
         amount:1500,
         time:30,
-        price: '起送45 | 配送10 | 人均￥40',
+        start_deliv:25,
+        on_deliv:5,
+        average:30,
+        mtzs:0,
+        reduction:'满50减6;满80减10;满100减16',
+        discount:'折扣商品6折起'
     }, {
-        name: '鱼没有',
+        name: '鱼没有(崇义店)',
         pos: [114.316221,25.707051],
         logo: 'https://img.meituan.net//msmerchant/791a46349120305f33da96e731c0c0ca64253.jpg@188w_106h_1e_1c',
         score: 4.1,
         amount:2100,
         time:30,
-        price: '起送15 | 配送5 | 人均￥20',
+        start_deliv:30,
+        on_deliv:5,
+        average:34,
+        mtzs:1,
+        reduction:'满50减6;满80减10;满100减16',
+        discount:'折扣商品6折起'
     }, {
-        name: '自助火锅城',
+        name: '自助火锅城(崇义店)',
         pos: [114.315448,25.691301],
         logo: 'https://img.meituan.net//msmerchant/ee20dabfd23c9bbc7a2f22a639036e293123702.jpg@188w_106h_1e_1c',
         score: 2.6,
         amount:1200,
         time:30,
-        price: '起送25 | 配送5 | 人均￥25',
+        start_deliv:60,
+        on_deliv:5,
+        average:50,
+        mtzs:0,
+        reduction:'满56减6;满80减10;满100减16',
+        discount:'折扣商品6折起'
     }, {
-        name: '不出名火锅',
+        name: '不出名火锅(崇义店)',
         pos: [114.321557,25.689356],
         logo: 'https://p0.meituan.net/600.600/bbia/7b181136f08f4dcd8b51a4739972fe5c178903.jpg@220w_125h_1e_1c',
         score: 1.8,
         amount:90,
         time:30,
-        price: '起送10 | 配送5 | 人均￥30',
+        start_deliv:24,
+        on_deliv:4,
+        average:26,
+        mtzs:1,
+        reduction:'满20减6;满70减10;满100减16',
+        discount:'折扣商品6折起'
     }, {
-        name: '百味鸡',
+        name: '百味鸡(崇义店)',
         pos: [114.311047,25.702273],
         logo: 'https://p0.meituan.net/600.600/bbia/f41e4e67da01a134c4201aba9c154bef209381.jpg@220w_125h_1e_1c',
         score: 4.8,
         amount:2600,
         time:30,
-        price: '起送0 | 配送15 | 人均￥20',
+        start_deliv:30,
+        on_deliv:2,
+        average:35,
+        mtzs:0,
+        reduction:'满50减6;满80减10;满100减16',
+        discount:'折扣商品6折起'
     }, {
-        name: '骨之味',
+        name: '骨之味(崇义店)',
         pos: [114.317344,25.690959],
         logo: 'https://p0.meituan.net//bbia/68a0ec5816c24292cb2fe949338d9c1b374824.jpg@188w_106h_1e_1c',
         score: 4.9,
         amount:3800,
         time:30,
-        price: '起送40|配送5|人均￥60',
+        start_deliv:42,
+        on_deliv:6,
+        average:40,
+        mtzs:1,
+        reduction:'满35减6;满80减10;满100减16',
+        discount:''
     }
 ];
 // sdk 有点大，他在远方
@@ -113,28 +162,64 @@ window.onload = function () {
                     <div class="poi-item-wrapper">
                         <div class="poi-info-wrapper">
                             <div class="image-wrapper">
-                                <div class="imgbox">
-                                    <img src="${shops[i].logo}" alt="">
+                                <div class="imgbox" >
+                                    <img src="${shops[i].logo}" alt=""></img>
                                 </div>
                             </div>
                             <div class="poi-info">
                                 <div class="poi-name"><h4>${shops[i].name}</h4></div>
                                     <div class="price-wrapper">
-                                        <div class="price-top">
                                                 <span class="vote-star">
                                                     <i style="width:${per}%"></i>
                                                 </span>
                                                 <span class="score">${shops[i].score.toFixed(1)}</span>
                                                 <span class="amount">月售${shops[i].amount}+</span>
                                                 <span class="time">${shops[i].time}分钟</span>
-                                            <span class="location">| ${distance}</span>
+                                            <span class="location special_line">${distance}</span>
+                                    </div>
+                                    <div class="delivery-wrapper">
+                                        <span class="special_line"">起送￥${shops[i].start_deliv}</span>
+                                        <span class="special_line">配送￥${shops[i].on_deliv}</span>
+                                        <span class="special_line">人均￥${shops[i].average}</span>
+                                        <span>
+                                            <img class="mtzs" src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/mtzs.png" alt=""></img>
+                                        </span>
+                                    </div>
+                                    <div class="reduction-wrapper">
+                                        <div class="price-img">
+                                            <img class="reduction-img" src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/3.png" alt=""></img>
                                         </div>
+                                        <div class="dire">${shops[i].reduction}</div>
                                     </div>
-                                    <div class="prices-wrapper">${shops[i].price}</div>
+                                    <div class="discount-wrapper">
+                                        <div class="price-img" >
+                                            <img class="discount-img" src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/4.png" alt=""></img>
+                                        </div>
+                                        <div class="dire">${shops[i].discount}</div>
                                     </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+        
                 `
+                const reduction_img = document.getElementsByClassName('reduction-img');
+                const discount_img = document.getElementsByClassName('discount-img');
+                const mtzs_img = document.getElementsByClassName('mtzs');
+                if(shops[i].reduction ==""){
+                    reduction_img[i].src = '';
+                }
+                if(shops[i].discount ==""){
+                    discount_img[i].src = '';
+                    // css隐藏页面元素的方法
+                    // document.querySelector("#img4").style.opacity=0;
+                    // document.querySelector("#img4").style.visibility="hidden";
+                    // document.querySelector("#img3").style.display="none";
+                }
+                // console.log(shops[i].mtzs)
+                if(shops[i].mtzs == 0){
+                    mtzs_img[i].src = '';
+                }
     }
 
     function parseDistance(distance) {
