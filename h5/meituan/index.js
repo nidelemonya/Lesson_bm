@@ -21,7 +21,7 @@ const shops = [{
         average:40,
         mtzs:1,
         reduction:'满40减6;满60减10;满90减16',
-        discount:'折扣商品6折起'
+        discount:'折扣商品9折起'
     },
     {
         name: '牛男手造(崇义店)',
@@ -35,7 +35,7 @@ const shops = [{
         average:30,
         mtzs:1,
         reduction:'满50减6;满80减10;满100减18',
-        discount:'折扣商品6折起'
+        discount:''
     },
     {
         name: '麻辣香锅(崇义店)',
@@ -49,7 +49,7 @@ const shops = [{
         average:40,
         mtzs:0,
         reduction:'满50减6;满80减10;满100减16',
-        discount:'折扣商品6折起'
+        discount:'折扣商品5折起'
     },
     {
         name: '川西坝子(崇义店)',
@@ -63,7 +63,7 @@ const shops = [{
         average:40,
         mtzs:0,
         reduction:'满50减6;满80减10;满100减16',
-        discount:'折扣商品6折起'
+        discount:''
     }, {
         name: '小就坎(崇义店)',
         pos: [114.313517,25.709745],
@@ -76,7 +76,7 @@ const shops = [{
         average:30,
         mtzs:0,
         reduction:'满50减6;满80减10;满100减16',
-        discount:'折扣商品6折起'
+        discount:'折扣商品8折起'
     }, {
         name: '鱼没有(崇义店)',
         pos: [114.316221,25.707051],
@@ -89,7 +89,7 @@ const shops = [{
         average:34,
         mtzs:1,
         reduction:'满50减6;满80减10;满100减16',
-        discount:'折扣商品6折起'
+        discount:''
     }, {
         name: '自助火锅城(崇义店)',
         pos: [114.315448,25.691301],
@@ -114,8 +114,8 @@ const shops = [{
         on_deliv:4,
         average:26,
         mtzs:1,
-        reduction:'满20减6;满70减10;满100减16',
-        discount:'折扣商品6折起'
+        reduction:'',
+        discount:''
     }, {
         name: '百味鸡(崇义店)',
         pos: [114.311047,25.702273],
@@ -128,7 +128,7 @@ const shops = [{
         average:35,
         mtzs:0,
         reduction:'满50减6;满80减10;满100减16',
-        discount:'折扣商品6折起'
+        discount:'折扣商品5折起'
     }, {
         name: '骨之味(崇义店)',
         pos: [114.317344,25.690959],
@@ -181,9 +181,9 @@ window.onload = function () {
                                         <span class="special_line"">起送￥${shops[i].start_deliv}</span>
                                         <span class="special_line">配送￥${shops[i].on_deliv}</span>
                                         <span class="special_line">人均￥${shops[i].average}</span>
-                                        <span>
+                                        <div>
                                             <img class="mtzs" src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/mtzs.png" alt=""></img>
-                                        </span>
+                                        </div>
                                     </div>
                                     <div class="reduction-wrapper">
                                         <div class="price-img">
