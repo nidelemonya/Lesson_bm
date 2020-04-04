@@ -33,7 +33,7 @@ const shops = [{
         start_deliv:45,
         on_deliv:5,
         average:30,
-        mtzs:1,
+        mtzs:0,
         reduction:'满50减6;满80减10;满100减18',
         discount:''
     },
@@ -61,8 +61,8 @@ const shops = [{
         start_deliv:50,
         on_deliv:5,
         average:40,
-        mtzs:0,
-        reduction:'满50减6;满80减10;满100减16',
+        mtzs:1,
+        reduction:'',
         discount:''
     }, {
         name: '小就坎(崇义店)',
@@ -181,9 +181,9 @@ window.onload = function () {
                                         <span class="special_line"">起送￥${shops[i].start_deliv}</span>
                                         <span class="special_line">配送￥${shops[i].on_deliv}</span>
                                         <span class="special_line">人均￥${shops[i].average}</span>
-                                        <div>
+                                        <span>
                                             <img class="mtzs" src="https://bruce-shy.github.io/Lesson_bm/h5/meituan/material/mtzs.png" alt=""></img>
-                                        </div>
+                                        </span>
                                     </div>
                                     <div class="reduction-wrapper">
                                         <div class="price-img">
@@ -207,10 +207,10 @@ window.onload = function () {
                 const discount_img = document.getElementsByClassName('discount-img');
                 const mtzs_img = document.getElementsByClassName('mtzs');
                 if(shops[i].reduction ==""){
-                    reduction_img[i].src = '';
+                    reduction_img[i].style.opacity=0;
                 }
                 if(shops[i].discount ==""){
-                    discount_img[i].src = '';
+                    discount_img[i].style.opacity=0;
                     // css隐藏页面元素的方法
                     // document.querySelector("#img4").style.opacity=0;
                     // document.querySelector("#img4").style.visibility="hidden";
@@ -218,7 +218,8 @@ window.onload = function () {
                 }
                 // console.log(shops[i].mtzs)
                 if(shops[i].mtzs == 0){
-                    mtzs_img[i].src = '';
+                    // mtzs_img[i].src = '';
+                    mtzs_img[i].style.opacity=0;
                 }
     }
 
