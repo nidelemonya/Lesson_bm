@@ -27,12 +27,15 @@ const twoSum = function(nums,target){
     // target , 一重循环, nums[i], target-nums[i]
     // 一次就能找到? {}
     let map = {} //对象字面量
+    //forEach 循环遍历数组 遍历数组中的每一个元素
     nums.forEach(function(e,i){
         // console.log(e,i);
-        map[e] = i;
+        map[e] = i; // map[] []里面是变量即为key 这里把数组的值 赋给[]中的e
     })
+    // map[2]=0 ,map[7]=1, map[11]=2, map[15]=3,
     // console.log(map);
     for (let i = 0; i < nums.length; i++){
+    // let j = map[9 - nums[0]] --> j = map[7] = 1
         let j = map[target - nums[i]];
         if (j && j !== i) {
             return [i,j];
