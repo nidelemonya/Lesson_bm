@@ -212,9 +212,9 @@ window.onload = function () {
                 if(shops[i].discount ==""){
                     discount_img[i].style.opacity=0;
                     // css隐藏页面元素的方法
-                    // document.querySelector("#img4").style.opacity=0;
-                    // document.querySelector("#img4").style.visibility="hidden";
-                    // document.querySelector("#img3").style.display="none";
+                    // document.querySelector("#img4").style.opacity=0;这个属性指定是否显示一个元素生成的元素框。这意味着元素仍占据其本来的空间，不过可以完全不可见。
+                    // document.querySelector("#img4").style.visibility="hidden";这个属性指定是否显示一个元素生成的元素框。这意味着元素仍占据其本来的空间，不过可以完全不可见。
+                    // document.querySelector("#img3").style.display="none";直接让元素消失 ,不占据原来的空间。
                 }
                 // console.log(shops[i].mtzs)
                 if(shops[i].mtzs == 0){
