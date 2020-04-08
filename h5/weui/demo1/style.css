@@ -1,0 +1,94 @@
+/*  , 表示两个都运用相同样式 并不是container 下的 page */
+/* 使两个容器占据屏幕的100% */
+.container,
+.page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.page__bd {
+  height: 100%;
+  background-color: #F5FAFE;
+  /* y轴超出 自动 */
+  overflow-y: auto;
+}
+
+.fruit-items {
+  /* 消除内联元素间的间隔 */
+  /* 块级元素变为非块级元素会留有间隙 所以要设置 font-size: 0; */
+  font-size: 0;
+  padding: 3%;
+}
+
+.fruit-item {
+  background-color: #fff;
+  display: inline-block;
+  width: 47%;
+  /* 物理像素 非物理像素 */
+  font-size: 14px;
+  /* 间距 */
+  margin: 5px;
+}
+
+/* 一般给图片的容器写样式 防止图片失真 截取没关系 */
+.pic {
+  width: 100%;
+  height: 100%;
+}
+
+/* pic 下面的img */
+.pic img {
+  /* 此元素将显示为块级元素，此元素前后会带有换行符。 */
+  display: block;
+  width: 100%;
+}
+
+.fruit-item p {
+  /* 文本居中 */
+  text-align: center;
+}
+
+.tab {
+  /* 使其在文档中没有地位 脱离文档流 */
+  display: none;
+}
+
+/* 有空格 代表父级容器下的子级容器 */
+/* 没有空格 既有.tab这个容器 又有.show这个容器 这里没空格*/
+.tab.show {
+  display: block;
+}
+
+.fruit {
+  background-color: #fff;
+}
+
+.mine_cart,
+.mine_title {
+  font-size: 18px;
+  text-align: center;
+  background-color: #fff;
+  padding: 10px;
+  /* 底部边框 下划线 */
+  border-bottom: 1px solid #eee;
+}
+
+.tab .weui-cell{
+  background-color: #fff;
+}
+.avatar{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+  /* 设置容器而不设置图片 防止图片失真 */
+  /* 超出则隐藏 这里图片是正方形的 容器已经是圆形 超出容器了 设置为隐藏 */
+  overflow: hidden;
+}
+
+.avatar img{
+  width: 100%;
+}
