@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      min-width: 550px;
+      font-size: 20px;
+    }
+
+    #header,
+    #footer {
+      background-color: rgba(0, 0, 0, 0.4);
+      text-align: center;
+      height: 60px;
+      line-height: 60px;
+    }
+
+    #container {
+      min-height: 500px;
+      height: 500px;
+      padding-left: 200px;
+      padding-right: 200px;
+    }
+
+    .cloum {
+      /* 设置为行内块级元素 */
+      /* display: inline-block; */
+      float: left;
+      /* 浮动布局 圣杯布局常伴随着浮动布局 */
+      position: relative;
+    }
+
+    #left {
+      width: 200px;
+      background-color: rgba(95, 189, 235, 0.9);
+      height: 100%;
+      /* left 移出父容器的100% */
+      margin-left: -100%;
+      right: 200px;
+    }
+
+    #center {
+      width: 100%;
+      /* calc js 自动计算 */
+      /* width: calc(100% - 400px); */
+    }
+
+    #right {
+      width: 200px;
+      background-color: rgba(95, 189, 235, 0.9);
+      height: 100%;
+      /* left 移出父容器的100% */
+      margin-right: -200px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 圣杯布局 -->
+  <div id="header">#header</div>
+
+  <div id="container">
+    <!-- 让 center界面 优先先出现 界面优化 -->
+    <div id="center" class="cloum">
+      #centercentercentercentercentercentercentercentercentercentercentercentercentercentercentercente</div>
+    <div id="left" class="cloum">#left</div>
+    <div id="right" class="cloum">#right</div>
+  </div>
+
+  <div id="footer">#footer</div>
+</body>
+
+</html>
+
+<!-- 浮动布局 脱离文档流 -->
+<!-- 圣杯布局 目的:内容优化-->
