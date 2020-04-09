@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            color: red;
+        }
+
+        .wrapper {
+            color: blue;
+        }
+
+        /* 0,0,1,0 * 11 => 0,0,11,0 => 多个类选择器 不存在进位
+                           0,1,0,0 */
+        /* div { */
+        /* color:yellow !important; */
+        /* } */
+
+        div::before {
+            content: '1';
+        }
+
+        div::after {
+            content: '2';
+        }
+
+        /* 代表选择 div 的第一行 */
+        div::first-line {
+            color: tomato;
+        }
+
+        /* ul 下面的li 的第二个孩子 */
+        ul li:nth-child(2) {
+            color: teal;
+        }
+
+        /* * {} */
+
+        [type="text"] {
+            padding: 4px;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .red {
+            color: red;
+        }
+
+        /* 有空格 代表父子关系 这里是选择.parent下面的.child 这个元素*/
+        /* .parent .child {} */
+
+        /* 既能选中.parent的元素 又能选择.child的元素 */
+        /* .parent,
+        .child {} */
+
+        /* 没空格 既有.parent 类名, 又有 .child 类名 的元素 可以很好的用来做动画 */
+        .parent1 {
+            width: 100px;
+            transform: translateX(-100px);
+            transition: all .5s;
+        }
+
+        .parent1.child {
+            transform: translateX(0);
+        }
+
+
+        /* 同等的优先级:定义的顺序，后面的覆盖前面的 只跟定义顺序有关 跟class="red blue" 的顺序无关*/
+    </style>
+</head>
+
+<body>
+    <div id="app" class="wrapper wrapper1">
+        abcd
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <input type="text" name="" id="">
+    <div class="red blue">abxd</div>
+    <div class="parent">
+        parent
+        <div class="child">
+            child
+        </div>
+    </div>
+    <div class="parent1">
+        ABCDEF
+    </div>
+    <script>
+        setTimeout(() => {
+            document.querySelector('.parent1').classList.add('child')
+        }, 3000)
+        setTimeout(() => {
+            document.querySelector('.parent1').classList.remove('child')
+        }, 5000)
+        const inventors = [{
+                first: 'Albert',
+                last: 'Einstein',
+                year: 1879,
+                passed: 1955
+            },
+            {
+                first: 'Isaac',
+                last: 'Newton',
+                year: 1643,
+                passed: 1727
+            },
+            {
+                first: 'Galileo',
+                last: 'Galilei',
+                year: 1564,
+                passed: 1642
+            },
+            {
+                first: 'Marie',
+                last: 'Curie',
+                year: 1867,
+                passed: 1934
+            },
+            {
+                first: 'Johannes',
+                last: 'Kepler',
+                year: 1571,
+                passed: 1630
+            },
+            {
+                first: 'Nicolaus',
+                last: 'Copernicus',
+                year: 1473,
+                passed: 1543
+            },
+            {
+                first: 'Max',
+                last: 'Planck',
+                year: 1858,
+                passed: 1947
+            },
+            {
+                first: 'Katherine',
+                last: 'Blodgett',
+                year: 1898,
+                passed: 1979
+            },
+            {
+                first: 'Ada',
+                last: 'Lovelace',
+                year: 1815,
+                passed: 1852
+            },
+            {
+                first: 'Sarah E.',
+                last: 'Goode',
+                year: 1855,
+                passed: 1905
+            },
+            {
+                first: 'Lise',
+                last: 'Meitner',
+                year: 1878,
+                passed: 1968
+            },
+            {
+                first: 'Hanna',
+                last: 'Hammarström',
+                year: 1829,
+                passed: 1909
+            }
+        ];
+        // 1 过滤一下 1950 < year < 1959
+        let t = [];
+        // 循环 for, for of,foreach
+        inventors.forEach((inventor) => {
+            // console.log(inventor);
+            if (inventor.year >= 1550 && inventor.year <= 1959) {
+                t.push(inventor);
+            }
+            if (inventor.last === 'Einstein') {
+                console.log(inventor);
+            }
+        })
+        console.log(t);
+
+        // filter() 过滤某个条件 使JavaScript更加优雅
+        // filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+        // fliter find 都需要return 一个bool true 满足条件 false 不满足条件
+        let t1 = inventors.filter(function (inventor) {
+            return inventor.year >= 1550 && inventor.year <= 1959
+        })
+        // 相当于 下面这个
+        // if(inventor.year >=1550 && inventor.year<=1959){
+        //     return true;
+        // }
+        // else{
+        //     return false;
+        // }
+        console.log(t1);
+        // find() 方法返回通过测试（函数内判断）的数组的第一个元素的值。
+        let ai = inventors.find(function (inventor) {
+            // if(inventor.last === 'Einstein'){
+            //     return true;
+            //     else{
+            //         return false;
+            //     }
+            // }
+            return inventor.last === 'Einstein';
+        })
+        console.log(ai);
+
+        let arr = [0, 1, 2, 3];
+        // 每一项扩大两倍 => [0,2,4,6]
+        let t3 = [];
+        for (let i = 0; i < arr.length; i++) {
+            let res = arr[i] * 2;
+            t3.push(res);
+        }
+        console.log(t3);
+        // map 映射 直接用规则生成 回调函数 也需要返回 返回一个映射的规则
+        // 鸡 -> 蛋
+        // 牛 -> 奶
+        let t4 = arr.map(function (num) {
+            console.log(num);
+            return num * 2;
+        })
+        console.log(t4);
+    </script>
+</body>
+
+</html>
