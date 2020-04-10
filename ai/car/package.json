@@ -1,0 +1,11 @@
+{
+  "name": "car",
+  "version": "0.0.1",
+  "description": "坐汽车的检测项目, 给任何汽车做检测",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zhouzihan",
+  "license": "ISC"
+}
