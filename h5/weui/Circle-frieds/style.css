@@ -1,0 +1,44 @@
+.bg_img {
+    width: 100%;
+    height: 275px;
+    background-image: url(./images/1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+/* .bg_img::before {
+    content: '<';
+    color: white;
+} */
+
+.remove{
+    transform: translate(0,-60px);
+}
+.head_portrait {
+    display: flex;
+    transform: translate(250px, -45px);
+}
+
+.head_portrait .img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    margin-right: 2px;
+    background-image: url(./images/1.png);
+    background-size: cover;
+}
+
+.head_portrait .name {
+    color: white;
+    line-height: 60px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.mine_img{
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    margin-right: 10px;
+    overflow: hidden;
+}
