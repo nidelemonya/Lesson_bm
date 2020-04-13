@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 隐藏 */
+        .slide-in{
+            opacity: 0;
+            /* 设置所有动画的过渡时间 */
+            transition: all 1.5s;
+        }
+        /* 出现 && */
+        .slide-in.active{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-in">
+        box box box box
+    </div>
+    <script>
+        // 定时器
+        setTimeout(function(){
+            document.querySelector('.slide-in')
+            .classList.add('active');
+        },3000)
+    </script>
+</body>
+</html>

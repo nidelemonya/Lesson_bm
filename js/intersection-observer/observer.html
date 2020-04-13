@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 惰性加载(懒加载) */
+        /* 设置滚动条 margin */
+        .container{
+            width: 200px;
+            height: 600px;
+            /* 超出滚动 */
+            overflow: scroll;
+            /* overflow-x: scroll;
+            overflow-y: scroll; */
+            border: 1px solid black;
+        }
+        /* 子元素在这个 200px 600px 区域之外 */
+        .target{
+            margin-top: 900px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="target"></div>
+    </div>
+    <script>
+        // target 是在 container 之内滚动的, container 是 root(根)边界盒
+        // 属性
+        // 抽象: 人类 具体:大卫
+        // 属性 大卫.age 大卫.name ...
+        // 方法 大卫.sleep() ...
+        const target = document.querySelector('.target');
+        // nodes 形参 只是个名字 有多个
+        // 第一个参数 是回调函数 第二个参数 是 属性
+        let observer = new IntersectionObserver(function(nodes){
+            // const node = nodes[0];
+            nodes.forEach(function(node){
+                // intersectionRatio 交叉比率
+                // console.log(node);
+                // isIntersecting 元素是否已经出现
+                if(node.isIntersecting){
+                    console.log('已经出现了');
+                }
+            })
+        },{
+            // 设置 根边界盒
+            root: document.querySelector('.container'), // 观察的元素在哪个容器内滚动的?
+            rootMargin:'0px 0px 100px 0px', // 上 右 下 左 这里设置的是假想地址 假设离底部间距为100px;
+            //: 阀值 观察的元素出现的一个比率, 超过50% isIntersecting 才为true
+            // threshold:[0.5,1] // 每超过一次阀值都会通知我
+        });
+        // 开始观察
+        // 如果出现在视窗范围之内, 他就会通知我??? 用回调函数的方法通知
+        observer.observe(target);
+
+    </script>
+</body>
+</html>
