@@ -13,13 +13,13 @@ a {
 .sleft {
   float: left;
   border-right: 1px solid #bddaf5;
-  width: 200px;
-  margin: 6px 0 5px 12px;
+  width: 204px;
+  margin: 6px 0 5px 8px;
 }
 .sright {
   float: left;
-  width: 200px;
-  margin: 6px 0 5px 12px;
+  width: 204px;
+  margin: 6px 0 5px 8px;
 }
 .finance-wrapper {
   height: 102px;
@@ -37,7 +37,6 @@ a {
 [class^="icon-num-"],
 [class*=" icon-num-"] {
   font-family: 'icomoon' !important;
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
