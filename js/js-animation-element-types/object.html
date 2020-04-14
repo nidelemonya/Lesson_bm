@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            name:'zc',
+            age: 18
+        };
+        // 一成不变, 对他 增 删 改 查
+        delete obj.name;
+        obj.school = 'ECUT';
+        console.log(obj);
+        // 赋值 操作: 指向同一块内存地址 赋值的是指针
+        let obj1 = obj; // obj1 和 obj 这里共享一块内存地址
+        obj1.homeTown = 'jx';
+        console.log(obj1);
+        // 1
+        let arr1 = [0, 1,2]
+        // 2
+        let arr2 = arr1; // arr1 和 arr2 绑定了同一块内存地址
+        arr2.push(3);
+        console.log(arr1);
+        console.log(arr2);
+
+
+        // 基本数据类型 
+        let str1 = 'ECUT'; 
+        // str1 => 变量 ECUT => 值
+        // 赋值： 互不相关 赋值的是值
+        let str2 = str1;
+        str2 = str2 + 'DHLG';
+        console.log(str1);
+        console.log(str2);
+    </script>
+</body>
+</html>
