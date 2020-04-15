@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .parent {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+
+        .child {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        parent
+        <div class="child">child</div>
+    </div>
+    <a href="./dom.html">点击跳转</a>
+    <script>
+        const parent = document.querySelector('.parent');
+        const child = document.querySelector('.child');
+        parent.addEventListener('click', () => {
+            console.log('parent被点击了');
+        }, true)
+        child.addEventListener('click', () => {
+            // child 触发 click 的时候 就是 目标阶段
+            console.log('child被点击了');
+        }, true)
+        // parent 包含着 child => 点击 child 时候 能不能也算做点击了 parent ?
+        // 算做
+        // IE: 冒泡 bubble
+        // Firefox: 捕获 capture
+        // w3c 统一的规范, capture, bubble 融合
+        document.addEventListener('click', () => {
+            console.log('document被点击了');
+        }, true)
+        window.addEventListener('click', () => {
+            console.log('window被点击了');
+        }, {
+            capture: true, // 表示 listener 会在该类型的事件捕获阶段传播到该 EventTarget 时触发。
+            once: true // listener 会在其被调用之后自动移除 只调用一次
+        })
+        // 阻止默认事件, html 标签有一些特殊功能, 比如 a 点击了之后就会跳转页面, 我们阻止它 不跳转
+        document.querySelector('a').addEventListener('click', function (event) {
+            event.preventDefault();
+        })
+    </script>
+</body>
+
+</html>

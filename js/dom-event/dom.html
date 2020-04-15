@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- js 插入一些节点 -->
+    </div>
+    <script>
+        // dom 操作
+        // 代码都是字符串(一定的格式): java c python
+        // html -> browser (解析一棵 DOM 树) -> js 操作我们这棵 DOM 树 就叫做 DOM 操作
+        // DOM 的标准规定了 这些 api
+        const wrapper = document.querySelector('.wrapper');
+        wrapper.innerHTML = `<ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>`
+    </script>
+</body>
+
+</html>
