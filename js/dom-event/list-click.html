@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <ul>
-        <li>11111</li>
+        <li>
+            <div>111
+                <span>ttt</span>
+            </div>
+            <div>
+                yyyy
+            </div>
+        </li>
         <li>22222</li>
         <li>33333</li>
         <!-- 3s 之后我们又在下面插入了一个 li -->
     </ul>
+    <button id="btn" onclick="">btn</button>
     <script>
         // 点击每一个 li 输出 li里面的 文本内容
         // 1: 常规
@@ -23,27 +33,53 @@
         //         console.log(li.innerText)
         //     })
         // })
-        setTimeout(function(){
+        setTimeout(function () {
             // 插入
             const ul = document.querySelector('ul');
             // 创建一个 li 节点: <li></li>
             const li = document.createElement('li');
-            li.innerHTML='44444'
+            li.innerHTML = '44444'
             // console.log(li)
             ul.appendChild(li);
-        },3000)
+        }, 3000)
         // 2
         const ul = document.querySelector('ul');
         // 借助 => 我们的事件会冒泡的特点, 父节点, 也可以监听到子节点有没有发生点击事件(如果子节点点击了, 父节点也会收到 click 事件)
-        ul.addEventListener('click',function(){
+        ul.addEventListener('click', function (event) {
             // 怎么输出 li 里面的文本内容 ??
             // li.innerText
             // li === 点击的那个节点 ?? 怎么知道点击了哪里??
             // console.log(event);
             // 点击了哪里?
+            // event.target 指的 就是 点击了哪个元素 即指向了哪个元素
             const target = event.target;
             console.log(target.innerText);
         })
+        // 1： 有几个li 产生几个绑， 只能监听 已有的元素
+        // 2： 只有一个事件绑定, 监听 “未来” 的元素
+        // 节点比较多 (可能有 上万个li 节点), 采取的 都是 2 方式.
+        // document.querySelector('#btn').addEventListener('click',
+        // function(){
+        // })
+        // capture： 有些事件你只能在捕获阶段去绑定
+        const btn = document.getElementById('btn');
+        // dom 0
+        btn.onclick = function(){
+            console.log(0);
+        }
+        btn.onclick = function(){
+            console.log(1);
+        }
+        // dom 1 没有事件相关的的修改
+        // dom 2
+        btn.addEventListener('click',()=>{
+            console.log(22);
+        })   
+        // dom 3: 添加了 鼠标 键盘 (按下哪个键)
+        btn.addEventListener('click', () => {
+            console.log(11);
+        })
     </script>
 </body>
+
 </html>
