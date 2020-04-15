@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>11111</li>
+        <li>22222</li>
+        <li>33333</li>
+        <!-- 3s 之后我们又在下面插入了一个 li -->
+    </ul>
+    <script>
+        // 点击每一个 li 输出 li里面的 文本内容
+        // 1: 常规
+        // 只能选中 当前页面上已有的 li 节点, 给他们绑定事件, 后来添加的 节点是没有效果的.
+        // const lis = document.querySelectorAll('li');
+        // 每个 li 都绑定事件
+        // lis.forEach((li) =>{
+        //     li.addEventListener('click',function(){
+        //         console.log(li.innerText)
+        //     })
+        // })
+        setTimeout(function(){
+            // 插入
+            const ul = document.querySelector('ul');
+            // 创建一个 li 节点: <li></li>
+            const li = document.createElement('li');
+            li.innerHTML='44444'
+            // console.log(li)
+            ul.appendChild(li);
+        },3000)
+        // 2
+        const ul = document.querySelector('ul');
+        // 借助 => 我们的事件会冒泡的特点, 父节点, 也可以监听到子节点有没有发生点击事件(如果子节点点击了, 父节点也会收到 click 事件)
+        ul.addEventListener('click',function(){
+            // 怎么输出 li 里面的文本内容 ??
+            // li.innerText
+            // li === 点击的那个节点 ?? 怎么知道点击了哪里??
+            // console.log(event);
+            // 点击了哪里?
+            const target = event.target;
+            console.log(target.innerText);
+        })
+    </script>
+</body>
+</html>
