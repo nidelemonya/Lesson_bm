@@ -5,14 +5,14 @@
  * @param {number[]} nums
  * @return {number}
  */
-
+// 力扣第二十六题
 function removeDuplicates(nums) {
     let val = nums[0];
     for (let i = 1; i < nums.length;) {
         if (nums[i] === val) {
             nums.splice(i, 1);
         } else {
-            val = nums[i ++];
+            val = nums[i++];
         }
     }
     return nums.length;
