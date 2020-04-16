@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .drag {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 具体 h2 -->
+    <h2 id="drag1" class="drag">h2</h2>
+    <!-- btn 也想拖拽 -->
+    <button id="btn" class="drag">btn</button>
+    <script>
+        // 1. 按下鼠标
+        // 2. 拖拽 动: 设置 transform： translate3d() || (left，top)
+        // 3. 放
+        const drag1 = document.querySelector('#drag1');
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const dragEleSize = drag1.getBoundingClientRect();
+        function onMouseMove(event) {
+            let moveX = event.clientX,
+                moveY = event.clientY;
+            let distanceX = windowWidth - dragEleSize.width;
+            let distanceY= windowHeight- dragEleSize.height;
+            if (moveX < 0) moveX = 0;
+            if (moveX > distanceX){
+                moveX = distanceX;
+            }
+            if (moveY < 0) moveY = 0;
+            if (moveY > distanceY){
+                moveY = distanceY;
+            }
+            drag1.style.transform = `translate3d(${moveX}px,${moveY}px,0)`;
+        }
+        drag1.addEventListener('mousedown', function () {
+            // 才能拖
+            // 
+            document.addEventListener('mousemove',onMouseMove);
+            document.addEventListener('mouseup',function(){
+                // 移除 必须为有名函数才能移除 匿名函数不能移除
+                document.removeEventListener('mousemove', onMouseMove)
+            })
+        })
+        // 1： mousedown -> mousemove -> 移除 mousemove
+        // 2： mousemove 一直存在, 不用 mousedown 也能拖
+        // 3： mousedown -> 才有 move 才能拖
+    </script>
+</body>
+
+</html>

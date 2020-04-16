@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // js 类
+        // 猫: 抽象, 广
+        // 属性：描述 类 特点
+        // 方法：描述 类 可以干什么?
+        function Cat(name,color){
+            // 构造函数
+            // this 依然 很抽象, this 指向那里是不确定的
+            this.name = name;
+            this.color = color;
+            // 
+            this.say();
+        }
+        // 每一个function 都自带有一个 prototype 的属性, 我们把方法都挂在上面
+        Cat.prototype.say = function(){
+            console.log('喵喵~',this.name,this.color)
+        }
+        // 具象， 具体
+        // 发生 new 猫就确定下来了 this === cat1
+        let cat1 = new Cat('小白','black');
+        // 对象： {}
+        // this === cat2
+        let cat2 = new Cat('小黄','green');
+        let cat3 = new Cat('小黄','green');
+        console.log(cat3);
+        // let obj ={}
+
+
+        // 封装（抽象）一个sum函数
+        function sum(a,b){
+            return a + b;
+        }
+        // 确定下来 a 和 b 的值
+        sum (10,20);
+    </script>
+</body>
+</html>

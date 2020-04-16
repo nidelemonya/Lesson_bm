@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .drag {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 具体 h2 -->
+    <h2 id="drag1" class="drag">h2</h2>
+    <!-- btn 也想拖拽 -->
+    <button id="btn" class="drag">btn</button>
+    <script>
+        // swiper
+        //  selector: #drag1 #btn 让它变成可拖拽的
+        function DragAble(selector) {
+            this.ele = document.querySelector(selector);
+            this.windowWidth = window.innerWidth;
+            this.windowHeight = window.innerHeight;
+            this.eleSize = this.ele.getBoundingClientRect();
+            // 给移动元素 绑定一个 mouseDown
+            this.ele.addEventListener('mousedown', this.onMousedown);
+        }
+        DragAble.prototype.onMousedown = function () {
+            console.log('down', this, this.onMouseMove);
+            // 普通函数 this 指向 我们的 html 元素, this.onMouseMove 取不到,prototype上面那个 onMouseMove
+            // 导致事件绑定失效,
+            document.addEventListener('mousemove', this.onMouseMove);
+            document.addEventListener('mouseup', this.onMouseUp);
+        }
+        DragAble.prototype.onMouseMove = function () {
+            let moveX = event.clientX,
+                moveY = event.clientY;
+            let distanceX = this.windowWidth - this.eleSize.width;
+            let distanceY = this.windowHeight - this.eleSize.height;
+            if (moveX < 0) moveX = 0;
+            if (moveX > distanceX) moveX = distanceX;
+            if (moveY < 0) moveY = 0;
+            if (moveY > distanceY) moveY = distanceY;
+            // 要移动的元素在哪里? this.ele
+            this.ele.style.transform = `translate3d(${moveX}px,${moveY}px,0)`;
+        }
+        DragAble.prototype.onMouseUp = function () {
+            document.removeEventListener('mousemove', this.onMouseMove)
+        }
+        new DragAble('#drag1');
+        new DragAble('#btn');
+    </script>
+</body>
+
+</html>
