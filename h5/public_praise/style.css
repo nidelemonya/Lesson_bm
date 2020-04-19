@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f0f0f0;
+}
+.menu1 {
+  position: absolute;
+  background-color: #fff;
+  height: 4.2rem;
+  margin: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.menu1 .menu-inner1 {
+  width: 100%;
+}
+.menu1 .menu-inner1 .menu-box1 {
+  display: inline-block;
+  margin-left: 0.04rem;
+  width: 1.02rem;
+  height: 1rem;
+}
+.menu1 .menu-inner1 .menu-box1 .menu-image1 {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.menu1 .menu-inner1 .menu-box1 .menu-image1 img {
+  width: 100%;
+}
+.menu1 .menu-inner1 .menu-box1 .menu-text1 {
+  margin-left: 0.15rem;
+  font-size: 0.3rem;
+}
+.menu1 .menu-inner2 {
+  display: none;
+}
+.menu1 .menu-inner2 .menu-box1 {
+  display: inline-block;
+  margin-left: 0.04rem;
+  width: 1.02rem;
+  height: 1rem;
+}
+.menu1 .menu-inner2 .menu-box1 .menu-image1 {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.menu1 .menu-inner2 .menu-box1 .menu-image1 img {
+  width: 100%;
+}
+.menu1 .menu-inner2 .menu-box1 .menu-text1 {
+  margin-left: 0.15rem;
+  font-size: 0.3rem;
+}
+.menu1 .pagination {
+  display: flex;
+  height: 0.2rem;
+}
+.menu1 .pagination .pa1 {
+  position: absolute;
+  left: 2.9rem;
+  border-radius: 0.05rem;
+  width: 0.5rem;
+  height: 0.08rem;
+  background-color: #00f;
+}
+.menu1 .pagination .pa2 {
+  position: absolute;
+  left: 3.4rem;
+  border-radius: 0.05rem;
+  width: 0.5rem;
+  height: 0.08rem;
+  background-color: #00f;
+}
+.menu2 {
+  position: absolute;
+  top: 5rem;
+  margin: 0.25rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  font-size: 0.3rem;
+}
+.menu2 .menu-box2 {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+.menu2 .menu-box2 .menu-text {
+  display: flex;
+}
+.menu2 .menu-box2 .menu-image2 {
+  display: flex;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.menu2 .menu-box2 .menu-image2 img {
+  width: 100%;
+}
+.menu3 {
+  margin: 0.25rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+}
