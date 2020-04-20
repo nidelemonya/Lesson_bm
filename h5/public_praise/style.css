@@ -47,16 +47,16 @@ body {
   left: 0;
 }
 .menu1 .menu-inner1 .item2 {
-  left: 1.4rem;
+  left: 1.5rem;
 }
 .menu1 .menu-inner1 .item3 {
-  left: 2.8rem;
+  left: 2.9rem;
 }
 .menu1 .menu-inner1 .item4 {
-  left: 4.2rem;
+  left: 4.3rem;
 }
 .menu1 .menu-inner1 .item5 {
-  left: 5.6rem;
+  left: 5.7rem;
 }
 .menu1 .menu-inner1 .item6 {
   top: 2rem;
@@ -64,19 +64,19 @@ body {
 }
 .menu1 .menu-inner1 .item7 {
   top: 2rem;
-  left: 1.4rem;
+  left: 1.5rem;
 }
 .menu1 .menu-inner1 .item8 {
   top: 2rem;
-  left: 2.8rem;
+  left: 2.9rem;
 }
 .menu1 .menu-inner1 .item9 {
   top: 2rem;
-  left: 4.2rem;
+  left: 4.3rem;
 }
 .menu1 .menu-inner1 .item10 {
   top: 2rem;
-  left: 5.6rem;
+  left: 5.7rem;
 }
 .menu1 .menu-inner2 {
   display: flex;
@@ -105,39 +105,39 @@ body {
   font-size: 0.25rem;
 }
 .menu1 .menu-inner2 .item1 {
-  left: 6.9rem;
+  left: 7rem;
 }
 .menu1 .menu-inner2 .item2 {
-  left: 8.3rem;
+  left: 8.4rem;
 }
 .menu1 .menu-inner2 .item3 {
-  left: 9.7rem;
+  left: 9.8rem;
 }
 .menu1 .menu-inner2 .item4 {
-  left: 11.1rem;
+  left: 11.2rem;
 }
 .menu1 .menu-inner2 .item5 {
-  left: 12.5rem;
+  left: 12.6rem;
 }
 .menu1 .menu-inner2 .item6 {
   top: 2rem;
-  left: 6.9rem;
+  left: 7rem;
 }
 .menu1 .menu-inner2 .item7 {
   top: 2rem;
-  left: 8.3rem;
+  left: 8.4rem;
 }
 .menu1 .menu-inner2 .item8 {
   top: 2rem;
-  left: 9.7rem;
+  left: 9.8rem;
 }
 .menu1 .menu-inner2 .item9 {
   top: 2rem;
-  left: 11.1rem;
+  left: 11.2rem;
 }
 .menu1 .menu-inner2 .item10 {
   top: 2rem;
-  left: 12.5rem;
+  left: 12.6rem;
 }
 .menu2 {
   position: absolute;
@@ -149,7 +149,7 @@ body {
 .menu2 .menu-box2 {
   position: absolute;
   top: 0;
-  width: 2.25rem;
+  width: 2.28rem;
   height: 1.1rem;
   background-color: #fff;
   display: flex;
@@ -186,10 +186,10 @@ body {
   left: 0rem;
 }
 .menu2 .box2 {
-  left: 2.4rem;
+  left: 34%;
 }
 .menu2 .box3 {
-  left: 4.8rem;
+  right: 0;
 }
 .bg-img {
   position: absolute;
