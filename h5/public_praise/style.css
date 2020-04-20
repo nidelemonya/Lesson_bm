@@ -4,25 +4,34 @@
 }
 body {
   background-color: #f0f0f0;
+  line-height: 1.5;
+/* CSS3属性-webkit-font-smoothing字体抗锯齿渲染 */
+  -webkit-font-smoothing: antialiased;
 }
 .menu1 {
   position: absolute;
+  display: flex;
   background-color: #fff;
-  height: 4.2rem;
+  width: 88%;
+  height: 3.5rem;
   margin: 0.25rem;
   padding: 0.25rem;
   border-radius: 0.25rem;
   overflow-x: scroll;
-  overflow-y: hidden;
 }
 .menu1 .menu-inner1 {
-  width: 100%;
+  display: flex;
+  flex: 1;
 }
 .menu1 .menu-inner1 .menu-box1 {
-  display: inline-block;
-  margin-left: 0.04rem;
-  width: 1.02rem;
-  height: 1rem;
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
 .menu1 .menu-inner1 .menu-box1 .menu-image1 {
   width: 0.8rem;
@@ -32,17 +41,58 @@ body {
   width: 100%;
 }
 .menu1 .menu-inner1 .menu-box1 .menu-text1 {
-  margin-left: 0.15rem;
-  font-size: 0.3rem;
+  font-size: 0.25rem;
+}
+.menu1 .menu-inner1 .item1 {
+  left: 0;
+}
+.menu1 .menu-inner1 .item2 {
+  left: 1.4rem;
+}
+.menu1 .menu-inner1 .item3 {
+  left: 2.8rem;
+}
+.menu1 .menu-inner1 .item4 {
+  left: 4.2rem;
+}
+.menu1 .menu-inner1 .item5 {
+  left: 5.6rem;
+}
+.menu1 .menu-inner1 .item6 {
+  top: 2rem;
+  left: 0rem;
+}
+.menu1 .menu-inner1 .item7 {
+  top: 2rem;
+  left: 1.4rem;
+}
+.menu1 .menu-inner1 .item8 {
+  top: 2rem;
+  left: 2.8rem;
+}
+.menu1 .menu-inner1 .item9 {
+  top: 2rem;
+  left: 4.2rem;
+}
+.menu1 .menu-inner1 .item10 {
+  top: 2rem;
+  left: 5.6rem;
 }
 .menu1 .menu-inner2 {
-  display: none;
+  display: flex;
+  flex: 1;
+  width: 100%;
 }
 .menu1 .menu-inner2 .menu-box1 {
-  display: inline-block;
-  margin-left: 0.04rem;
-  width: 1.02rem;
-  height: 1rem;
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 0.34rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
 .menu1 .menu-inner2 .menu-box1 .menu-image1 {
   width: 0.8rem;
@@ -52,54 +102,154 @@ body {
   width: 100%;
 }
 .menu1 .menu-inner2 .menu-box1 .menu-text1 {
-  margin-left: 0.15rem;
-  font-size: 0.3rem;
+  font-size: 0.25rem;
 }
-.menu1 .pagination {
-  display: flex;
-  height: 0.2rem;
+.menu1 .menu-inner2 .item1 {
+  left: 6.9rem;
 }
-.menu1 .pagination .pa1 {
-  position: absolute;
-  left: 2.9rem;
-  border-radius: 0.05rem;
-  width: 0.5rem;
-  height: 0.08rem;
-  background-color: #00f;
+.menu1 .menu-inner2 .item2 {
+  left: 8.3rem;
 }
-.menu1 .pagination .pa2 {
-  position: absolute;
-  left: 3.4rem;
-  border-radius: 0.05rem;
-  width: 0.5rem;
-  height: 0.08rem;
-  background-color: #00f;
+.menu1 .menu-inner2 .item3 {
+  left: 9.7rem;
+}
+.menu1 .menu-inner2 .item4 {
+  left: 11.1rem;
+}
+.menu1 .menu-inner2 .item5 {
+  left: 12.5rem;
+}
+.menu1 .menu-inner2 .item6 {
+  top: 2rem;
+  left: 6.9rem;
+}
+.menu1 .menu-inner2 .item7 {
+  top: 2rem;
+  left: 8.3rem;
+}
+.menu1 .menu-inner2 .item8 {
+  top: 2rem;
+  left: 9.7rem;
+}
+.menu1 .menu-inner2 .item9 {
+  top: 2rem;
+  left: 11.1rem;
+}
+.menu1 .menu-inner2 .item10 {
+  top: 2rem;
+  left: 12.5rem;
 }
 .menu2 {
   position: absolute;
-  top: 5rem;
-  margin: 0.25rem;
-  background-color: #fff;
-  border-radius: 0.25rem;
-  font-size: 0.3rem;
+  width: 95%;
+  height: 1.1rem;
+  margin: 0.16rem;
+  top: 4.3rem;
 }
 .menu2 .menu-box2 {
-  display: inline-block;
-  margin-left: 0.5rem;
+  position: absolute;
+  top: 0;
+  width: 2.25rem;
+  height: 1.1rem;
+  background-color: #fff;
+  display: flex;
+  border-radius: 0.25rem;
+  margin-left: 0.1rem;
 }
 .menu2 .menu-box2 .menu-text {
+  flex: 1;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.menu2 .menu-box2 .menu-text .menu-top {
+  font-size: 0.27rem;
+}
+.menu2 .menu-box2 .menu-text .menu-bottom {
+  bottom: 0;
+  font-size: 0.21rem;
+  color: #666;
 }
 .menu2 .menu-box2 .menu-image2 {
   display: flex;
-  width: 0.8rem;
-  height: 0.8rem;
+  justify-content: center;
+  align-items: center;
+  width: 0.7rem;
+  height: 1.2rem;
 }
 .menu2 .menu-box2 .menu-image2 img {
   width: 100%;
 }
-.menu3 {
-  margin: 0.25rem;
-  background-color: #fff;
+.menu2 .box1 {
+  left: 0rem;
+}
+.menu2 .box2 {
+  left: 2.4rem;
+}
+.menu2 .box3 {
+  left: 4.8rem;
+}
+.bg-img {
+  position: absolute;
+  top: 5.4rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  margin-top: 0.3rem;
+  background: url("./images/chun.jpg");
+  width: 95%;
+  height: 2rem;
   border-radius: 0.25rem;
+  background-size: cover;
+}
+.menu3 {
+  position: absolute;
+  width: 95%;
+  height: 3.5rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  margin-top: 0.5rem;
+  top: 7.4rem;
+  border-radius: 0.25rem;
+  background-color: #fff;
+}
+.menu3 .menu3-text {
+  display: flex;
+}
+.menu3 .menu3-text .textl {
+  flex: 1;
+  font-size: 0.3rem;
+  color: #ffa500;
+  margin-left: 0.2rem;
+  margin-top: 0.2rem;
+}
+.menu3 .menu3-text .textr {
+  margin-top: 0.2rem;
+  margin-right: 0.2rem;
+  font-size: 0.25rem;
+  text-align: right;
+  color: #666;
+}
+.menu3 .menu-box3 {
+  position: absolute;
+  width: 2.2rem;
+  height: 2.8rem;
+  font-size: 0.25rem;
+}
+.menu3 .menu-box3 .menu-image3 {
+  width: 2rem;
+  height: 1.7rem;
+}
+.menu3 .menu-box3 .menu-image3 img {
+  width: 100%;
+}
+.menu3 .img1 {
+  left: 0.2rem;
+}
+.menu3 .img2 {
+  left: 2.6rem;
+}
+.menu3 .img3 {
+  left: 5rem;
 }
