@@ -17,7 +17,7 @@ body {
   display: flex;
   background-color: #fff;
   width: 88vw;
-  height: 25vh;
+  height: 20vh;
   margin: 0.25rem;
   padding: 0.25rem;
   border-radius: 0.25rem;
@@ -48,38 +48,43 @@ body {
   font-size: 0.25rem;
 }
 .menu1 .menu-inner1 .item1 {
+  top: 0;
   left: 0;
 }
 .menu1 .menu-inner1 .item2 {
+  top: 0;
   left: 18.75vw;
 }
 .menu1 .menu-inner1 .item3 {
+  top: 0;
   left: 37.5vw;
 }
 .menu1 .menu-inner1 .item4 {
+  top: 0;
   left: 56.25vw;
 }
 .menu1 .menu-inner1 .item5 {
+  top: 0;
   left: 75vw;
 }
 .menu1 .menu-inner1 .item6 {
-  top: 14vh;
+  top: 10vh;
   left: 0;
 }
 .menu1 .menu-inner1 .item7 {
-  top: 14vh;
+  top: 10vh;
   left: 18.75vw;
 }
 .menu1 .menu-inner1 .item8 {
-  top: 14vh;
+  top: 10vh;
   left: 37.5vw;
 }
 .menu1 .menu-inner1 .item9 {
-  top: 14vh;
+  top: 10vh;
   left: 56.25vw;
 }
 .menu1 .menu-inner1 .item10 {
-  top: 14vh;
+  top: 10vh;
   left: 75vw;
 }
 .menu1 .menu-inner2 {
@@ -109,38 +114,43 @@ body {
   font-size: 0.25rem;
 }
 .menu1 .menu-inner2 .item1 {
+  top: 0;
   left: 95vw;
 }
 .menu1 .menu-inner2 .item2 {
+  top: 0;
   left: 113.75vw;
 }
 .menu1 .menu-inner2 .item3 {
+  top: 0;
   left: 132.5vw;
 }
 .menu1 .menu-inner2 .item4 {
+  top: 0;
   left: 151.25vw;
 }
 .menu1 .menu-inner2 .item5 {
+  top: 0;
   left: 170vw;
 }
 .menu1 .menu-inner2 .item6 {
-  top: 14vh;
+  top: 10vh;
   left: 95vw;
 }
 .menu1 .menu-inner2 .item7 {
-  top: 14vh;
+  top: 10vh;
   left: 113.75vw;
 }
 .menu1 .menu-inner2 .item8 {
-  top: 14vh;
+  top: 10vh;
   left: 132.5vw;
 }
 .menu1 .menu-inner2 .item9 {
-  top: 14vh;
+  top: 10vh;
   left: 151.25vw;
 }
 .menu1 .menu-inner2 .item10 {
-  top: 14vh;
+  top: 10vh;
   left: 170vw;
 }
 .menu2 {
@@ -148,7 +158,7 @@ body {
   width: 95vw;
   height: 1.1vh;
   margin: 0.16rem;
-  top: 31vh;
+  top: 26vh;
 }
 .menu2 .menu-box2 {
   position: absolute;
@@ -197,7 +207,7 @@ body {
 }
 .bg-img {
   position: absolute;
-  top: 40vh;
+  top: 34vh;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
   margin-top: 0.3rem;
@@ -214,7 +224,7 @@ body {
   margin-left: 0.2rem;
   margin-right: 0.2rem;
   margin-top: 0.5rem;
-  top: 55vh;
+  top: 50vh;
   border-radius: 0.25rem;
   background-color: #fff;
 }
