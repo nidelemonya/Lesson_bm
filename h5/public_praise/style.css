@@ -16,10 +16,9 @@ body {
   position: absolute;
   display: flex;
   background-color: #fff;
-  width: 88vw;
+  width: 95vw;
   height: 20vh;
   margin: 0.25rem;
-  padding: 0.25rem;
   border-radius: 0.25rem;
   overflow-x: scroll;
 }
@@ -48,43 +47,43 @@ body {
   font-size: 0.25rem;
 }
 .menu1 .menu-inner1 .item1 {
-  top: 0;
+  top: -2vh;
   left: 0;
 }
 .menu1 .menu-inner1 .item2 {
-  top: 0;
+  top: -2vh;
   left: 18.75vw;
 }
 .menu1 .menu-inner1 .item3 {
-  top: 0;
+  top: -2vh;
   left: 37.5vw;
 }
 .menu1 .menu-inner1 .item4 {
-  top: 0;
+  top: -2vh;
   left: 56.25vw;
 }
 .menu1 .menu-inner1 .item5 {
-  top: 0;
+  top: -2vh;
   left: 75vw;
 }
 .menu1 .menu-inner1 .item6 {
-  top: 10vh;
+  top: 8vh;
   left: 0;
 }
 .menu1 .menu-inner1 .item7 {
-  top: 10vh;
+  top: 8vh;
   left: 18.75vw;
 }
 .menu1 .menu-inner1 .item8 {
-  top: 10vh;
+  top: 8vh;
   left: 37.5vw;
 }
 .menu1 .menu-inner1 .item9 {
-  top: 10vh;
+  top: 8vh;
   left: 56.25vw;
 }
 .menu1 .menu-inner1 .item10 {
-  top: 10vh;
+  top: 8vh;
   left: 75vw;
 }
 .menu1 .menu-inner2 {
@@ -114,51 +113,51 @@ body {
   font-size: 0.25rem;
 }
 .menu1 .menu-inner2 .item1 {
-  top: 0;
+  top: -2vh;
   left: 95vw;
 }
 .menu1 .menu-inner2 .item2 {
-  top: 0;
+  top: -2vh;
   left: 113.75vw;
 }
 .menu1 .menu-inner2 .item3 {
-  top: 0;
+  top: -2vh;
   left: 132.5vw;
 }
 .menu1 .menu-inner2 .item4 {
-  top: 0;
+  top: -2vh;
   left: 151.25vw;
 }
 .menu1 .menu-inner2 .item5 {
-  top: 0;
+  top: -2vh;
   left: 170vw;
 }
 .menu1 .menu-inner2 .item6 {
-  top: 10vh;
+  top: 8vh;
   left: 95vw;
 }
 .menu1 .menu-inner2 .item7 {
-  top: 10vh;
+  top: 8vh;
   left: 113.75vw;
 }
 .menu1 .menu-inner2 .item8 {
-  top: 10vh;
+  top: 8vh;
   left: 132.5vw;
 }
 .menu1 .menu-inner2 .item9 {
-  top: 10vh;
+  top: 8vh;
   left: 151.25vw;
 }
 .menu1 .menu-inner2 .item10 {
-  top: 10vh;
+  top: 8vh;
   left: 170vw;
 }
 .menu2 {
   position: absolute;
   width: 95vw;
-  height: 1.1vh;
+  height: 0.8vh;
   margin: 0.16rem;
-  top: 26vh;
+  top: 22vh;
 }
 .menu2 .menu-box2 {
   position: absolute;
@@ -207,7 +206,7 @@ body {
 }
 .bg-img {
   position: absolute;
-  top: 34vh;
+  top: 30vh;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
   margin-top: 0.3rem;
@@ -224,7 +223,7 @@ body {
   margin-left: 0.2rem;
   margin-right: 0.2rem;
   margin-top: 0.5rem;
-  top: 50vh;
+  top: 45vh;
   border-radius: 0.25rem;
   background-color: #fff;
 }
