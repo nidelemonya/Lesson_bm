@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            /* 居中布局 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1A4341;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            background: #F3AC3C;
+            border-radius: 50px;
+        }
+
+        .line1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) translate(0, -10px);
+            width: 10px;
+            height: 180px;
+            border-radius: 5px;
+            background-color: #F3AC3C;
+        }
+
+        .line2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) rotate(-60deg) translate(0, 10px);
+            display: block;
+            width: 10px;
+            height: 180px;
+            border-radius: 5px;
+            background-color: #F3AC3C;
+        }
+
+        .line3 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) rotate(60deg)translate(0, -10px);
+            display: block;
+            width: 10px;
+            height: 180px;
+            border-radius: 5px;
+            background-color: #F3AC3C;
+        }
+
+        .circle1 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) translate(-15px, -15px);
+            width: 30px;
+            height: 30px;
+            background: #998235;
+            border-radius: 15px;
+        }
+
+        .circle2 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) translate(25px, -25px);
+            width: 10px;
+            height: 10px;
+            background: #998235;
+            border-radius: 5px;
+        }
+
+        .circle3 {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) translate(0, 25px);
+            width: 20px;
+            height: 20px;
+            background: #998235;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+</body>
+
+</html>
