@@ -1,0 +1,41 @@
+<script>
+    const max = Math.max(-1, -9, -5);
+    let arr = [10, 9, 8, 7];
+    const max1 = Math.max(...arr);
+    let str = 'abcde';
+    // => a b c d e
+    // => 数组 [a,b,c,d,e]
+    let arr1 = [...str]
+    let obj = {
+        name: 'name',
+        sex: 'sex',
+        a: {
+            c: {
+                d: 1
+            }
+        }
+    }
+    console.log({
+        ...obj
+    });
+    console.log(max1);
+    // object
+    // 指向同一份地址
+    // 怎么避免?  进 obj 进行一次 拷贝、 复制
+    // 浅复制
+    // let obj1 = obj;
+    // 新的 从 obj 拷贝过去的 新对象
+    let obj1 = { ...obj}
+    delete obj1.name;
+    // 浅复制 删除了 obj1.a.c obj.a.c也没有了
+    delete obj1.a.c;
+    console.log(obj,obj1);
+
+
+
+    // es6 对函数扩展: 剩余参数
+    function sum(...rest){
+        console.log(rest);
+    }
+    sum(0,1,2,3,4,5)
+</script>
