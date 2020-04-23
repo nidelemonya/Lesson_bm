@@ -1,11 +1,15 @@
 <script>
+    // ... 扩展运算符
     const max = Math.max(-1, -9, -5);
     let arr = [10, 9, 8, 7];
     const max1 = Math.max(...arr);
+    console.log(max1);
     let str = 'abcde';
     // => a b c d e
     // => 数组 [a,b,c,d,e]
+    // 字符串 转换为 数组
     let arr1 = [...str]
+    console.log(arr1);
     let obj = {
         name: 'name',
         sex: 'sex',
@@ -15,27 +19,31 @@
             }
         }
     }
-    console.log({
-        ...obj
-    });
-    console.log(max1);
+    // console.log({...obj});
+    let obj3 = ({...obj});
+    console.log(obj3); // console.log   api  惰性的 去展开 它再加载里面的内容
+    // delete 之前
+    console.log('d',obj3.a.c.d);
     // object
     // 指向同一份地址
     // 怎么避免?  进 obj 进行一次 拷贝、 复制
-    // 浅复制
+    // 浅复制： 只复制第一层 节约空间
     // let obj1 = obj;
     // 新的 从 obj 拷贝过去的 新对象
-    let obj1 = { ...obj}
+    let obj1 = {
+        ...obj
+    }
     delete obj1.name;
     // 浅复制 删除了 obj1.a.c obj.a.c也没有了
     delete obj1.a.c;
-    console.log(obj,obj1);
+    console.log(obj, obj1);
+    console.log('d',obj3.a.c.d);
 
 
-
-    // es6 对函数扩展: 剩余参数
-    function sum(...rest){
+    // es6 对函数扩展: 剩余参数 整理参数编程数组 这里整理成了一个rest 的数组 特别灵活
+    // ...rest 必须在最后一个位置
+    function sum(a, b, ...rest) {
         console.log(rest);
     }
-    sum(0,1,2,3,4,5)
+    sum(0, 1, 2, 3, 4, 5)
 </script>

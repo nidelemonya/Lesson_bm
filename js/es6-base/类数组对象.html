@@ -14,56 +14,70 @@
         <li></li>
     </ul>
     <script>
-        function Person() {
-            // 静态 方法
-            Person.form = function () {
-                console.log('女娲')
-            }
-            Person.prototype.forEach = function(){
-                console.log('循环')
-            }
+        // 人类
+        // 像我 弟弟(实例：实际的例子) 这样的人
+        function Person(){}
+        Person.from = function(){ // 静态方法 直接把函数绑定在类上面 不需要实例化就可以调用的
+            // static
+            console.log('女娲');
         }
+        // 非静态方法
+        Person.prototype.forEach = function(){
+            console.log('循环');
+        };
+        // 实例 对象
+        let brother = new Person();
+        brother.forEach();
+        Person.from();
         // 类似数组的对象
         // 1：可以像数组一样，用数组[i]取值
         // 2：length
         // 不全是数组
-        // 比如: arguments, NodeList(querySelectorAll)
+        // 类数组对象 比如: arguments, NodeList(querySelectorAll)
         const lis = document.querySelectorAll('li');
         // console.log(lis);
         // lis.map(function(){})
+        // 正规的借用 map 
         Array.prototype.map.call(lis,function(liNode){
             console.log(liNode);
         })
+        // Array 内置的 一个类
+        //  arr   Array 的一个实例
         let arr = [0, 1]
-        console.log(arr.forEach)
-        // forEach 内部的 this 是不是指向 arr ?
+        // forEach 需要参数
+        arr.forEach(function(num){
+
+        });
+        // forEach 内部的 this 是不是 指向 arr ??
         function sum() {
             // 参数的个数 也不确定有几个
             console.log(arguments[0], arguments)
             // forEach
             let sum = 0;
             // 只有数组才有 forEach
-            // 1： 借用一下,知道他在哪里, 考虑 this
-            // arguments.forEach 拿不到, forEach: js 实现在哪里?
-            Array.prototype.forEach.call(arguments,function(){
+            // 1：借用一下， 考虑 this
+            // arguments.forEach 拿不到, forEach： js 内部实现在哪里?
+            // Array.prototype.forEach()
+            Array.prototype.forEach.call(arguments,function(num){
                 console.log(num);
-            } )
-            // 2:Array.form() 方法从一个类似数组对象创建一个新的数组。
-            const arr = Array.form(arguments);
-            arr.forEach(function(num){
-                console.liNode(num);
             })
-            // Array.prototype.forEach 本意: forEach 内部 this 指向 arguments
-            // arguments.forEach(num =>{
-            //     sum+=num;
+            // 2：Array.from() 方法从一个类似数组对象创建一个新的，浅拷贝的数组。
+            // Array.isArray() 用于确定传递的值是否是一个 Array。 判断某个东西是不是数组
+            const arr = Array.from(arguments);
+            arr.forEach(function(num){
+                console.log(num);
+            })
+            // arguments.forEach 本意: forEach 内部的this 指向 arguments
+            // arguments.forEach(num => {
+            //     sum += num;
             // });
             // console.log(sum);
         }
-        sum(0, 1, 3, 4)
-        console.log(Math.max(1,2,3,4,5));
+        sum(0, 1, 3, 4);
+        console.log(Math.max(1, 2, 3, 4, 5));
 
-        // Array.form 静态方法
-        // Array.forEach
+        // Array.from() 静态方法
+        // Array.prototype.forEach()
     </script>
 </body>
 
