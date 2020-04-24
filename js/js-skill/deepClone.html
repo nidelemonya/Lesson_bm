@@ -1,0 +1,46 @@
+<script>
+    let obj = {
+        name: 'name',
+        sex: 'sex',
+        a: {
+            b: {
+                c: 1
+            }
+        }
+    }
+    // let obj2 = {
+    //     name: 'name',
+    //     sex: 'sex',
+    //     a: 1
+    // }
+    let t = obj.a
+    // 1. 只有一层 不用 ...
+    // 对象的一个循环 ??
+    // for in
+    // 递 | 归
+    function deepClone(obj) {
+        let res = {}; //在堆内存中新建一个对象
+        for (let key in obj) { //遍历参数的键
+            // console.log(key);
+            // 1：大问题 分解为 小问题, 每个小问题 解决思路都是一样的
+            // 2: 终止条件
+            // obj 深拷贝 a 深拷贝 b 深拷贝
+            // b 深拷贝: 没有嵌套了, 到达嵌套最深的地方 res[key] = obj[key] 没问题
+            // 一旦如果有嵌套(?? 类型 ?? typeof) 那么就要一直拷贝
+            // res.key
+            // res.a = obj.a;
+            if (typeof obj[key] === 'object') {
+                res[key] = deepClone(obj[key]) //值是对象就再次调用函数
+            } else {
+                // 基本数据类型
+                res[key] = obj[key] //基本类型则直接复制值
+            }
+        }
+        return res;
+    }
+    // 入口
+    let obj2 = deepClone(obj);
+    obj2.name = 'obj2 name';
+    delete obj.a.c;
+    console.log(obj2,obj);
+</script>

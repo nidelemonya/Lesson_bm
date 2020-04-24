@@ -1,0 +1,64 @@
+<script>
+    let arr = [1, 2, 3, [4]];
+    let arr1 = [1, [2, [3, [4, [5]]]]];
+    let arr2 = [1, 6, [2, 7, [3]]];
+
+    // arr1 
+    // if array ([2, [3, [4, [5]]]])
+    // 把数组里面的 元素提取出来,
+    // 循环一下 if 元素 基本数据类型(2), 直接用基本数据类型(2)
+    // 如果不是基本数据是数组([3, [4, [5]]]) 把 数组 里面的提出来,
+    // [4,[5]]
+    // [5]
+    // [5]: 所有的元素都是基本数据类型, 处理完毕 递归终止
+
+    // 拍平 flat
+    // [1, 2, 3, 4]
+    function flat(arr){
+        let res = [];
+        for (let i =0; i<arr.length;i++){
+            let ele = arr[i];
+            // ele 必须是个 基本数据类型
+            if(ele.constructor === Array){
+                res = res.concat(flat(ele));
+            }
+            else{
+                res = res.concat(ele);
+            }
+        }
+        return res;
+    }
+    console.log(flat(arr1));
+
+
+    function flat1(arr){
+        let res = [];
+        for (let i =0; i<arr.length;i++){
+            let ele = arr[i];
+            // ele 必须是个 基本数据类型
+            if(Array.isArray(ele)){
+                res = res.concat(flat(ele));
+            }
+            else{
+                res = res.concat(ele);
+            }
+        }
+        return res;
+    }
+    console.log(flat1(arr1));
+
+    function flat2(arr){
+        let res = [];
+        for (let i =0; i<arr.length;i++){           
+            if(Array.isArray(arr[i])){
+                res = res.concat(flat(arr[i]));
+            }
+            else{
+                // arr[i] 必须是个 基本数据类型
+                res = res.concat(arr[i]);
+            }
+        }
+        return res;
+    }
+    console.log(flat2(arr1));
+</script>
