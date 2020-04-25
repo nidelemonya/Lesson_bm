@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="input" id="input" placeholder="搜索你喜欢的音乐吧">
+    <button id="btn">立即搜索</button>
+    <ul id="songs"></ul>
+    <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', function () {
+            // 输入框内容
+            const val = document.getElementById('input').value;
+            // button 通过 一个 ajax | http 请求, 向后端请求数据
+            // 
+            const xhr = new XMLHttpRequest();
+            // 向网易云后端 url: 统一资源定位符
+            // 1: 请求的方法 get: http 规定的一个方法
+            // 2：请求(request)的url
+            // 3: true 异步 false 同步
+            // get: 通过 url 把数据传给后端
+            xhr.open('get', `http://neteasecloudmusicapi.zhaoboy.com/search?keywords=${val}`, true);
+            // 请求 处理过程 需要耗费时间
+            // 异步: 不用在这等着 等我拿到资源后 再回调、通知你 js  单线程 无阻塞
+            // 同步： 必须在这里等着 等我拿到资源了 我才会往下执行
+            xhr.onreadystatechange = function () {
+                console.log(xhr.readyState, xhr.response);
+                // 0: 请求未初始化
+                // 1: 服务器连接已建立
+                // 2: 请求已接收
+                // 3: 请求处理中
+                // 4: 请求已完成， 且响应已就绪
+                // status 200: "OK" 
+                // 404: 未找到页面
+                // 当 readyState 等于 4 且状态为 200 时，表示响应已就绪
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // JSON.parse() 反序列化 字符串变成数组
+                    // console.log(JSON.parse(xhr.response));
+                    let res = JSON.parse(xhr.response);
+                    console.log(res);
+                    document.getElementById('songs').innerHTML = res.result.songs.map(function (song) {
+                        let {
+                            artists
+                        } = song;
+                        // 解构:这是一种将数据结构分解为更小的部分的过程，从而达到简化提取信息的目的。
+                        // 这里是提取出song 里面的 artists 部分
+                        let singers = artists.map(function (artist) {
+                            return artist.name
+                        }).join('/');
+                        return `
+                        <li>
+                            歌名： ${song.name} 演唱： ${singers} 专辑：${song.album.name}
+                        </li>
+                        `
+                    }).join('');
+                    // 渲染界面
+                }
+            }
+            xhr.send();
+            // 拿到资源
+            // 无阻塞 不等数据回来 立刻执行
+            console.log(xhr.response);
+            console.log('执行到这里');
+        })
+    </script>
+</body>
+
+</html>
