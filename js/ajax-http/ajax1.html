@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" name="input" id="input" placeholder="搜点什么吧" />
+  <button id="btn">立即搜索</button>
+  <ul id="songs">
+  </ul>
+  <script>
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+      const val = document.getElementById('input').value;
+      const xhr = new XMLHttpRequest();
+    //   http://127.0.0.1:8081/     浏览器自动发出请求 用户输入浏览器发起, 返回首页html
+    // http://127.0.0.1:8081/search 我们用js手动发出请求 前端js 发起
+      xhr.open('get',
+        `http://127.0.0.1:8081/search?keywords=${val}`,
+        true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4
+          && xhr.status === 200) {
+              //   拼接字符串
+              console.log(JSON.parse(xhr.response));
+              document.getElementById('songs').innerHTML = `
+              接收到后端响应了: ${xhr.response}
+              `
+        }
+      }
+      xhr.send();
+    })
+
+  </script>
+</body>
+
+</html>
