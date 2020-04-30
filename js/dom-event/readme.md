@@ -6,6 +6,7 @@ document object model(模型 => 树)
 
 ```js
 addEventListener('click',() => {}, 第三个参数)
+```
 第三个参数 默认为 false, 代表处于 冒泡阶段
 改为 true, 捕获阶段
 

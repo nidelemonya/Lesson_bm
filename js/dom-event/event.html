@@ -40,7 +40,8 @@
         child.addEventListener('click', () => {
             // child 触发 click 的时候 就是 目标阶段
             console.log('child被点击了');
-            // 阻止冒泡 第三个参数 true 要改为 false
+            // 第三个参数 true  事件句柄在捕获阶段执行
+            // 第三个参数 false- 默认。事件句柄在冒泡阶段执行
             // event.stopPropagation();
         }, true)
         // parent 包含着 child => 点击 child 时候 能不能也算做点击了 parent ?
