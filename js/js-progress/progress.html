@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .progress-bar {
+            /* 宽度应由用户决定 */
+            /* margin-top: 100px; */
+            height: 6px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: red;
+            border-radius: 3px;
+        }
+
+        .progress-button {
+            position: absolute;
+            left: 0;
+            top: -3px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            /* 设置圆形 */
+            border: 2px solid black;
+            /* solid 实线 */
+            background-color: red;
+            box-sizing: border-box;
+            margin-left: -7px;
+        }
+
+        .song-play {
+            display: flex;
+            align-items: center;
+        }
+        .song-play .image-box{
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid black;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .song-play .image-box img{
+            width: 100%;
+            height: 100%;
+        }
+        .song-play .time{
+            margin-left: 10px;
+            font-style: italic;
+            font-size:12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1.拖拽 -->
+    <!-- 2.进度 -->
+    <div class="progress-bar">
+        <div class="progress"></div>
+        <div class="progress-button"></div>
+    </div>
+    <div class="progress-bar progress-bar1">
+        <div class="progress"></div>
+        <div class="progress-button"></div>
+    </div>
+    <div class="song-play">
+        <div class="image-box">
+            <img src="http://p1.music.126.net/D9XLSbmtYMerCDMrYOLAQg==/109951164255110217.jpg?param=140y140"></div>
+        <div class="progress-bar progress-bar2">
+            <div class="progress"></div>
+            <div class="progress-button"></div>
+        </div>
+        <div class="time">3:02/4:00</div>
+    </div>
+    <script>
+        class progress {
+            constructor(seclector, option) {
+                this.wrap = document.querySelector(seclector);
+                this.progressBtn = this.wrap.querySelector('.progress-button');
+                this.progress = this.wrap.querySelector('.progress');
+                // 初始化
+                // 需要先初始化样式,在初始化事件
+                this.initStyle(option.style);
+                this.initEvent();
+            }
+            initStyle(styleObj) {
+                for (let key in styleObj) {
+                    console.log(key, styleObj[key]);
+                    this.wrap.style[key] = styleObj[key];
+                }
+            }
+            initEvent() {
+                let downx = 0;
+                let btnLeft = 0;
+                const wrapLen = this.wrap.offsetWidth;
+                const progressBtnLen = this.progressBtn.offsetWidth;
+                this.progressBtn.addEventListener('touchstart', () => {
+                    // 移动端： 捏 缩放, 需要多根手指
+                    // touches: 触点
+                    const touch = event.touches[0];
+                    btnLeft = parseInt(this.progressBtn.style.left || 0);
+                    downx = touch.clientX;
+                })
+                this.progressBtn.addEventListener('touchmove', (event) => {
+                    const touch = event.touches[0];
+                    const diffx = touch.clientX - downx;
+                    let left = diffx + btnLeft;
+                    if (left <= 0) left = 0;
+                    if (left >= wrapLen - progressBtnLen) left = wrapLen;
+                    let percent = left / wrapLen * 100
+                    this.progress.style.width = `${percent}%`
+                    this.progressBtn.style.left = `${left}px`
+                })
+            }
+        }
+        new progress('.progress-bar', {
+            style: {
+                width: '80%'
+            }
+        })
+        // {} 配置
+        new progress('.progress-bar1', {
+            style: {
+                width: '50%'
+            }
+        })
+        new progress('.progress-bar2', {
+            style: {
+                // width: '80%',
+                // flex 复合属性
+                // flex-grow: 0 | 1 有剩余空间要不要放大
+                // flex-shink: 0 | 1 没有剩余空间要不要缩小
+                // flex-width:      具体 width: 值
+                flex:'0 1 80%'
+            }
+        })
+    </script>
+</body>
+
+</html>
