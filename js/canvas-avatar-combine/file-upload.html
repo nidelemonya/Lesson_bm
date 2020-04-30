@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle {
+            border: 1px solid #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        /* circle mouseenter */
+        #combine {
+            border: 1px solid #000;
+        }
+        .btn{
+            outline: none;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 颜色选择 -->
+    <!-- <input type="color" id ="file"> -->
+    <!-- 日期选择 -->
+    <!-- <input type="date" id ="file"> -->
+    <!-- 只能输入数字 -->
+    <!-- <input type="number" id ="file"> -->
+    <input type="text" id="text">
+    <input type="file" id="file" hidden>
+    <button class="btn">文件上传</button>
+    <div class="circle"></div>
+    <img src="" alt="" id="preview" hidden>
+    <img src="./icon.png" alt="" id="flag" hidden>
+    <!-- 画布 不同的标签 浏览器给你画不同的内容 h2 加粗 img 图片 border 边框-->
+    <!-- canvas 纯空白的画布 加粗 图片 边框 圆角 阴影 渐变 事件...在这里都没有 完全靠我们自己实现-->
+    <canvas id="combine" width="290px" height="290px"></canvas>
+    <!-- http://xx.png -->
+    <!-- onchange: 输入框里面改变 -->
+    <script>
+        const fileNode = document.getElementById('file');
+        const combine = document.getElementById('combine');
+        const ctx = combine.getContext('2d'); // 拿到上下文设置为2d
+        // 1. 头像画到 canvas
+        // 2. 国旗头像 画到 canvas 
+        fileNode.addEventListener('change', function (event) {
+            // 1 拿到内容
+            // 2 放到 img src
+            // 谁触发了事件 event.target 指向谁
+            console.log(event.target === fileNode, event.target === this);
+            let file = event.target.files[0];
+            console.log(file);
+            // Blob 01组成的二进制 拿到的图片是2进制的内容
+            // 2进制 -> base64(编码)
+            // 例如 Unicode：utf-8 utf-16 都是编码 
+            // GBK base64: a-z A-Z 0-9 64个字符 把内容编码成 64个字符组成的东西
+            let fileReader = new FileReader();
+            // 每个事件都有一个事件对象 event
+            fileReader.onload = function (e) { // onload 事件 在页面完全载入后(包括图片、css文件等等)执行脚本代码。
+                console.log(e.target === fileReader) // 谁触发了事件 e.target 就指向谁
+                // 这里的 e.target 就是 fileReader
+                // console.log(e.target.result);
+                document.getElementById('preview').src = e.target.result; // 预览图片
+                // 刚把 src 属性 加上去, 就立即 画它 , 存在异步问题, 浏览器 还没有把这个图片加载完毕
+                document.getElementById('preview').onload = function () {
+                    // 1.画预览的图片 等浏览器加载完图片了 才能画 不然有可能没图片内容 画出空的东西出来
+                    // drawImage 1:拿到 image 元素 2:画
+                    ctx.drawImage(document.getElementById('preview'), 0, 0, 290, 290);
+                    // 从 0,0 起始坐标 画到 290,290 终止坐标
+                    // 2.画国旗
+                    ctx.drawImage(document.getElementById('flag'), 0, 0, 290, 290);
+                }
+            }
+            fileReader.readAsDataURL(file); // 读成base64
+        })
+        document.querySelector('.btn').addEventListener('click',function(){
+            fileNode.click();
+        })
+    </script>
+</body>
+
+</html>
