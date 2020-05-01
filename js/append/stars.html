@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 状态问题 语义化html 挂载点 wrapper-->
+    <div class="wrapper">
+        <!-- <button class="like-btn">
+            <span class="like-text">点赞</span>
+        </button> -->
+    </div>
+    <script>
+        
+
+        // html str `` 添加到页面
+        // 2.还要在他上面添加事件?
+        const createDOMFromString = (domString)=>{
+            const oDiv = document.createElement('div'); // 创建一个dom节点
+            oDiv.innerHTML =domString;  // 抽象
+            return oDiv;
+        }
+        class LikeButton {
+            constructor() {
+                // isLiked 变成属性
+                this.state = {
+                    isLiked: false
+                }
+            }
+            render() {
+                console.log(this,'render');
+                // 事件监听 ???
+                // addEventListener ? dom node-type 1
+                // dom createElement appendChild
+                this.el = createDOMFromString(`
+                    <button id = 'like-btn'>
+                        <span class="like-text">点赞</span>
+                    </button>
+                `)
+                // this
+                // this button 对象
+                // changeLikeText 到外面写是一种优化 有利于代码职责分离
+                // 作为事件函数, this 指向事件发生的元素 <div></div>
+                // .bind(this) 重新绑定this到LikeButton类 重新指向当前实例
+                // this将永久地被绑定到了bind的第一个参数，无论这个函数是如何被调用的。bind绑定的参数只生效一次。
+                this.el.addEventListener('click',  this.changLikeText.bind(this), false);
+                return this.el;
+            }
+            // 一个方法就做一个事情
+            changLikeText(){
+                // this.state.isLiked 改变一下
+                console.log(this); // this 被改写了
+                this.state.isLiked = ! this.state.isLiked;
+                // console.log(this.state.isLiked);
+                const likeText = this.el.querySelector('.like-text');
+                // 三元运算符
+                likeText.innerHTML = this.state.isLiked? '取消':'点赞';
+            }
+        }
+        const wrapper = document.querySelector('.wrapper');
+        const likeButton = new LikeButton(); //实例化
+        // render 函数 执行 调用方式 作为对象的方法
+        wrapper.appendChild(likeButton.render());
+
+        // 复用
+        const likeButton2 = new LikeButton();
+        wrapper.appendChild(likeButton2.render());
+    </script>
+</body>
+
+</html>

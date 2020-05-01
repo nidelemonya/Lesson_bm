@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Append child DOM API</title>
+</head>
+
+<body>
+    <ul class="root" id="students"></ul>
+    <script>
+        const students = [{
+            id: 1,
+            name: '周子寒',
+            github: 'https://github.com/Bruce-shy'
+        }, {
+            id: 2,
+            name: '管丽萍',
+            github: 'https://github.com/guanliping111'
+        }, {
+            id: 3,
+            name: '刘巧纯',
+            github: 'https://github.com/qiaochunliu77'
+        }]
+        // students append #root
+        // arr -> map -> html arr -> join ->url
+        // DOM 动态编程
+        // innerHTML   /       appendChild
+        // HTML 标签还可以用js 来创建
+        // js 跟 html 联系起来
+        const oUL = document.getElementById('students');
+        oUL.addEventListener('click',function(){
+            // alert('???');
+            // insertBefore
+            // 如何 只在 UL 上点击, 把 相应 A 标签的名字打印出来
+        })
+        oUL.style.fontSize = '16px';
+        // li 没选中 在内存中是节点对象了, append html
+        // js 节点对象 -> html 对象的转化
+        // li 加一个 a href
+        // 节点树
+        const fragment = document.createDocumentFragment(); // 垫片 文档碎片 性能优化 相当于一个过渡点 这个点存在于内存中
+
+        for (let student of students) {
+            const oLi = document.createElement('li');
+            const oA = document.createElement('a');
+            // console.log(oLi.nodeType); // 值为1 标签对象
+            // console.log(typeof oLi);
+            // console.log(oLi);
+            // oUL.appendChild(oLi);    // 性能问题     每次添加内容的时候：页面都会重新绘制 和 刷新    appendChild li ->
+            // js DOM 性能消耗比较大
+            fragment.appendChild(oLi);  // 内存中
+            oLi.appendChild(oA);
+            oLi.className = 'item';
+            const oText = document.createTextNode(student.name);
+            // console.log(oText.nodeType); // 值为3 文本对象
+            // console.log(typeof oText);
+            // console.log(oText);
+            oA.appendChild(oText);
+            oA.addEventListener('click', function (event) {
+                // event.preventDefault(); // 阻止默认行为
+                alert(this.innerText);
+            }, false)
+            oA.setAttribute('href', student.github);
+            oA.setAttribute('target', "_blank");
+        }
+        oUL.appendChild(fragment);
+        // 请在 students 节点挂载到 ul 后, 向 li 加上 id 值 的节点
+        const studentLis = document.querySelectorAll('.item');
+        // console.log(studentLis);
+        // index 下标 第几个
+        studentLis.forEach((li, index) => {
+            // console.log(li);
+            let oA = li.querySelector('a');
+            console.log(oA);
+            const oSpan = document.createElement('span');
+            oSpan.appendChild(document.createTextNode(students[index].id));
+            // 在 oA 节点之前插入一个 oSpan 节点
+            li.insertBefore(oSpan, oA);
+        })
+        // studentLis 伪数组 for forEach length 下标访问 仅此而已
+        // 把伪数组 变成 真正的数组
+        // console.log(studentLis[0].childNodes[0].innerText);
+        // console.log([...studentLis].filter(li => {
+        //     return li.childNodes[0].innerText  == '周子寒'}));
+    </script>
+</body>
+
+</html>

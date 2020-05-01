@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 状态问题 语义化html 挂载点 wrapper-->
+    <div class="wrapper">
+        <!-- <button class="like-btn">
+            <span class="like-text">点赞</span>
+        </button> -->
+    </div>
+    <script>
+        // const button = document.querySelector('.like-btn');
+        // const buttonText = document.querySelector('.like-text');
+        // let isLiked = false; // 为false 代表可以点击的
+        // button.addEventListener('click',()=>{
+        //     isLiked = !isLiked;
+        //     // if(isLiked){
+        //     //     buttonText.innerHTML = "取消"
+        //     // }
+        //     // else{
+        //     //     buttonText.innerHTML = "点赞"
+        //     // }
+        //     // 优化上述代码 => 使用三元运算符
+        //     isLiked ? buttonText.innerHTML = '取消' :buttonText.innerHTML = '点赞'
+        // },false)// false- 默认。事件句柄在冒泡阶段执行 从里向在外面冒泡
+        // 流程性代码 点赞通用组件, 不方便复用  解决办法： 封装
+        // 优化上述代码 开始封装 方便复用
+        // addEventListener dom 节点上添加
+        class LikeButton {
+            constructor() {
+                // isLiked 变成属性
+                this.state = {
+                    isLiked: false
+                }
+            }
+            render() {
+                // 事件监听 ???
+                // addEventListener ? dom node-type 1
+                // dom createElement appendChild
+                let isLiked = this.state.isLiked;
+                const button = document.createElement('button');
+                const buttonText = document.createElement('span');
+                wrapper.appendChild(button);
+                button.appendChild(buttonText);
+                const oText = document.createTextNode('点赞');
+                buttonText.appendChild(oText);
+                this.button = document.querySelector('.like-btn');
+                button.id = 'like-btn';
+                buttonText.className = 'like-text';
+                // console.log(button);
+                // return `
+                //     <button id = 'like-btn'>
+                //         <span class="like-text">点赞</span>
+                //     </button>
+                // `
+                button.addEventListener('click', function () {
+                    isLiked = !isLiked;
+                    isLiked ? buttonText.innerHTML = '取消' : buttonText.innerHTML = '点赞'
+                }, false)
+            }
+        }
+        const wrapper = document.querySelector('.wrapper');
+        const likeButton = new LikeButton(); //实例化
+        likeButton.render();
+
+        // 复用
+        const likeButton2 = new LikeButton();
+        likeButton2.render();
+    </script>
+</body>
+
+</html>
