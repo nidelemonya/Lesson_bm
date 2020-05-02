@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!-- DOM 挂载点 -->
     <div class="wrapper"></div>
     <script>
         // 中央空调
-        const createDOMFromString
+        const createDOMFromString = (domString) => {
+            const oDiv = document.createElement('div'); // 创建一个dom节点
+            oDiv.innerHTML = domString; // 抽象
+            return oDiv;
+        }
         // 设计一个类
         // 封装
         class LikeButton {
-            constructor(){
+            constructor() {
                 // 声明属性
-                this.state = {  // JSON
-                    isLiked:false   // bool
+                // 状态 点赞 或 不点赞
+                this.state = { // JSON
+                    isLiked: false, // bool
+                    num:665
                 }
             }
-            render(){
-
+            render() {
+                this.el = createDOMFromString(`
+                <button id = 'like-btn'>
+                    <span class="like-text">${this.state.isLiked? ('取消'+this.state.num--):('点赞'+this.state.num++)}</span>
+                </button>`);
+                this.el.addEventListener('click', this.changeLikeText.bind(this), false);
+                return this.el;
             }
-            changeLikeText(){
-
+            changeLikeText() {
+                this.setState({
+                    isLiked: !this.state.isLiked,
+                    num:this.state.num
+                })
+            }
+            // 做了什么?    灯, 状态函数
+            setState(state) {
+                // insertBefore();
+                // console.log(state);
+                const oldEl = this.el;  // 前任
+                const parent = this.el.parentNode;  // 获取当前节点的父节点
+                console.log(parent);
+                this.state = state; // 数据属性
+                this.el = this.render(); // 再渲染一下  现任
+                // 灵感, 业务能力
+                parent.insertBefore(this.el,oldEl);
+                // 父节点.insertBefore(要插入的节点对象，要添加新的节点前的子节点。) 方法可在已有的子节点前插入一个新的子节点。
+                parent.removeChild(oldEl);  // react 思想 移除节点
             }
         }
         const wrapper = document.querySelector('.wrapper');
+        const likeButton = new LikeButton();
+        wrapper.appendChild(likeButton.render());
         // 点赞功能组件
-
     </script>
 </body>
+
 </html>
