@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云音乐</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/Swiper/5.3.8/css/swiper.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+</head>
+
+<body>
+    <header>
+        <div class="top">
+            <span class="iconfont menu">&#xe65c;</span>
+            <span class="title">网易云音乐</span>
+            <span class="iconfont search">&#xe62b;</span>
+        </div>
+        <div class="tabbar">
+            <a href="/recommend" class="selected">
+                <div class="item"><span>推荐</span></div>
+            </a>
+            <a href="/singers">
+                <div class="item"><span>歌手</span></div>
+            </a>
+            <a href="/rank">
+                <div class="item"><span>排行榜</span></div>
+            </a>
+        </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- <div class="swiper-slide"><div class="img_box"><img src="http://p1.music.126.net/QM55Md6BnoSoLIdIOwzChA==/109951164958551342.jpg" alt=""></div></div> -->
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>  
+    </header>
+    <div id="recommend_content" style="display:none;"></div>
+    <div id="singers_content"></div>
+    <div id="rank_content"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/5.3.8/js/swiper.min.js"></script>
+    <script src="./common.js"></script>
+</body>
+
+</html>
