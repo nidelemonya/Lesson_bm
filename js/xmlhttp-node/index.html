@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    abc
+    <script>
+        // // 第1个请求
+        // const xhr = new XMLHttpRequest();
+        // xhr.open('POST', 'getPosts', true); //默认为true 代表异步
+        // xhr.timeout = 2000;
+        // // 
+        // // 0 ~ 4
+        // // query=js&type=user
+        // // query: 关键词
+        // // type： 类型
+        // // 后端就会把query=? &type=? 取出来
+        // xhr.setRequestHeader('X-Real-IP', '211.161.244.70');
+        // // json
+        // // 没设置之前的 内容格式 Content-Type: text/plain;charset=UTF-8 纯文本
+        // // MIME
+        // xhr.setRequestHeader('Content-Type', 'application/json');
+        // // 告诉后端 传给后端的数据是 json
+        // xhr.addEventListener('timeout', function () {
+        //     console.log('timeout');
+        // })
+        // xhr.addEventListener('readstatechang', function () {
+        //     if (xhr.readyState === 4) {
+        //         console.log(xhr.response, xhr.status);
+        //     }
+        // })
+        // // 封装一个 ajax 
+        // // xhr.addEventListener('load')     // 效果和上个ddEventListener作用相同
+        // // 发出请求
+        // // post 传参形式 放到 send 上 Request Payload 上
+        // // json 更加灵活
+        // let obj = {
+        //     query: 'js',
+        //     type: 'all'
+        // }
+        // // xhr.send(`query=js&type=all`);
+        // xhr.send(JSON.stringify(obj)); // JSON.stringify()的作用是将js值转换成JSON字符串
+        // // 终止请求  xhr.abort();
+        // // content-type
+
+        function axios(method, url, params = {}, headers = {}) {
+            const xhr = new XMLHttpRequest();
+            xhr.open(method, url, true);
+            for (let k in headers) {
+                xhr.setRequestHeader(k, headers[k])
+            }
+            xhr.addEventListener('readstatechang', function () {
+
+            })
+            let data = headers['Content-Type'] && headers['Content-Type'] === 'application/json' ? JSON.stringify(
+                params) : params;
+            xhr.send(data);
+        }
+        axios('POST', '/getPosts', {
+            type: 'all',
+            query: 'js'
+        }, {
+            'X-Real-IP': '211.161.244.70',
+            'Content-Type': 'application/json'
+        });
+    </script>
+</body>
+
+</html>
