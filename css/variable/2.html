@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./box.css">
+    <style>
+        :root {
+            --bg-color: green;
+            --base-size: 10;
+        }
+
+        .box {
+            /* 占据90% -10px 宽  中间有空格*/
+            /* width: calc(90% - 10px); */
+            /* height: 100px; */
+            /* background-color: var(--bg-color);  */
+            width: calc(var(--base-size) * 10px);
+            height: calc(var(--base-size) * 5px);
+            background-color: var(--bg-color);
+            padding: calc(var(--base-size) * 1px);
+        }
+
+        /* 当用手机浏览时, 请把 box 宽, 高, padding 大小等比例缩放80%, 在变量上做文章 */
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        let sUserAgent = navigator.userAgent.toLowerCase(); // toLowerCase()方法用于把字符串转换为小写
+        const box = document.querySelector('.box');
+        console.log(sUserAgent);
+        // indexOf返回某个指定的字符串值在字符串中首次出现的位置。
+        // indexOf() 方法对大小写敏感！如果要检索的字符串值没有出现，则该方法返回 -1。
+        // indexOf() != -1 <=> includes()
+        // includes() 方法 在数组中：用来判断一个数组是否包含一个指定的值, 根据情况返回 true 或 false
+        // includes() 方法 在字符串中：用于判断一个字符串是否包含在另一个字符串中,根据情况返回 true 或 false
+
+        // 1. 用 includes() 方法
+        if (sUserAgent.includes('android') || sUserAgent.includes('iphone')) {
+            console.log('移动端');
+            console.log(box.offsetWidth);
+            // console.log(box.style.width = box.offsetWidth*0.8 + 'px');
+            // setProperty() 方法用于设置一个新的 CSS 属性，同时也可以修改 CSS 声明块中已存在的属性。
+            // object.setProperty(propertyname, value, priority)
+            // propertyname	必需。一个字符串，表示创建或修改的属性。
+            // value	可选，新的属性值。
+            console.log(document.documentElement.style.setProperty('--base-size', 8));
+            console.log(box.offsetWidth);
+        }
+
+        // 2.用 indexOf() != -1 要加上 toLowerCase()
+        if (sUserAgent.indexOf('android') != -1 || sUserAgent.indexOf('iphone') != -1) {
+            console.log('移动端');
+            console.log(box.offsetWidth);
+            // console.log(box.style.width = box.offsetWidth*0.8 + 'px');
+            console.log(document.documentElement.style.setProperty('--base-size', 8));
+            console.log(box.offsetWidth);
+        }
+    </script>
+</body>
+
+</html>

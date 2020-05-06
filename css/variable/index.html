@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css 4 引入了 variable */
+        /* 面底层, 以及最新的技术点, 并能深入试验 */
+    :root{  
+        /* 根上 */
+        --bgcolor: blue;    /* 他的值可以复用 */
+        --color:red;
+    }
+    p{
+        color:var( --color) /*var 使用变量*/
+    }
+    div{
+        color:var( --color);
+        background-color: var( --bgcolor);
+    }
+    </style>
+</head>
+<body>
+    <p>有没有看过 《财富自由之路》</p>
+    <div>如何实现财富自由?</div>
+</body>
+</html>
