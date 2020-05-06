@@ -3,4 +3,5 @@
     stylus
     typescript
 
-    tsc -w index.ts -w watch
+    把ts文件编译成js文件
+    tsc -w index.ts     (-w watch)
