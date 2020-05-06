@@ -48,7 +48,7 @@
             // object.setProperty(propertyname, value, priority)
             // propertyname	必需。一个字符串，表示创建或修改的属性。
             // value	可选，新的属性值。
-            console.log(document.documentElement.style.setProperty('--base-size', 8));
+            document.documentElement.style.setProperty('--base-size', 8);
             console.log(box.offsetWidth);
         }
 
@@ -57,7 +57,7 @@
             console.log('移动端');
             console.log(box.offsetWidth);
             // console.log(box.style.width = box.offsetWidth*0.8 + 'px');
-            console.log(document.documentElement.style.setProperty('--base-size', 8));
+            document.documentElement.style.setProperty('--base-size', 8);
             console.log(box.offsetWidth);
         }
     </script>
