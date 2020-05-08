@@ -1,0 +1,82 @@
+<script>
+    // 1: key value 都要编码一下 -> 安全性的考虑    有那么一些特殊字符 对后端的 sql 语句 有威胁性
+    // 2：传递数组 传递不合法值
+    // 3：# 号后面的东西不会传给后端    只在前端作为锚点 跟后端无关 如果 url里面存在 # 把# 后面的内容丢掉
+    // 传输 传输每个设备 编码规则
+    // 浏览器会自动编码 但是在Node 端 不会编码 传中文有时会报错
+    // http://neteasecloudmusicapi.zhaoboy.com/search?keywords=%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA
+    function encode(str) {
+        // encodeURIComponent() 函数可把字符串作为 URI 组件进行编码。
+        return encodeURIComponent(str).
+        // 这里是axios 觉得这些字符使用是安全的，所以转回来。
+        replace(/%40/gi, '@').
+        replace(/%3A/gi, ':').
+        replace(/%24/g, '$').
+        replace(/%2C/gi, ',').
+        replace(/%20/g, '+').
+        replace(/%5B/gi, '['). // 数组 合法
+        replace(/%5D/gi, ']');
+    }
+
+    function buildUrl(url, params) {
+        let parts = [];
+        // 获取对象所有的key value 统一变成一个格式
+        Object.keys(params).forEach(key => {
+            let value = params[key];
+            if (value === null || typeof value === 'undefined') {
+                return;
+            }
+            if (Array.isArray(value)) {
+                key += '[]';
+                // c:[1,2,3] => c[]=1&c[]=2&c[]=3   是不是要循环一下 value
+            } else {
+                // c：123
+                // key = c
+                value = [value];
+            }
+            console.log(key, value);
+            // 一定都是数组
+            // 统一处理 都可以循环
+            // 把 value 里面的每一项 追加到 key 后面 c[]=1 c[]=2 c[]=3
+            // else c=123 => c=[123]
+            // 把 value 的每一项   变成数组 追加到 key 后面
+            value.forEach(val => {
+
+                // console.log(key);
+                // console.log(val);
+                let part = `${encode(key)}=${encode(val)}`
+                // 1. keywords='海阔天空' type='all' query='js'
+                // 2. & join
+                console.log(part);
+                parts.push(part);
+            })
+        })
+        console.log(parts);
+        console.log(parts.join('&'));
+        // 
+        const hashIndex = url.indexOf('#');
+        // 如果存在 返回 # 所在的位置 不在 返回-1   返回数值型 number
+        if (hashIndex != -1) {
+            // 找到 # 位置 从 0~ # 截取下来
+            url = url.slice(0, hashIndex);
+        }
+        url += (url.indexOf('?') === -1 ? '?' : '&') + parts.join('&');
+        return url;
+    }
+    // url 本身存在 url 怎么处理它  本身有1个? 怎么处理
+    // 现在存在 两个 ?
+    let url = buildUrl('http://neteasecloudmusicapi.zhaoboy.com/search?a=1#bottom', {
+        keywords: '海阔天空',
+        type: 'all',
+        query: 'js',
+        a: null,
+        b: undefined,
+        c: [1, 2, 3],
+    })
+    console.log(url);
+    // c:[1,2,3]    对 value 循环 c[]=1&c[]=2&c[]=3
+    // query：['js'], 直接加到
+    // 都变成数组
+    // 都循环 把 value 里面每一项 追加到 key 后面
+    // c[]=1 c[]=2 c[]=3
+</script>
