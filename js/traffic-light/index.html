@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* DOM: Element */
+        li {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #666666;
+            margin-top: 25px;
+        }
+
+        ul.stop li:nth-child(1) {
+            background-color: red;
+        }
+
+        ul.warn li:nth-child(2) {
+            background-color: yellow;
+        }
+
+        ul.pass li:nth-child(3) {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="pass">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        const ul = document.querySelector('ul');
+        // console.log(ul);
+        // 箭头函数
+        // setInterval(() => {}, 1000); 每1秒（1000 毫秒）做什么 :
+
+        // setTimeout(function () {
+        //     ul.className = "stop";
+        //     setTimeout(() => {
+        //         ul.className = "warn";
+        //         setTimeout(() => {
+        //             ul.className = "pass";
+        //             setTimeout(() => {
+        //                 ul.className = "stop";
+        //             }, 2000);
+        //         }, 1000);
+        //     }, 1000);
+        // }, 1000);
+
+        // 经典回调地狱
+        // callback hell
+
+        // Promise
+        // 异步: 1年之后，买房    不是立马实现的
+        // 读文件
+        // 承诺 有可能实现 有可能不实现
+        // 结果：定时1s    有可能0.5s 代码出错了 或者浏览器关了
+        // 1： 回调
+        setTimeout(() => {
+            // ok
+            // ......
+        }, 1000);
+        // 类
+        // let p = new Promise(function (resolve, reject) {
+        //     setTimeout(() => {
+        //         // 当异步代码执行成功 fulfilled 时，我们才会调用resolve(...),
+        //         // 当异步代码失败 rejected 时就会调用reject(...)
+        //         // 处理中 pending
+        //         // 1.默认 初始状态 pending -> 如果调用 resolve fulfilled
+        //         // 2.默认 初始状态 pending -> 如果调用 reject rejected
+        //         // 只要这两种情况发生, 状态就凝固了, 不会再变了。
+        //         resolve();
+        //     }, 1000);
+        // })
+        light();    // 让它一进来就亮一次。
+        setInterval(() => {
+            light();
+        }, 3000);
+        function light(){
+        let p = function () {
+            return new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    resolve();
+                }, 1000);
+            })
+        }
+        // 1s p fulfilled
+        // p 指向的都是 同一个 promise 1s fulfilled then 回调 没有等待1s 的效果, 1s 立即执行
+        // p 函数 p 每调用一次 都会返回不同的 promise, 美调用 一次 都会 new 一个全新的 promise 回来
+        // fulfilled 成功了要干什么
+        p().then(function () {
+                // 1th灯 间隔1s
+                ul.className = 'stop';
+                // 2th灯 间隔1s
+                // 涉及到 promise then 用法
+                // 1： 返回了一个 promise 那么还可以在后面 
+                // 链式调用 then 也会等待着这个 promise 看他结果成功还是失败
+                return p();
+            })
+            .then(function () {
+                // 如果 上一步有返回值 等待上一步结果
+                ul.className = 'warn';
+                return p();
+            })
+            .then(function () {
+                // 继续等1s 
+                ul.className = 'pass';
+            })
+        // rejected 失败了要干什么
+        p().catch();
+        }
+    </script>
+</body>
+
+</html>
