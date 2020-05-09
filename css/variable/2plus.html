@@ -17,9 +17,17 @@
             }
         }
 
+        /* @media 媒体查询(上网的媒介) only screen 带有屏幕的设备*/
         @media screen and (max-width: 480px) {
             :root {
                 --base-size: 8;
+            }
+        }
+
+        /* 请根据ipad 的尺寸 放大 15 倍 */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            :root {
+                --base-size: 15;
             }
         }
 
