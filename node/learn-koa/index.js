@@ -45,11 +45,6 @@ const main = async ctx => {
     await pReadFile('./template.html').then(data => {
         ctx.response.body = data;
     })
-    // pReadFile('./template.html').then(function (data) {
-    //     console.log(data);
-    //     ctx.response.body ='data';
-    //     console.log('sb');
-    // }).catch();
 
     // ctx.response.body = `
     // <html>
