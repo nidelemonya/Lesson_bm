@@ -1,14 +1,16 @@
 // 轻量级的web 开发框架, js node 50%
 // JavaScript
 const Koa = require('koa'); // 引入KOA
-const app = new Koa();  // Web Server
+const app = new Koa(); // Web Server
 const fs = require('fs');
 // 启动一个服务 函数封装一个服务
 // const func = ctx =>{
 //     console.log('func');
 //     ctx.response.body = 'func';
 // }
-const main = ctx =>{
+const main = async ctx => {
+    // async 是“异步”的简写，
+    // 而 await 可以认为是 async wait 的简写。所以应该很好理解 async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成。
     // ctx 上下文环境
     // 
     // console.log(ctx.request,'--------');
@@ -23,25 +25,32 @@ const main = ctx =>{
     // const html = fs.readFileSync('./template.html','utf-8');    // 同步的
     // console.log(html);
     // ctx.response.body =html;
-    new Promise(resolve => {
-        fs.readFile('./template.html','utf-8',function(err,data){
-            // 'utf-8' 设置编码格式 把 buffer 元素转换为字符串
-            // 存在异步问题,导致无法显示
-            if(err){
-                console.log(err);
-                return;
-            }
-                console.log(data,'----------');
+
+    // 封装Promise 版本的 readFile
+    let pReadFile = function (filePath) {
+        return new Promise(function (resolve, reject) {
+            fs.readFile(filePath, 'utf-8', function (err, data) {
+                // 'utf-8' 设置编码格式 把 buffer 元素转换为字符串
                 // 如果没有设置编码格式, 则需要加上toString()方法
                 // console.log(data.toString(),'----------');
+                // 存在异步问题,导致无法显示
+                if (err) {
+                    reject(err);
+                }
                 resolve(data);
             });
-            
-    }).then(data =>{
-        console.log(data,'23');
-        ctx.response.body =data;
-    });
-    
+        })
+
+    }
+    await pReadFile('./template.html').then(data => {
+        ctx.response.body = data;
+    })
+    // pReadFile('./template.html').then(function (data) {
+    //     console.log(data);
+    //     ctx.response.body ='data';
+    //     console.log('sb');
+    // }).catch();
+
     // ctx.response.body = `
     // <html>
     //     <head></head>
@@ -50,8 +59,7 @@ const main = ctx =>{
     //     </body>
     // </html>
     // `
-
 }
 // app.use(func);
-app.use(main);  // 启用了一个服务 给访问者用 Visitors 使用
+app.use(main); // 启用了一个服务 给访问者用 Visitors 使用
 app.listen(3000);
