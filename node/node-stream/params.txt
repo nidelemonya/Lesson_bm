@@ -1,0 +1,1 @@
+type=all&query=js&math=best&ss=vip
