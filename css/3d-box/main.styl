@@ -1,0 +1,106 @@
+.box
+    z-index: 10
+    margin-top 100px
+    text-align center
+    font-size: 0
+    opacity 1
+    transition: all .3s
+    transform: translateX(300px) rotateY(36deg) rotateX(-15deg) rotateZ(10deg)
+    transform-style: preserve-3d
+    -webkit-backface-visibility: hidden
+    opacity: 1;
+    transform: rotateY(-40deg) rotateX(-4deg) rotateZ(4deg);
+    transition-delay: 0s;
+    width: 120px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 120px;
+    .left
+        right: 100%;
+        height: 110px;
+        border-top: 2px solid #3f515f;
+        transform: rotateY(-90deg);
+        transform-origin: right;
+    .top
+        position: absolute;
+        top: -120px;
+        left: 0;
+        box-sizing: border-box;
+        background-color: transparent;
+        font-size: 0;
+        transform: rotateX(90deg);
+        transform-origin: bottom;
+        .lid-left
+            transform: rotateY(-120deg)
+            transform-origin: left;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 50%;
+            height: 120px;
+            background-color: #0390A1;
+            transition: all .25s;
+        .lid-right
+            transform: rotateY(126deg)
+            transform-origin: right
+            display: inline-block;
+            box-sizing: border-box;
+            width: 50%;
+            height: 120px;
+            background-color: #0390A1;
+            transition: all .25s;
+    .front
+        left: 0;
+        height: 110px;
+        border-top: 1px solid #3f515f;
+        color: #fff;
+        font-size: 67px;
+        line-height: 120px;
+        transform-origin: right top;
+        .icon-update
+            display: block;
+            margin-top: 27px;
+            font-size: 54px; 
+    .right
+        left: 100%;
+        padding: 12px 0 0 12px;
+        height: 110px;
+        color: #414859;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1.2;
+        transform: rotateY(90deg);
+        transform-origin: center;
+        transform-origin: left top;
+        font-family: 'Roboto Slab','Helvetica Neue',Helvetica,'Hiragino Sans GB',Arial,sans-serif;
+    .side
+        width 120px
+        display inline-block
+        box-sizing: border-box
+        height 120px
+        position: absolute;
+        z-index: 38;
+        border: 1px solid #3f515f;
+        background-color: #0390A1;
+        transition: all .25s;
+        transform-style: preserve-3d;  
+    .back
+        position: absolute;
+        z-index: 37;
+        left: 0;
+        height: 110px;
+        transform: translateZ(-120px);  
+:before
+    box-sizing: border-box
+[class*=" icon-"], [class^=icon-] 
+    font-family: icomoon!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
