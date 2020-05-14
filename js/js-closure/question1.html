@@ -1,0 +1,14 @@
+<script>
+    var name = 'lihua';
+    // 由书写的位置决定
+    // 词法作用域
+    function showName(){
+        console.log(name);
+    }
+    function changeName(){
+        var name = 'Bigbear';
+        showName();
+    }
+    changeName();
+    // 这里输出为 lihua
+</script>

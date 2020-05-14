@@ -1,0 +1,50 @@
+<!-- <script>
+    var name1 = 'lilei'
+    function test(){
+        var name = 'lihua'; // 闭包closure中的变量
+        function test1(){
+            var name2 = 'linchong'   // 当前作用域的变量
+            debugger;
+            console.log(name);  // 访问了另一个函数作用域中的变量
+        }
+        // 函数
+        return test1;
+    }
+    // js 的灵活性
+    test()();
+</script> -->
+
+
+<!-- 2 -->
+<script>
+    var name1 = 'lilei';
+
+    function test() {
+        var name = 0;
+
+        function test1() {
+            var name2 = 'ligang';
+            return name++;
+            // 访问了 另外一个函数作用域里面的变量
+            // console.log(name);
+        }
+        // 函数
+        return test1;
+    }
+
+    function test3() {
+        var a = 0;
+        return a++;
+    }
+
+    function test4(a, b) {
+        var c = 1;
+    }
+    // test3()
+    var fn = test();
+    // 延长 name 作用域
+    // cloure { name: 1 }
+    console.log(fn()); // name = 1
+    console.log(fn());
+    console.log(fn());
+</script>
