@@ -26,7 +26,7 @@
     具体指向谁 由调用方式决定
     1. 作为对象的方法调用, this 指向 对象本身
     2. 作为事件函数, this 指向事件发生的元素
-        bind 可以强行去绑定函数内部的this 指向
+        bind 可以强行去绑定函数内部的this 指向 返回一个函数
         call 立即执行
  3. 封装 class 复用,
     constructor 申明属性 this.state.
