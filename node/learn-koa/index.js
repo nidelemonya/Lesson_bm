@@ -2,6 +2,7 @@
 // JavaScript
 const Koa = require('koa'); // 引入KOA
 const app = new Koa(); // Web Server
+const static = require('koa-static');
 const fs = require('fs');
 // 启动一个服务 函数封装一个服务
 // const func = ctx =>{
@@ -56,5 +57,6 @@ const main = async ctx => {
     // `
 }
 // app.use(func);
+app.use(static('./'));
 app.use(main); // 启用了一个服务 给访问者用 Visitors 使用
 app.listen(3000);
