@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.container .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    /* 表示所有子元素在3d空间中呈现 */
+    transform: rotateX(-20deg) rotateY(23deg) translate3d(0px,0px,-12px);
+}
+
+.container .box>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.container .box>div span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 1);
+    background-color: #ccc;
+}
+
+.container .box>div span:nth-child(1) {
+    transform: rotateX(90deg) translate3d(0, 0, 100px);
+}
+
+.container .box>div span:nth-child(2) {
+    transform: rotateY(90deg) translate3d(0, 0, -100px);
+}
+
+.container .box>div span:nth-child(3) {
+    transform: rotateX(0deg) translate3d(0, 0, 100px);
+}
