@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="search" id="search">
+    <input type="text" placeholder="search1" id="search1">
+    <input type="text" placeholder="search2" id="search2">
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <script>
+        const search = document.getElementById('search');
+        let timeout;
+        function handlesearch(event){
+            // 如何重新计时 防抖思想 解决频繁触发的事件
+            if(timeout){
+                clearTimeout(timeout);
+            }
+            timeout = setTimeout(()=>{
+                // 降低发请求的频率
+                console.log(event.target.value);
+            },500)
+            // jay 输入这个词
+            // j ja jay 发出三次请求
+            // 可以等用户输入 jay 完毕后 再去请求吗？
+            // 这就是防抖的思想
+            // j
+            // a
+            // y
+            // 用户连续输入就会连续触发 input, 处于输入中, 就没必要请求
+            // 输完之后 input 没触发了, 等了 100ms 之后 用户不触发 input 输完了 之后请求
+            // 等100ms 再去请求
+            // fetch axios xhr
+        }
+        // setTimeout
+        // onChange
+        search.addEventListener('input',handlesearch);
+        // 电梯
+        // 人进去 1min 关门
+        // 人  1min 之内 又来了一个人 重新计时 1min
+        // 如果 1min 又来了一个人 又要重新计时
+
+        // 高频触发事件
+        // 防抖
+        // let timeout1;
+        let handlemousemove = function(){
+            // if(timeout1) clearTimeout(timeout1);
+            // timeout1 = setTimeout(()=>{
+                console.log('handlemousemove');
+            // },500)
+        }
+        // 有防抖功能了 使用别人封装好的 api  Lodash
+        let hasDebounceedMove = _.debounce(handlemousemove,500);
+        window.addEventListener('mousemove',hasDebounceedMove);
+
+        // 封装一下 
+        // 都要防抖 如何封装?
+        // 箭头函数 this 写这个函数的时候就确定的 所以用箭头函数不行
+        const search1 = document.getElementById('search1');
+        search1.addEventListener('input',_.debounce((event)=>{
+            console.log(this);
+            console.log(event.target.value)
+        },500));
+        // 防抖怎么处理的
+        // 1：let timeout
+        // 2：if (timeout) clear
+        // 3: timeout = setTimeout
+        // 封装在 debounce 之内
+        // 接受一个func(没有防抖功能)函数, 等待时间
+        function debounce(func, wait){
+            let timeout;
+            // 具有防抖功能
+            // 有防抖功能的函数长什么样
+            return function(event){
+                // 传递 event 参数
+                if(timeout){
+                    clearTimeout(timeout);
+                }
+                timeout = setTimeout(()=>{
+                    // 写什么？
+                    // 参数
+                    func.call(this,event);// 实现的功能
+                    // 用 call 重新绑定回 this 并调用函数， 指向当前组件而不是 window
+                    // 这里用bind 不行 因为不会调用函数
+                },wait)
+            }
+        }
+        const search2 = document.getElementById('search2');
+        function handlesearch2(event){
+                console.log(event.target.value);
+        }
+        // search2.addEventListener('input',debounce(handlesearch2,500));
+        search2.addEventListener('input',debounce(function(e){
+            console.log(this); // 不用 debounce this -> search 2
+            // 用 debounce this -> window 需要使用call方法
+            console.log(e.target.value);
+        }),500);
+    </script>
+</body>
+</html>
