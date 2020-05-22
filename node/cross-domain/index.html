@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="">
+<img src="" alt="" srcset="">
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+    // xhr fetch
+    // 接口 api
+    // js 写入 cookie
+    // cookie 就是 存在前端的，cookie 和 服务器会话 一起用。
+    // 1：可以通过后端设置
+    // 2：可以通过前端设置 document.cookie = 'abc=123'
+    document.cookie = 'abc=123';
+    // 真实请求： POST / api
+    // 1 -> 预检 preflight, 试探一下我们跨域能不能通过 2-> POST /api 
+    axios({
+            withCredentials: true,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            url: 'http://127.0.0.1:9090/api',
+            method: 'POST', // 传给
+            data: {
+                username: '123',
+                pwd: 789
+            }
+        })
+        .then(res => {
+            console.log(res);
+        })
+</script>
