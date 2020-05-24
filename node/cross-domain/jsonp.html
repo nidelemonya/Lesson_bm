@@ -20,16 +20,16 @@
     </script>
     <!-- 后端返回结果 -->
     <!-- 请求完毕之后 得到 
--> 字符串 onResponse(["js","php"])
--> 因为 script 标签的原因， 浏览器会把这一段字符串当做 js 执行
--> 当做 js 我们 之前预先定义好的 回调就会执行， 从而拿到数据
--->
+        -> 字符串 onResponse(["js","php"])
+        -> 因为 script 标签的原因， 浏览器会把这一段字符串当做 js 执行
+        -> 当做 js 我们 之前预先定义好的 回调就会执行， 从而拿到数据
+    -->
     <script src="http://localhost:9090/api?callback=onResponse"></script>
-    <!-- <script>
-    onResponse(["js","php"]);
-</script> -->
+    <!-- <script> onResponse(["js","php"]); </script> -->
+    <!-- src 发送请求到后端,后端判断了之后给前端返回一个onResponse(["js","php"]),因为它又在script 标签里，会被当做函数执行，从而拿到数据 -->
     <script>
         $.ajax('http://localhost:9090/api', {
+            // dataType为jsonp来标识这是一个jsonp请求，jQuery会帮助我们事先动态创建script标签并设置为异步请求和发送请求等功能，并将script标签插入到html的头部上
             dataType: 'jsonp',
             success: (data) => {
                 console.log(data);
@@ -37,8 +37,6 @@
         })
     </script>
 
-    https://c.y.qq.com/v8/fcg-bin/album_library?g_tk=1278911659&hostUin=0&format=jsonp&jsonpCallback=callback&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&cmd=firstpage&page=0&pagesize=20&sort=1&language=-1&genre=0&year=1&pay=0&type=-1&company=-1
-    http://localhost:9090/api?callback=jQuery351011803992292070098_1590218857591&_=1590218857592
     <script>
         function jsonp(url, options) {
             const {

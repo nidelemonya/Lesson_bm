@@ -6,9 +6,10 @@ http.createServer((req, res) => {
   if (req.url.includes('/api')) {
     // let mathodName = req.url.split('=')[1];
     let myurl = url.parse(req.url);
-    console.log(myurl);
+    // console.log(myurl);
     let params = new URLSearchParams(myurl.query);
     let posts = ['js', 'php'];
+    // console.log(params);
     let mathodName = params.get('callback');
     // console.log(mathodName);
     // res.end(JSON.stringify(posts));
