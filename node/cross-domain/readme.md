@@ -56,14 +56,5 @@
 - 修改document.domain的方法只适合主域名相同，但子域名不同的iframe跨域。
 ### 3.canvas操作图片的跨域问题
 
-## http 头
-- 请求头：accept
-
-- 响应头：Set-Cookie：
-
-- 通用头：Content-Type：
-    - 请求的时候带给后端的内容的类型 www-url../ text/plain, formdata, application/json
-    - 后端告诉前端我给资源的类型： MIME
-
 ## 补充
 命令行打开 live-server 并设置端口： live-server --port=5500
