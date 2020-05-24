@@ -28,7 +28,11 @@
             2. POST /api
 
 - 前后端分开部署(Access-Control-Allow-Origin)
-
+### JSONP
+- 在HTML标签里，一些标签比如script、img这样的获取资源的标签是没有跨域限制的。
+- 不同 xhr fetch， 不受跨域限制：
+    - img
+    - link
 ## http 头
 - 请求头：accept
 

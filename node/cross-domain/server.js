@@ -1,6 +1,7 @@
 const http = require('http');
 http.createServer((req,res)=>{
     res.writeHead(200,{
+        // let origin = req.origin; 然后设置'Access-Control-Allow-Origin' 为 origin，请求方的域是啥我就设置啥
         // 'Access-Control-Allow-Origin' 为 *   Access-Control-Allow-Credentials':true 就不能用，
         // 如果想多个网站使用cookie 我们最好用一个JSON  数组把他们收集起来.
         // origin
