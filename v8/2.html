@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 全局作用域 foo
+        // function foo() {
+        //     // 函数作用域
+        //     var a = 1 ;
+        //     var b = a;
+        //     a = 2;
+        //     console.log(a); // 2
+        //     console.log(b); // 1
+        // }
+        // foo()
+        // 有两个执行上下文环境
+
+        function foo() {
+            var a = " 极客时间 "
+            var b = a;
+            var c = {
+                name: " 极客时间 "
+            }
+            var d = c;
+            // console.log(a,b,c,d);
+        }
+        foo()
+    </script>
+</body>
+
+</html>
