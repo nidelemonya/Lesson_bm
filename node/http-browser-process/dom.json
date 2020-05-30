@@ -1,0 +1,20 @@
+{
+    "type": "document",
+    "children": [{
+        "type": "startTag",
+        "tagName": "html",
+        "children": [{
+                "type": "startTag",
+                "tagName": "head"
+            },
+            {
+                "type": "startTag",
+                "tagName": "body",
+                "children": [{
+                    "type": "startTag",
+                    "tagName": "div"
+                }]
+            }
+        ]
+    }]
+}
