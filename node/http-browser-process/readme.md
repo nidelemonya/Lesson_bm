@@ -61,3 +61,20 @@ Letstr='34+567-890'
 2. 遇到结束标签就 出栈。
 
 ### 浏览器 匹配 css 规则 效率保证
+效率：**按照 css 选择器 从后往前匹配的** 
+
+### layout 布局
+display: flex | block| inline-block | grid
+justify-content: center;
+position:
+float:
+...
+以这些 对位置产生影响的元素, 计算元素的位置信息, 算出坐标系里面的  (x,y)
+### 文档流
+脱离文档流: float: left 
+
+正常的的文档流 -> 正常流( normal flow )
+行内元素 (inline-level-box): 水平方向从左往右一个接着一个布局, 垂直方向默认会以 baseLine (基线) 对齐(baseline是小写字母x下面的一条线。)
+块级元素 (block-level-box):  垂直方向从上往下一个接着一个布局
+relative 定位 ( 不会脱离文档流 )
+只有absolute fixed 定位才会脱离文档流

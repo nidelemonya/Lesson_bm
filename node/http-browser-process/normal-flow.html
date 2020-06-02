@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .relative {
+            /* 脱离文档流 */
+            /* position: absolute;  */
+            /* 不脱离文档流 */
+            position: relative;
+            left: -20px;
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>
+        <span class="relative">666666</span>
+        <span>1</span>
+        <span>2</span>
+    </div>
+</body>
+</html>
