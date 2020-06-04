@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* 相对单位 相对视窗 */
+            height: 100vh;
+        }
+
+        .ele {
+            /* position: static; */
+            background-color: blue;
+            text-align: center;
+            /* 高度是宽度的一半 */
+            padding-top: 25%;
+            padding-bottom: 25%;
+            /* 设置行高为 0 这样文字就没有高度了 */
+            line-height: 0;
+        }
+        /* ele container block width
+        1: 不加 position 默认就是 static */
+
+        .out {
+            width: 100%;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        /* out:1220px
+        因为 ele 是 out 子元素， 和out等宽， 也是 1220px
+        ele 计算 padding-top 是不是相对于 out 这个包含块的宽度的，
+        又因为 ele 和 out 等宽， 可以理解为 ele 的高度就是 宽度的一半了 */
+    </style>
+</head>
+
+<body>
+    <div class="out">
+        <div class="ele">
+            A
+        </div>
+    </div>
+</body>
+
+</html>
