@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .warp{
+            border: 1px solid #000;
+            /* absolute wrap 原来的 w100vw 就没了 */
+            /* position: absolute;  */
+            overflow: hidden;
+            /* 如果不清除浮动
+            float 会影响外面布局， 有悖于 “隔离容器” */
+        }
+        .main{
+            width: 40px;
+            height: 200px;
+            background-color: orange;
+            float: left;
+            /* float 环绕 */
+            /* 顶到它的包含块的最左边 */
+        }
+        .aside{
+            /* 新建一个 BFC, 完成左侧固定， 右边自适应布局 */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <div class="main">main</div>
+        <div class="aside">
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+            aside
+            <br>
+        </div>
+    </div>
+</body>
+</html>

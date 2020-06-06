@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 40px;
+            height: 40px;
+            background-color: orange;
+            margin: 50px;
+        }
+
+        .bfc {
+            /* 解决方法 副作用最小 */
+            /* 用一个大盒子隔起来 */
+            overflow:hidden;
+        }
+
+        .box2 {
+            /* position: absolute; */
+            width: 40px;
+            height: 40px;
+            background-color: green;
+            margin: 20px;
+        }
+        /* 本来有70px */
+        /* 事实上只有 50px， 取的是较大的 margin 值 */
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="box1"></div>
+        <div class="bfc">
+            <div class="box2"></div>
+        </div>
+    </div>
+</body>
+
+</html>
