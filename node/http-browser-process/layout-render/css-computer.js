@@ -1,20 +1,42 @@
 const css = require('css');
+const images = require('images');
+const layout = require('./layout');
 let htmlStr = `
 <html>
-    <head></head>
-    <body class="parent">
-        <img src="src"/>
-        <span></span>
-        <div class="cls" id="myid"></div>
+    <head>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="main"></div>
+            <div class="aside"></div>
+        </div>
     </body>
 </html>`
 let cssStr = `
-.parent .cls {
-    font-size: 16px;
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    background-color: rgb(255, 0, 0);
 }
-#myid {
-    background-color: red;
-}`
+
+.main {
+    width: 200px; 
+    height: 200px;
+    background-color: rgb(0, 255, 0);
+
+}
+
+.aside {
+    width: 100px;
+    height: 100px ;
+    background-color: rgb(0, 0, 255);
+}
+`
 let rules = css.parse(cssStr).stylesheet.rules;
 // console.log(JSON.stringify(rules, null, 2));
 
@@ -25,6 +47,35 @@ let stack = [{
     children: []
 }]
 parse(htmlStr);
+console.log(JSON.stringify(stack[0], null, 2)); // 序列化加两个空格
+// 拿到整棵树
+// 遍历树 渲染每个 element
+let tree = stack[0];
+// 绘制到哪里去？ -> 生成一个视窗
+const viewPort = images(800,600);
+// 开始绘制
+function render(view, element){
+    if(element.style) {
+        let img = images(element.style.width, element.style.height);
+        if (element.style['background-color']) {
+            let color = element.style['background-color'];
+            let start = color.indexOf('(');
+            let end = color.lastIndexOf(')');
+            let rgb = color.substring(start + 1,end).split(',').map(e => parseInt(e));
+            // console.log(rgb);
+            img.fill(rgb[0], rgb[1], rgb[2]);
+        }
+        view.draw(img, element.style.x, element.style.y)
+    }
+    if (element.children) {
+        for (let child of element.children) {
+            render(view, child);
+        }
+    }
+}
+render(viewPort, tree);
+viewPort.save('render.jpg');
+// 结束
 
 function match(selector, ele) {
     if (!selector || !ele.attributes){
@@ -76,7 +127,7 @@ function computerCss(ele) {
         }
     }
 }
-console.log(JSON.stringify(stack[0], null, 2)); // 序列化加两个空格
+
 function emit(token) {
     // console.log(token);
     // 拿到栈顶元素
@@ -100,6 +151,12 @@ function emit(token) {
         if (token.tagName !== top.tagName) {
             throw new Error('tagName match error');
         } else {
+            // flex 布局 放到结束标签位置
+            // 因为像 alignItems justifycontent 需要获取里面子元素的长和宽
+            // 先保证 子元素宽高已经解析出来了
+            // 在这里计算 (x,y) 坐标
+            // 栈顶元素就是我们要布局的容器
+            layout(top);
             stack.pop();
         }
     } else if (token.type === 'selfCloseToken') {

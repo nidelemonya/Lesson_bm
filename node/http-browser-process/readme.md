@@ -80,3 +80,9 @@ float:
 
 relative 定位 ( 不会脱离文档流 )
 只有absolute fixed 定位才会脱离文档流
+
+## flex
+容器：
+flex-direction: row / cloumn
+justify-content: center/start/end
+align-items: center/start/end
