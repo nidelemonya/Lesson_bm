@@ -5,7 +5,7 @@
 // f(10) = 20 // 10 -》没有必要计算了,从缓存里面取出来。
 // f(10) = 20 // 10 -》没有必要计算了,从缓存里面取出来。
 
-function _add10() {
+function _add10(x) {
     return x + 10;
 }
 let cache1 = {};
@@ -26,7 +26,13 @@ console.log(add10(10));
 console.log(cache1);
 
 
-
+function _buildurl(url, obj) {
+    let parts = [];
+    for (let key of Object.keys(obj)) {
+      parts.push(`${key}=${obj[key]}`)
+    }
+    return `${url}?${parts.join('&')}`
+  }
 //多个函数都要缓存呢?
 let cache2 = {};
 function buildurl(url, obj) {
@@ -62,16 +68,23 @@ function memorize(func) {
     return function(...args) {
         let k = JSON.stringify(args);
         if (cache[k] !== undefined) {
+            console.log('from cache')
             return cache[k];
         }
     // 计算
     let res = func(...args);   // 函数调用需要参数，
     cache[k] = res;
+    console.log('cal')
     return res;
     }
 }
 // 输出也是一个函数
 let memo_add10 = memorize(_add10)        //之前: true [] {} string 现在:函数 _add10(20)
 // memo_add10 变成了 具有缓存功能的函数
-memo_add10(10);
-memorize(-buildurl)     //_buildurl('api. com', {a: 1, b: 2}} 
+console.log(memo_add10(10));
+console.log(memo_add10(10));
+console.log(memo_add10(10));
+let memo_buildUrl = memorize(_buildurl)     //_buildurl('api. com', {a: 1, b: 2}} 
+memo_buildUrl('api.com', {a: 1, b: 2});
+memo_buildUrl('api.com', {a: 1, b: 2});
+memo_buildUrl('api.com', {a: 1, b: 2});
