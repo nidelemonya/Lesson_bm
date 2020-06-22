@@ -1,0 +1,38 @@
+<script>
+    // 只要是非箭头函数 就有 prototype 属性
+    function Animal(){
+        // 自身属性
+        this.name = 'name'
+    }
+    // 一个 对象 ({ cosntructor: })
+    console.log(Animal.prototype);
+    // 原型链
+    // 公共的 （new 的关系 所有的实例都会继承这里 是共享的）
+    Animal.prototype.say = function(){
+        console.log('say');
+    }
+
+    let ani = new Animal();
+    console.log(ani);
+    // __proto__ 指向 Animal.prototype
+
+    // __proto__: chrome 
+    // [[ prototype ]]: ECMA 表示
+    console.log(ani.__proto__ === Animal.prototype)
+    // ani.__proto__ = XXXX
+    // Object.setPrototypeOf() 标准写法
+    // Object.getPrototypeOf(ani) 获取 ani 的原型
+    console.log(Object.getPrototypeOf(ani) === ani.__proto__, Object.getPrototypeOf(ani)=== Animal.prototype);
+
+    // 两种构造对象的方式
+    let obj = {};   // 对象字面量 《js语言精粹》
+    let obj2 = new Object();
+    // let arr = [1,2];
+    // let arr2 = new Array();
+
+    // Object, Array, String, Boolean 内置的一个类（构造函数） 既然是构造函数 就有 prototype
+    console.log(Object.getPrototypeOf(obj) === Object.getPrototypeOf(obj2),
+    Object.getPrototypeOf(obj2) === Object.getPrototypeOf(Animal.prototype),
+    Object.getPrototypeOf(obj) === Object.prototype)
+    console.log(Object.getPrototypeOf(Object.prototype)) // 原型链的尽头
+</script>
