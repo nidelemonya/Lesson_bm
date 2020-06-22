@@ -1,0 +1,22 @@
+<script>
+    function Animal() {
+    // this 修改成 empty1 this === empty1
+     this.name = 'cat'  // empty1.name 全等
+     this.age = 18
+    //  往 this 上面添加 name age 的属性
+    // 又因为 this 指向 empty1
+    // 所以往 empty1 上面 添加 name age 的属性
+    };
+    // Animal.prototype 是一个对象 添加一个 superName 的 key
+    Animal.prototype.superName = 'dog'
+    // let obj = {}
+    // Animal.apply(obj);
+    // // 将 obj 这个对象 作为 函数 Animal 上面的 this
+    // console.log(obj);
+    let ani = new Animal();
+    console.log(ani);
+
+    // 每个函数
+    // 都有一个 属性 proptype = { constructor: Foo }
+    // prototype.__proto__ = Object.prototype
+</script>
