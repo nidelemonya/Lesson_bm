@@ -1,0 +1,87 @@
+<style>
+    #container {
+        width: 700px;
+    }
+
+    .cell {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: gray;
+        border-right: 1px solid white;
+        border-bottom: 1px solid white;
+        vertical-align: middle;
+        /* 防止对齐出错 */
+    }
+</style>
+<div id="container"></div>
+<script>
+    // 1: 10000 格子
+    // 2: 画障碍物
+    // 3: 广度优先算法
+    const container = document.getElementById('container')
+    let arr = new Array(10000).fill(0) // 初始化 有 10000 个元素的数组
+    // fill(0) 所有元素都填充一个 0
+    // console.log(arr);
+    arr.forEach((item, i) => {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        container.appendChild(cell);
+        cell.addEventListener('mousemove', () => {
+            if (mouse) {
+                cell.style.backgroundColor = 'black';
+                // 障碍物置为2
+                arr[i] = 2;
+            }
+        })
+    })
+    let mouse = false;
+    document.addEventListener('mousedown', () => {
+        mouse = true;
+    })
+    document.addEventListener('mouseup', () => {
+        mouse = false;
+    })
+    // 鼠标右键
+    document.addEventListener('contextmenu', (e) => e.preventDefault())
+
+    // 广度优先算法
+    function findPath(map, start, end) {
+        // 搜索的入口
+        // 所有的选择
+        let queue = [start];
+
+        function insert(x, y) { 
+            // 判断点是否合法
+            // map 是一维数组
+            // x, y 是一个坐标点
+            // y * 100 跳到当前这一行； + x 偏移  x 的 个数
+            if (map[y * 100 + x] !== 0) return;
+            if ( x < 0 || x>= 100 || y < 0 || y>= 100) return;
+            // 已经走过的点
+            map[y * 100 + x] = 3;
+            // 走过的点 置为绿色
+            container.children[y * 100 + x].style.backgroundColor = 'green';
+            // push 进去的也是一个数组
+            queue.push([x,y])
+        }
+        // console.log(queue.length);
+        while (queue.length) {
+            let [x, y] = queue.shift() // 只出一个， 并且拿到每一个点的坐标
+            // console.log(x, y);
+            // 封装逻辑
+            // 上下左右四个正方向
+            // 匹配
+            if (x === end[0] && y === end[1]) {// 找到终点了
+                return true
+            }
+            insert(x + 1, y);
+            insert(x - 1, y);
+            insert(x, y + 1);
+            insert(x, y - 1);
+        }
+        return false;
+    }
+    // let res = findPath(arr, [0, 0], [50, 50]);
+    // console.log(res);
+</script>
