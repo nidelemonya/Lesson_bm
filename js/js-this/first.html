@@ -1,0 +1,55 @@
+<script>
+    // 'use strict';
+    const NOP = () => {}
+    // EOF end of line
+    // foo 示例函数
+    // 函数调用的位置
+    // 严格模式的说法
+    function foo(a, b, c) {
+        // 'use strict'; // 执行严格模式 -> "use strict" 的目的是指定代码在严格条件下执行。
+        // 严格模式下你不能使用未声明的变量。
+        console.log(this);
+    }
+    foo();
+    // 1. this 默认指向 window
+    // 2. obj. 方式调用, this 指向这个 obj
+    let obj = {
+        name:'lihua',
+        foo:foo
+    }
+    obj.foo();
+    // 注意！！！ 先赋值 再调用
+    let fn = obj.foo;
+    fn(); // this 又指向 window 了 出题警告！！！
+
+    let newObj = {}
+    // 3: call / apply 和 bind
+    // call / apply  1.指定 this 2.调用函数 foo()
+    // 进阶版本的调用方式 还可以指定 this
+    foo.apply(newObj,[]);
+    foo.call(newObj,'a','b','c');
+
+    // bind 只绑定 this 不调用函数
+    foo.bind(newObj);
+    // foo.bind(newObj)();
+    // 函数
+
+    let that = null;
+    function Animal() {
+        that = this;
+        console.log(this);
+    }
+    var dog = new Animal();
+    console.log(dog);
+    console.log(that === dog);
+
+    // 看函数在哪里调用？
+    // 4. new: this 指向 new 创建完的对象
+    // 3. call / apply 和 bind: this 指向 第一个参数
+    // 2. obj. : this 指向这个对象
+    // 1. 默认 : this 指向 window
+    // 严格模式: this 指向 undefined
+
+    // 箭头函数 看函数在哪里定义的， this 看外层函数
+     
+</script>
