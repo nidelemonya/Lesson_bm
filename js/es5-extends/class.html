@@ -1,0 +1,23 @@
+<script>
+    // 原生继承
+    class Animal {
+        constructor() {
+            this.live = 'land'
+        }
+        run() {
+            console.log(0);
+        }
+    }
+    class Cat extends Animal {
+        constructor() {
+            super(); // 父类的构造函数先执行
+            this.sound = "喵喵喵"
+        }
+        jump() {
+            console.log(40);
+        }
+    }
+    let cat1 = new Cat();
+    // 继承： 我没有 但是我可以从父类取到
+    console.log(cat1,cat1.live);
+</script>
