@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script src="./index.js"></script> -->
+    <script>
+        // 实际应用场景中 url  不需要传， 可以通过什么获得？
+        function getQueryString() {
+            var url = decodeURI(location.search); // 获取 query 部分
+            var obj = new Object();
+            if(url.indexOf('?') != -1) {
+                var str = url.substr(1);
+                // console.log(str);
+            }
+            var strs = str.split('&');
+            for (var i = 0; i < strs.length; i++) {
+            obj[strs[i].split("=")[0]] = strs[i].split("=")[1];
+            // unescape()
+            // 或者
+            // obj[strs[i].split("=")[0]] = decodeURIComponent(strs[i].split("=")[1]);
+            }
+            return obj;
+        }
+        console.log(getQueryString());
+    </script>
+</body>
+</html>
