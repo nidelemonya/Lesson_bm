@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            transform-origin: left top;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const box = document.querySelector('#box');
+        // 获取初始位置
+        const first = box.getBoundingClientRect();
+
+        // css 信息变化
+        box.style.width = "400px";
+        box.style.height = '400px';
+
+        const last = box.getBoundingClientRect();
+        console.log(first, last);
+        // {
+        //   top: 400,
+        //   left: 100,
+        //   width: 200,
+        //   height: 200,
+        //   ...
+        // }
+
+        // invert (翻转) 算出前后的偏移量出来、
+        let diffW = first.width / last.width;
+        let diffH = first.height / last.height;
+        console.log(diffW, diffH);
+        // 0.5 
+        // 200 -> 400 放大
+
+        // 400 * 400
+        // play
+        // 因为上面这一步 设置 width height 是瞬间完成的
+        // 加点过渡
+        // 1. 翻转回去，缩小 scale(0.5) 200 * 200
+        // 2. 慢慢的恢复为 scale(1)     400 * 400
+
+        // web animation api: js 完成 动画
+        // box.animate([{}],[]) 第一个参数：帧动画
+        box.animate([
+            {
+                transform:`scale(${diffW}`,
+            },
+            {
+                transform:`scale(1)`,
+            }
+            ],{
+                duration: 3000,
+                easing: 'ease-in-out'
+            })
+    </script>
+</body>
+
+</html>
