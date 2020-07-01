@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- width=750 定下宽度为750 -->
+    <meta name="viewport" content="target-densitydpi=320,width=750,user-scalable=no">
+    <title>618</title>
+    <link rel="stylesheet" href="./common.css">
+</head>
+
+<body>
+    <div id="app" class="win">
+        <div class="videowin1">
+            <video src="http://tmall.lpiii.cn/618/static/video/big3.mp4 " class="video-box video1"
+                style="transform: translateX(-0px)"></video>
+            <div id="playVideoCon">
+                <div class="innerwin wt">
+                    <div class="helptit"></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <script>
+        // 把app 的高度定下 完成这个项目的适配
+        window.onload = function () {
+            const appEle = document.querySelector('#app');
+            let playNum = 0;
+            init();
+
+            function init() {
+                const winHeight = window.innerHeight;
+                // 4次 页面渲染 DOM树 cssOM树
+                // 重新绘制
+                // appEle.style.background = 'rgb(0,0,0)';
+                // appEle.style.height = winHeight + 'px';
+                // appEle.style.marginTop = (0 - winHeight/2) +'px';
+                // appEle.style.transform = 'scale(1, 1)';
+
+                // 一次性写完
+                appEle.style.cssText =
+                    `background:rgb(0,0,0);height:${winHeight}px;margin-top:${-winHeight/2}px;transform:scale(1, 1);`
+            }
+            setInterval(() => {
+                playNum++;
+                if (playNum > 2) {
+                    playNum = 0;
+                }
+                document.querySelector('.video-box').style.transform =
+                    `translate(${0-playNum*750}px)`;
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
