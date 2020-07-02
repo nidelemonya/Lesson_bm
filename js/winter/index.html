@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: green;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>aa</h1>
+    </div>
+    <script>
+        // 渲染节点的入口 node cssStyleSheet
+        // W3C 标准属性有哪些？浏览器的实验属性
+        // webkitxxxxx
+        // filter webkit
+        // webkitUserSelect
+        // 不以 webkit 
+        const styleNum = Object.keys(document.body.style);
+        const W3Ccss = styleNum.filter(function (str) {
+            return str.includes('webkit') !== true;
+        })
+        console.log(styleNum, styleNum.length);
+        console.log(W3Ccss, W3Ccss.length);
+
+        console.log(Object.keys(document.body.style) //正则表达式
+        .filter((e) => !e.match(/^webkit/)).length);
+            
+    </script>
+</body>
+
+
+</html>
