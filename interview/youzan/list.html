@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li data-uid="1">1
+            <div>123
+                <span>456</span>
+            </div>
+        </li>
+        <li data-uid="2">2</li>
+        <li data-uid="3">3</li>
+        <li data-uid="4">4</li>
+        <li data-uid="5">5</li>
+        <li data-uid="6">6</li>
+        <li data-uid="7">7</li>
+        <li data-uid="8">8</li>
+        <li data-uid="9">9</li>
+        <li data-uid="10">10</li>
+    </ul>
+    <script>
+        const lis = document.querySelectorAll('ul li');
+        // console.log(lis);
+
+        // 法 1
+        // for (let node of lis) {
+        //     node.addEventListener('click',()=>{
+        //         console.log('hello');
+        //     })
+        // }
+        
+        // 法 2
+        const ul = document.querySelector('ul');
+        // event 事件对象
+        ul.addEventListener('click',(event)=>{
+            // 处理的就是点击 div 或者 span 认为都点中了 li
+            const target = event.path.find(x=> x.tagName === 'LI' && x.getAttribute('data-uid'));
+            console.log(target);
+            let nickName = event.target.textContent;
+            let uid = event.target.getAttribute('data-uid');
+            // event.currentTarget 当前绑定事件的事件源 (为一个固定值)
+            console.log('你好',event.target, event.currentTarget, nickName,uid);
+        })
+
+
+        // document.getElementsByName()
+        // document.getElementsByClassName()
+        // document.getElementsByTagName()
+
+        // 静态的 10个 li
+        const lis1 = document.querySelectorAll('li');
+        
+        // 动态的获取dom节点 实时的 9个 li
+        const lis2 = document.getElementsByTagName('li');
+        // ul.removeChild(lis1[0]);
+
+        ul.appendChild(lis1[0]);
+        // 如果将被插入的节点已经存在于当前文档的文档树中，那么 appendChild() 只会将它从原先的位置移动到新的位置
+        console.log(lis1, lis2);
+    </script>
+</body>
+</html>

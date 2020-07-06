@@ -1,0 +1,34 @@
+<script>
+    let r = 'aaa';
+    let obj = {
+        [r]:123,
+        'r':456
+    }
+    console.log(obj, obj[r]);
+    console.log(obj['r'], obj.r);
+    // 元编程： 对编程语言的再编程
+    class myArr{
+        static a = 1;
+        // static [Symbol.hasInstance](obj) {
+        //     // 自定义行为
+        //     return true;
+        // }
+    }
+    let arr1 = [];
+    let arr = new myArr();
+    // 如果没有定义 [Symbol.hasInstance], 默认会返回 false
+    console.log(myArr[Symbol.hasInstance]())
+    console.log(arr instanceof myArr);
+    console.log(arr1 instanceof myArr);
+
+    // [] instanceof Array
+    function myInstance(obj, Constructor){
+        // if (Constructor[Symbol.hasInstance])
+        let proto = obj.__proto__;
+        if(proto === Constructor.prototype) {
+            return true;
+        }
+        if( proto ===null) return false;
+        return myInstance(proto, Constructor);
+    }
+</script>

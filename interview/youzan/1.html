@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS 相邻兄弟选择器 + */
+        /* 相邻兄弟选择器（Adjacent sibling selector）可选择紧接在另一元素后的元素，且二者有相同父元素。 */
+        /* 选择器组 */
+        li + li {
+            border-left: 1px solid #000;
+            background-color: orange;
+        }
+        ul li {
+            color: red;
+        }
+        /* CSS 子元素选择器 > */
+        /* 与后代选择器相比，子元素选择器（Child selectors）只能选择作为某元素子元素的元素。 */
+        ul > li{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <div>
+            <li>00000</li>
+        </div>
+    </ul>
+    <script>
+        console.log(document.querySelectorAll('li+li'));
+        console.log(a);
+        var a = 1;
+
+        let promise = Promise.resolve(1);
+        let promise1 = Promise.resolve(1); // 立即 resolve 的 promise
+        let promise2 = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                reject(2);
+            },1000)
+        })
+        let promise3 = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve(3);
+            },2000)
+        })
+        let promise4 = new Promise((resolve,reject)=>{
+            resolve(4);
+        })
+        // 所有的异步任务成功才会成功
+        Promise.all([promise,promise1,promise2]) // 返回 promise
+        .then(res => {
+            console.log(res);
+        })
+        .catch()
+
+        // 比较宽松 不强调必须成功
+        Promise.allSettled([promise,promise1,promise2]) // 返回 promise
+        .then(res => {
+            console.log(res);
+        })
+        .catch()
+
+        // race 竞赛
+        // Promise.all()能处理一个或多个受监控的 Promise，而 Promise.race()只能处理其中的一个。
+        Promise.race([promise2,promise3])
+        .then(res=>{
+            console.log(res);
+        })
+        .catch(()=>{
+            console.log('err');
+        })
+
+
+
+        let name = 'lilei';
+        function fo(){
+            console.log(name);
+        }
+        function changeName() {
+            let name = 'lihua';
+            fo();
+        }
+        changeName();
+    </script>
+</body>
+</html>
