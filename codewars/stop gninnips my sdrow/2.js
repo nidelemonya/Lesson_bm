@@ -9,6 +9,6 @@ function spinWords(str) {
     }).join(' ');
 }
 
-console.log(spinWords("wstrarriors"));
-console.log(spinWords("Hey fellow wstrarriors"));
-console.log(spinWords("You are almost to the last test"));
+// console.log(spinWords("wstrarriors"));
+// console.log(spinWords("Hey fellow wstrarriors"));
+// console.log(spinWords("You are almost to the last test"));

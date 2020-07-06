@@ -11,6 +11,6 @@ function spinWords(str) {
     return arr.join(' ');
 }
 
-console.log(spinWords("warriors"));
-console.log(spinWords("Hey fellow warriors"));
-console.log(spinWords("You are almost to the last test"));
+// console.log(spinWords("warriors"));
+// console.log(spinWords("Hey fellow warriors"));
+// console.log(spinWords("You are almost to the last test"));
