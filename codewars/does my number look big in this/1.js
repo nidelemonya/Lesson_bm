@@ -10,7 +10,6 @@ function narcissistic(value) {
     },0)) ? true : false;
 }
 
-
 // 使用reduce 方法一定要提供一个初始值 initial_val 不然回调方法会跳过索引0直接从索引1执行。
 // console.log(narcissistic(7))
 console.log(narcissistic(371))
