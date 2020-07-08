@@ -1,0 +1,58 @@
+<script>
+    let node = {
+        val:1
+    }
+    let node2 = {
+        val:2
+    }
+    let node3 = {
+        val:3
+    }
+    node.next = node2;
+    node2.next = node3;
+    // console.log(node);
+    // node -> node2 -> node3
+    let current = node;
+    while(current) {
+        console.log(current.val);
+        current = current.next;
+    }
+
+
+
+// n 链表长度(节点总数) 时间复杂度 O(n) 空间复杂度 n
+var oddEvenList = function (head) {
+    let l1 = { val: null, next: null },
+        l1Current = l1,
+        l2 = { val: null, next: null },
+        l2Current = l2,
+        i = 1,
+        current = head;
+    while (current) {
+        // console.log(current, l1Current, l2Current);
+        if (i % 2 !== 0) {
+            l1Current.next = current;
+            l1Current = l1Current.next;
+            // l1.next = current;
+        } else {
+            l2Current.next = current;
+            l2Current = l2Current.next;
+            // l2.next = current;
+        }
+        i++;
+        current = current.next;
+    }
+    // 去掉尾巴
+    if (i%2 !== 0) {
+        l1Current.next = null;
+    }else {
+        l2Current.next = null;
+    }
+    // console.log(l1,l2);
+    l1Current.next = l2.next;
+    return l1.next;
+};
+
+var l = oddEvenList({ val: 1, next: { val: 2, next: {val: 3, next: { val: 4, next: {val: 5, next: null}}} } });
+console.log(l);
+</script>
