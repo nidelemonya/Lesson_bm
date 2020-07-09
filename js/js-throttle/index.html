@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 视窗高度 和 视窗宽度 */
+    /* view port width */
+    body {
+      width: 100vw;  
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <script src="./1.js"></script>
+  <script>
+    // 拖拽 节流
+    const body = document.body;
+    let count = 0;
+    function getUserInfo() {
+      count ++;
+      console.log('发出请求',count)
+    }
+    // body.onmousemove = throttled(getUserInfo, 2000);
+    // body.onmousemove = throttled1(getUserInfo, 2000);
+    body.onmousemove = throttle(getUserInfo, 2000);
+    // scroll
+    // resize
+    // 时间戳
+    // 头部事件有了， 尾部事件没有
+    function throttled(func, wait) {
+      // 高阶函数
+      var previous = 0;
+      // previous 一定要留下来
+      // console.log('外部');
+      return function() {
+        // console.log('里面');
+        var now = new Date().getTime(); //时间戳
+        if (now - previous > wait) {
+          func();
+          previous = now;
+        }
+      }
+    }
+    // 定时器实现
+    // 没有头部事件 但是有尾部事件
+    function throttled1(func, wait) {
+        var timeout = null;
+        return function(){
+            // 如果定时器为 null
+            if(!timeout){
+                timeout = setTimeout(() =>{
+                    func();
+                    timeout = null; // 定时器置空
+                },wait);
+            }
+        }
+    }
+
+    // let t = setTimeout(()=>{
+    //     console.log(1)
+    // },6000)
+    // setTimeout(()=>{
+    //     clearTimeout(t);
+    // },3000)
+  </script>
+</body>
+</html>
+      
