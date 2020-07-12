@@ -1,0 +1,15 @@
+{
+  "name": "module",
+  "version": "1.0.0",
+  "description": "导出： module.exports = function() {}\r module.exports = {}\r 导入：require",
+  "main": "a.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.21.0"
+  }
+}
