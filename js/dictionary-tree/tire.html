@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Tire {
+            root = {}
+            insert(str) {
+                let currentNode = this.root
+                // 数组 字符串
+                for (let c of str){
+                    // console.log(c)
+                    if (!currentNode[c]) {
+                        currentNode[c] = {}
+                    }
+                    currentNode = currentNode[c]
+                }
+                // 到达最末尾节点
+                // 运算符优先级 要加括号
+                // '$' + 次数 压缩空间
+                if(!('$' in currentNode)) {
+                    currentNode['$'] = 0;
+                }
+                currentNode['$'] ++;
+            }
+        }
+        let t = new Tire();
+        t.insert('flow');
+        t.insert('flower');
+        t.insert('flower');
+        t.insert('flower');
+        t.insert('flower');
+        t.insert('dog');
+        t.insert('dogs');
+        console.log(t.root);
+    </script>
+</body>
+</html>

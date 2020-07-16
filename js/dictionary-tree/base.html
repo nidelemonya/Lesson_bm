@@ -1,0 +1,74 @@
+<script>
+    // 正则表达式 工具：https://regexper.com/
+    // 匹配字符串
+    let　str = 'abc';
+    str === 'abc';
+
+    let reg = /abc/;
+    // 长度
+    // {1,2} {2,} ? + *
+    // /ab*c/
+    let reg1 = /a[bdf]c/
+    // let reg1 = /a[b-i]c/
+    // let reg1 = /a[3-8]c/
+
+    // #fff
+    // #ffffff
+    // css 里面 颜色 16进制的写法
+
+    // 位置：更严谨
+    // ^ 开始
+    // $ 结束
+    let reg2 = /^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$/
+    // let reg2 = /^#(([a-fA-F0-9]{3})|([a-fA-F0-9]{6}))$/
+
+    // YYYY-MM-DD
+    // 2020-07-16
+    let reg3 = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/
+    // [a-d] 和 [abcd] 是一样的
+
+    // 有没有匹配
+    // 而且 还要提取匹配的内容
+    console.log(reg3.test('2020-07-16'))
+
+    // 细节
+    // ['输入的源文本', 分组1, 分组2, 分组3, 分组n]
+    console.log(reg3.exec('2020-07-16'))
+
+    console.log('2020-07-16'.match(reg3))
+    let reg4 = /[a-z]/g;
+    let str4 = 'abc'; // 'abc' + ''
+    console.log(reg4.test(str4)) // a 满足 true
+    console.log(reg4.lastIndex)
+    console.log(reg4.test(str4)) // b 满足 true
+    console.log(reg4.test(str4)) // c 满足 true
+    console.log(reg4.test(str4)) // 空字符串 不满足 false
+
+    // lastIndex
+    console.log(reg4.exec(str4)) 
+    console.log(reg4.exec(str4))
+
+    console.log(str4.match(reg4)) 
+    console.log(str4.match(reg4))
+
+
+    // question
+    let state = {
+        name:'lilei',
+        age:18
+    }
+    let strs = 'myname is {name}, age is {age}'
+    function compile(obj,tpl) {
+        // exec
+        // console.log(Object.keys(obj))
+        let reg = /^{[a-z]*}$/
+        for( let e in obj) {
+            // strs = strs.replace(/{e}/,'2')
+            // obj[e] 值
+            // console.log(reg.exec('{'+e+'}'))
+            strs = strs.replace(reg.exec('{'+e+'}'),obj[e])
+        }
+        return strs
+    }
+    console.log(compile(state,strs))
+</script>
