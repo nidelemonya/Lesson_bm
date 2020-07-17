@@ -1,0 +1,29 @@
+<script>
+    let strs = 'myname is {name}, age is {age}';
+    let data = {
+        name:'lilei',
+        age:18,
+    }
+    function compile(obj,str) {
+        // \ + '要转义的字符'
+        // () 正则表达式的分组
+        let reg =/\{([0-9A-Za-z_]+)\}/g;
+        let i = 0;
+        // console.log(reg.exec(str))
+        // console.log(reg.exec(str))
+        // console.log(reg.exec(str))
+        let info = reg.exec(str)
+        let res = ''
+        while (info) {
+            console.log(info)
+            res += str.substring(i, info.index)
+            let key = info[1]
+            res += obj[key]
+            console.log(obj[key])
+            i = reg.lastIndex
+            info = reg.exec(str)
+        }
+        return res
+    }
+    console.log(compile(data,strs))
+</script>

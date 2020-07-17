@@ -1,0 +1,22 @@
+<script>
+    let str = 'hello'
+    let newStr = str.replace(/^/,'#')
+    let newStr1 = str.replace(/(?=l)/,'#')
+    let newStr2 = str.replace(/(?=l)/g,'#')
+    console.log(newStr)
+    console.log(newStr1) // 没加 /g 只匹配一个
+    console.log(newStr2) // /g 全局匹配 找出所有 /l 前面的那个位置
+    // 子模式 子正则
+    // (?=)
+    // (?=l): l前面的那个位置
+
+    // (?!)
+    let newStr3 = str.replace(/(?!l)/,'#')
+    let newStr4 = str.replace(/(?!l)/g,'#')
+    console.log(newStr3)
+    console.log(newStr4)
+    let newStr5 = str.replace(/(?<=l)/g,'#')
+    let newStr6 = str.replace(/(?<!l)/g,'#')
+    console.log(newStr5)
+    console.log(newStr6)
+</script>

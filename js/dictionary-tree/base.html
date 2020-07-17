@@ -58,7 +58,7 @@
         age:18
     }
     let strs = 'myname is {name}, age is {age}'
-    function compile(obj,tpl) {
+    function compile(obj,str) {
         // exec
         // console.log(Object.keys(obj))
         let reg = /^{[a-z]*}$/
@@ -66,9 +66,9 @@
             // strs = strs.replace(/{e}/,'2')
             // obj[e] 值
             // console.log(reg.exec('{'+e+'}'))
-            strs = strs.replace(reg.exec('{'+e+'}'),obj[e])
+            str = str.replace(reg.exec('{'+e+'}'),obj[e])
         }
-        return strs
+        return str
     }
     console.log(compile(state,strs))
 </script>

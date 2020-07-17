@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // NO.1
+        let str1 = 'myname is {name}, age is {age}';
+        let data = {
+            name:'lilei',
+            age:18,
+        }
+        function compile(obj, tpl){
+            for(let item in obj) {
+                // let reg = new RegExp("{"+item+"}")
+                tpl = tpl.replace(`{${item}}`, obj[item])
+            }
+            return tpl;
+        }
+        console.log(compile(data,str1))
+
+
+        // NO.2
+        let str = 'myname is {name}, age is {age}'
+        let obj = {
+            name:'lilei',
+            age:18,
+        }
+        str.replace('{name}','lilei')
+        let reg = /\{(\w+)\}/g
+        let newStr = str.
+        // ...arg 传任意参数 参数不限
+        replace(reg, (...arg)=>{
+            // () 里面的分组拿到
+            console.log(arg)
+            let key = arg[1]
+            // return 'lilei'
+            return obj[key]
+        })
+        console.log(newStr);
+
+
+
+        // NO.3
+        // YYYY-MM-DD 2017-11-11
+        function format(str) {
+            // let reg = /^-[0-9]{4}/
+            return str.replace('-','.').split('.').reverse().join('.')
+        }
+        function format1(str) {
+            let reg = /(\d{4})-(\d{2})-(\d{2})/;
+            return str.replace(reg,'$2-$3.$1')
+
+            // 或者
+            
+            return str.replace(reg, (...arg)=>{
+                // console.log(arg)
+                return `${arg[2]}-${arg[3]}.${arg[1]}`
+            })
+        }
+        console.log(format('2017-11-21')) // MM-DD.YYYY
+        console.log(format1('2017-11-21')) // MM-DD.YYYY
+
+        // NO.4
+        // background-color
+        // backgroundColor
+        function change(str) {
+            let reg = /-([a-zA-Z]{1})/g;
+            // 加 /g 全局匹配 不定长的
+            return str.replace(reg,(...arg)=>{
+                console.log(arg);
+                return arg[1].toUpperCase()
+            })
+        }
+        console.log(change('web-kit-aa-bb'))
+    </script>
+</body>
+</html>
