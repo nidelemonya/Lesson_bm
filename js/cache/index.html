@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- cache-control: max-age = 1天 
+    1天之内，用户用的都是缓存里面的
+    如果更新了一个内容，用户如何在一天中如何访问新的内容? -->
+    <!-- 解决方案 修改时间戳重新定向 src="http://localhost:9090/big.js?t=xxxx -->
+    <script src="http://localhost:9090/big.js?t=500"></script>
+</body>
+</html>
