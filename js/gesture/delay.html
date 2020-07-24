@@ -1,0 +1,35 @@
+<style>
+    #my {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+    }
+</style>
+<div id="my"></div>
+<script>
+    const my = document.querySelector('#my');
+    const event = new CustomEvent('click');
+    // 自定义事件
+
+    // setTimeout(() =>{
+    //     // 这样不点击也能触发事件
+    //     my.dispatchEvent(event);
+    // },3000)
+
+    // setInterval(() => {
+    //     my.dispatchEvent(event);
+    // }, 3000);
+    
+    // 调用 api 即使鼠标 不 click 也能触发 click 事件绑定的回调函数
+    my.addEventListener('touchstart', ()=> {
+        // 这样就没有延迟了
+        my.dispatchEvent(event);
+    })
+    my.addEventListener('touchend', (e)=> {
+        e.preventDefault();
+        // 浏览器的有延迟 提前阻止掉
+    })
+    my.addEventListener('click', function() {
+        console.log('click');
+    })
+</script>
