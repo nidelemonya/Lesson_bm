@@ -1,0 +1,55 @@
+<style>
+    #el {
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        /* 匀速直线 */
+        animation: move 5s linear;
+    }
+</style>
+<div id="el"></div>
+<button id="pause" onclick="pause();">pause</button>
+<button id="resume" onclick="resume();">resume</button>
+<script>
+    // F5 刷新
+    // 手写一个动画
+    const el = document.querySelector('#el');
+    
+    let start = 0,
+        end = 400, 
+        pauseTime = 0,
+        duration = 5000,
+        startTime = Date.now();
+    // jquery 时 用的方法
+    // setInterval(() => {
+    //     console.log(1)
+    // }, 16);
+    // 在每一帧里面请求执行一个方法
+    function tick() {
+        // console.log(1);
+        let hasPassed = Date.now() - startTime;
+        // 算出走过的时间进度
+        let progress = hasPassed / duration;
+        if ( progress >= 1) {
+            el.style.transform = `translate3d(${end}px, 0, 0)`
+            return;
+        }
+        let x = progress * (end - start);
+        el.style.transform = `translate3d(${x}px, 0, 0)`
+        rafId = requestAnimationFrame(tick);
+    }
+    var rafId = null;
+    rafId = requestAnimationFrame(tick);
+    function pause() {
+        // 取消
+        pauseTime = Date.now();        
+        cancelAnimationFrame(rafId);
+    }
+
+    function resume() {
+        startTime += Date.now() - pauseTime
+        rafId = requestAnimationFrame(tick);
+    }
+    // 60HZ 1000 / 60 = 16.6666ms
+    // requestAnimationFrame 能够确保回调在每一帧调用
+</script>

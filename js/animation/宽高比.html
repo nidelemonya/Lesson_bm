@@ -1,0 +1,62 @@
+<style>
+    /* 宽高 16:9 */
+    .ration {
+        width: 100%;
+        /* 加外边框 不占 div 的宽和高 */
+        outline: 1px solid orange;
+        /* 设置自有高度为 0 */
+        height:0;
+        /* 用 padding 把高度撑开 */
+        /* padding-top 相对于高度来计算*/
+        padding-top: calc( 100% * 9 / 16);
+        position: relative;
+    }
+    .ration > div {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+</style>
+<div class="ration">
+    <div>content</div>
+</div>
+<script>
+    // Symbol.toPrimitive 最高优先级
+    let obj = {
+        a1: 1,
+        toString() {
+            return 1;
+        },
+        valueOf() {
+            return 2;
+        },
+
+        // 复杂数据类型 类型转换的时候
+        // es6 之前 toString || valueOf 
+        // [Symbol.toPrimitive]: () => {
+        //     return 123;
+        // }
+    }
+
+    let res = obj + 1;
+    console.log(res);
+    console.log(String(obj));
+
+    Object.prototype.toString() // 对象的 toString()
+    let arr = [1,2]
+    arr.toString() // arr 重写的 toString
+
+
+
+    let num = 123
+    num.toString()
+    console.log(num.toString())
+    // 123.toString(); // => 报错 . 会被看成小数点
+    // 加个 括号 就行了
+    (123).toString();
+
+    // js 所有 Number 的写法
+    // 10 进制
+    // 2 进制
+    // 16 进制
+</script>
