@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 200px;
+      background-color: blue;
+      animation: move 5s linear 0s infinite reverse;
+    }
+    .run {
+        background-image: url('./person.png');
+        background-repeat: no-repeat;
+        width: 89px;
+        height: 55px;
+        animation: run 2s steps(6) 0s infinite;
+    }
+    @keyframes move {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+      to {
+        transform: translate3d(400px, 400px, 0);
+      }
+    }
+    @keyframes run{
+        from{
+            background-position: 0 0;
+        }
+        to{
+            background-position: -534px 0 ;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="run"></div>
+</body>
+</html>
