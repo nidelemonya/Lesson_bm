@@ -1,0 +1,42 @@
+<script>
+    // 法1
+    // function repeat(func, times, wait) {
+    //     return (arg) => {
+    //         for (let i = 0; i < times; i++) {
+    //             setTimeout(() => {
+    //                 alert(arg)
+    //             }, i * wait);
+    //         }
+    //     }
+    // }
+
+    function repeat(func, times, wait) {
+        return (arg) => {
+            function sleep(wait) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve(wait)
+                    }, wait)
+                })
+            }
+
+            function * foo() {
+                for (let i = 0; i < times; i++) {
+                    yield sleep(wait)
+                    alert
+                }
+            }
+            function autoRun(obj) {
+                let { done, value } = obj.next();
+                if (done) return;
+                value.then((res) => {
+                    autoRun(obj, res)
+                })
+            }
+            let iterator = foo();
+            autoRun(iterator);
+        }
+    }
+    const repeatFunc = repeat(alert, 4, 3000)
+    repeatFunc("hellworld")
+</script>

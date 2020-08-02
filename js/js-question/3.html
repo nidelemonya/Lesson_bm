@@ -1,0 +1,57 @@
+<script>
+    // JS: ECMA
+    // JSON XML Ymal
+
+    // 手写一个 ajax 函数
+    function ajax({url, method, data, timeout}) {
+    // 原生 XMLHttpRequest
+    return new Promise((resolve,reject) => {
+        const xhr = new XMLHttpRequest()
+        xhr.timeout = timeout;
+        xhr.open(method, url, true)
+        xhr.ontimeout = function() {
+            reject('timeout');
+        }
+        xhr.onreadystatechange = function () {
+            // xhr 代理的状态
+            if (xhr.readyState === 4) {
+                // xhr 请求的状态
+                if((xhr.status >= 200 &&　xhr.status < 300) || xhr.status === 304)
+                {
+                    let res = JSON.parse(xhr.response);
+                    resolve(res);
+                }
+                else {
+                    reject('response error')
+                }
+            }
+        }
+        // xhr.onload
+        // 数据
+        // GET 数据拼接到 url 后面
+        // POST 要看 Content-type
+        // 思考：Content-type 常见的类型有哪些，每个类型对数据的要求格式是怎么样的?
+        // Content-type: application/json 符合json (key-value)  {a:1, a:2} => 以 json 格式切割
+        // Content-type: application/x-www-form-url-encoded     a=1&b=2  => 以 & 分隔
+        // Content-type: text/plain                             字符串  a=1,b=2
+        // Content-type: from-data                              文件 (包含大量的 非ASCII 字符)
+        // from-data 有分隔key
+        // --------分隔key----------
+        // 第一段内容
+        // --------分隔key----------
+        // 第二段内容
+        // --------分隔key----------
+        xhr.send(data)
+    })
+}
+    // ajax({  url: string,  method: string,  data?: object,  timeout?: number})
+    // .then()
+    // .catch()
+
+    ajax({
+        method:'get',
+        url:'http://neteasecloudmusicapi.zhaoboy.com/search?keywords=%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA',
+        timeout:5000
+    }).then(console.log).catch(console.log)
+
+</script>

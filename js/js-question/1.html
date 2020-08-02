@@ -1,0 +1,24 @@
+<script>
+    // 实现一个函数 a()，第一次调用输出0，再调用输出1，再调用又是0。再调又是1。不得使用全局变量
+    let count = 0;
+    function a () {
+        count++;
+        if (count % 2 === 0) {
+            return 0
+        } else {
+            return 1;
+        }
+    }
+    // 使用闭包
+    const a1 = (function () {
+        let c = 0;
+        return function () {
+            c++;
+            if (count % 2 === 0) {
+                return 0
+            } else {
+                return 1;
+            }
+        }
+    })()
+</script>
