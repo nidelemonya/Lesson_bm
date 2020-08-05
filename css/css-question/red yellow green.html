@@ -1,0 +1,76 @@
+<style>
+	div {
+		background-color: grey;
+		display: inline-block;
+		margin: 30px;
+		width: 100px;
+		height: 100px;
+		border-radius: 50px;
+	}
+
+	.green.light {
+		background-color: green;
+	}
+
+	.yellow.light {
+		background-color: yellow;
+	}
+
+	.red.light {
+		background-color: red;
+	}
+</style>
+
+
+<div class="red"></div>
+<div class="yellow"></div>
+<div class="green"></div>
+
+
+<button id="next" onclick="go();">开始</button>
+
+<script>
+	function green() {
+        clear()
+        const greenNode = document.querySelector('.green')
+        greenNode.classList.add('light')
+    }
+    function red() {
+        // 当当前的灯亮之前 把上一个灯 灭掉
+        clear()
+        const redNode = document.querySelector('.red');
+        redNode.classList.add('light')
+    }
+    function yellow() {
+        clear()
+        const yellowNode = document.querySelector('.yellow');
+        yellowNode.classList.add('light')
+    }
+    function clear() {
+        var lights = document.getElementsByTagName("div");
+		for (var i = 0; i < 3; i++)
+			lights[i].classList.remove("light")
+    }
+
+    const sleep = (time) => {
+        return new Promise((resolve,reject) => {
+            setTimeout(()=>{
+                resolve()
+            },time)
+        })
+    }
+
+    let i = 0
+    async function go() {
+        i++
+        if(i>=5) return
+        red()
+        await sleep(1000) 
+        yellow()
+        await sleep(2000)
+        green()
+        await sleep(3000)
+        go()
+    }
+    go()
+</script>

@@ -305,7 +305,7 @@ input {
     text-rendering:optimizeLegibility;
 }
 
-#anony-reg-new .app-slogan::after {
+#anony-reg-new .app-slogan:after {
     content: "";
     display: inline-block;
     width: 100%;
@@ -359,10 +359,4 @@ input {
     text-align: center;
     font-size: 13px;
     white-space: nowrap;
-}
-
-#anony-reg-new .wrapper::after {
-    content: "\0020";
-    display: block;
-    clear: both;
 }
