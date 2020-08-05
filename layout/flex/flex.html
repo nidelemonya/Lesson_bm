@@ -1,0 +1,106 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .flex {
+        display: flex;
+        height: 100vh;
+        flex-wrap: wrap;
+        align-content: center;
+        /* 如果有多根轴的情况 比如说 存在换行 则需要 添加 align-content: center 属性*/
+        align-items: center;
+        /* stretch： 平分 轴线占满整个交叉轴。*/
+        /* flex-start：与交叉轴的起点对齐。 */
+        /* flex-end：与交叉轴的终点对齐。 */
+        /* center：与交叉轴的中点对齐。 */
+
+        justify-content: space-around;
+        /* 每一块的剩余空间 平分给 每个元素的 左右两边 并不是均等 */
+        /* justify-content: space-evenly; */
+        /* space-evenly 才是平均的 */
+    }
+
+    .item1 {
+        width: 120px;
+        height: 60px;
+        background-color: aqua;
+    }
+
+    .item2 {
+        width: 140px;
+        height: 160px;
+        background-color: red;
+        padding-top: 30px;
+    }
+
+    .item3 {
+        width: 140px;
+        height: 20px;
+        background-color: green;
+        /* align-self: flex-end; */
+        order: -1;
+        /* 数值越小 排列越靠前 */
+        /* 常见于 圣杯布局 双飞翼布局
+            left 固定 main 自适应 right 固定
+            html结构: 让 main 在前面
+            <div>main</div> 
+            <div>left</div>
+            <div>right</div>*/
+    }
+
+    .flex1 {
+      display: flex;
+      /* sum 260 */
+      width: 600px;
+      outline: 1px solid blue;
+    }
+
+    .item11 {
+      flex-grow: 1;
+      flex-shrink: 1;
+      /* 都为 0 的话 既不放大 也不缩小 */
+      flex-basis: 200px;
+      /* 缩写形式 */
+      /* flex: 1 1 200px */
+      /* flex: 1 => flex-grow: 1 */
+    }
+
+    .item22 {
+    }
+</style>
+<div class="flex">
+    <div class="item1">
+        English
+    </div>
+    <div class="item1">
+        English
+    </div>
+    <div class="item3">
+        English
+    </div>
+    <div class="item1">
+        English
+    </div>
+    <div class="item1">
+        English
+    </div>
+    <div class="item2">
+        English
+        <br />
+        English
+        <br />
+    </div>
+    <div class="flex1">
+        <div class="item1 item11">
+          English1
+        </div>
+        <div class="item2 item22">
+          English2
+          <br />
+          English2
+          <br />
+        </div>
+      </div>
+</div>

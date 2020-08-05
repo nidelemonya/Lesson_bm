@@ -1,4 +1,11 @@
 ## Flex 布局 ##
+- 主轴: 水平的主轴（main axis）
+- 交叉轴: 垂直的交叉轴（cross axis）
+
+    主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。
+
+    项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。
+
 - 定义：
 Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
 - 容器的属性
