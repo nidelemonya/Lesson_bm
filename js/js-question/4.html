@@ -1,0 +1,74 @@
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.19/lodash.min.js"></script>
+<script>
+    // function sum(num) {
+    //     let res = 0
+    //     res += num
+    //     return (num) => {
+    //         res +=  num
+    //         return (num) =>{
+    //             res +=  num
+    //             return res
+    //         }
+    //     }
+    // }
+
+    function sum(a) {
+        return (b) => {
+            return (c) => {
+                return a + b + c
+            }
+        }
+    }
+
+    console.log(sum(1)(2)(3) === 6)
+    // console.log(sum(1)(2)(3) === 6)
+    // console.log(sum(1)(2) === 3)
+    // console.log(sum(1) === 1)
+
+    // sum(1)(2)(3) === 6  // true
+
+
+
+    // curry 柯里化
+
+    function sum1(a, b, c) {
+        return a + b + c;
+    }
+
+    // sum1(1,2,3)
+    let curriedSum = _.curry(sum1);
+    // 参数分批逻辑
+    // 随便怎么传 至少传一个 
+    console.log(curriedSum(1)(2)(3))
+    console.log(curriedSum(1, 2)(3))
+    console.log(curriedSum(1)(2, 3))
+
+    let curriedSum10 = curriedSum(10); // 可以先把 10 传进去 比较灵活的地方 不用 sum1(10, 2, 3)
+    console.log(curriedSum10(2, 3));
+    console.log(curriedSum10(2)(3));
+
+    // 参数够了才会求和
+    function curry(fun) {
+        // 
+        const len = fun.length;
+        // console.log(len);
+        // fun 普通的函数
+        // return 出去的就是 具有柯里化 (函数参数分批次)
+        // 无论你分几次传参数， 接收到之后放在 args 里面
+        let args = [];
+
+        function help(...arg) {
+            args = args.concat(arg);
+            if (args.length >= len) {
+                // ??
+                return fun(...args);
+            } else {
+                return help;
+            }
+        }
+        return help;
+    }
+    let curriedSum1 = curry(sum1);
+    // 分批
+    console.log(curriedSum1(1)(2)(3))
+</script>
