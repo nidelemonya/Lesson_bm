@@ -1,0 +1,69 @@
+<script>
+  function FileComponent(path, cb) {
+    // todo
+    setTimeout(() => {
+      cb('读取完毕')
+    }, 3000)
+  }
+
+  FileComponent('index.js', (file) => {
+    console.log(file)
+    // 3s 之后 输出 “读取完毕”
+  })
+
+  Array.prototype.myForeach = function (cb) {
+    for (let i = 0; i < this.length; i++) {
+      cb(this[i], i)
+    }
+  }
+  let arr = [1, 2, 3]
+  arr.myForeach((item, i) => {
+    console.log(item, i)
+  })
+
+
+
+
+  window.name = 'ByteDance';
+
+  function A() {
+
+    // new 的过程：
+    // 1. 生成一个空对象: {}
+    // 2. {}.__proto__ = A.prototype
+    // 3. {} 添加 name 属性
+    // return {} 返回新对象
+    
+    // 我们 new 的时候 拿到就是这个 {}
+    // console.log(this); // 指向 空对象 {}
+    // debugger;
+    console.log(this.name); // 456
+    this.name = 123;
+  }
+  A.prototype.getA = function () {
+    console.log(this);
+    return this.name + 1;
+  }
+  A.prototype.name = 456;
+  let a = new A();  
+  let funcA = a.getA;  // this 丢失
+  console.log(funcA()); // 普通调用 默认指向 window
+
+  function newConstructor(Constructor) {
+    let obj = {}
+    obj.__proto__ = Constructor.prototype
+    // 给 obj 附上属性
+    Constructor.apply(obj)
+    return obj
+  }
+  console.log(new A());
+  console.log(newConstructor(A));
+
+  function Animal() {
+    this.name = "cat";
+    this.live = "land";
+  }
+  let ani = {};
+  Animal.apply(ani);
+  console.log(ani)
+</script>

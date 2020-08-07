@@ -1,0 +1,35 @@
+<script>
+    let a = {a: 1}
+    let b = {b: 2}
+    Object.assign({}, a, b) // ...
+    // Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象
+    let map = new Map()
+    // map key 可以是任意值
+    // {} key 字符串 Symbol
+    // 深拷贝
+    function deepClone(obj) {
+        let t = {}
+        // obj 为待拷贝的对象
+        // t 为拷贝完的结果
+
+        // 处理循环依赖
+        if (map.get(obj)) return map.get(obj);
+        map.set(obj, t)
+        Object.keys(obj).forEach(k => {
+            if (typeof obj[k] === 'object') {
+                // 如果还是 obj
+                t[k] = deepClone(obj[k])
+            }
+            else{
+                // 如果为常量 直接复制
+                t[k] = obj[k]
+            }
+        })
+        return t;
+    }
+    let obj = {a: 1, b: {b:2}};
+    obj.t = obj;
+    let obj1 = deepClone(obj);
+    obj.b.b = 3;
+    console.log(obj,obj1) // obj 里面的 b 里面的 b 为3 ; obj1 里面的 b 里面的 b 为3 并不会互相影响 -> 说明深拷贝成功
+</script>
