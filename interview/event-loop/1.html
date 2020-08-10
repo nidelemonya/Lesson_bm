@@ -1,0 +1,34 @@
+<script>
+    // new Promise 同步的代码 console.log(2)
+    // console.log(4);
+    // 宏任务队列: [setTimeout1, setTimeout2]
+    // 微任务队列: [p.then1, p.then2]
+    setTimeout(() => {
+        console.log(1);
+        Promise.resolve(6).then(console.log)
+    },0)
+    // new Promise 是同步的
+    new Promise((resolve, reject) => {
+        console.log(2) // 生成 promise 是同步的
+        resolve(3)
+    })
+    // .then 才是异步的
+    .then(r => {
+        console.log(r)
+        // 如果这里又产生了 宏任务 setTimeout 把它进入宏任务队列
+        setTimeout(() => {
+            console.log(5)
+        })
+        return undefined;
+        // return 777;
+        // return new Promise((resolve) => {
+        //     resolve(1)
+        // })
+    })
+    .then(r => {
+        // 这个 r 是上次的返回值， 如果上次没有返回值 默认为 undefined 当然也可以返回一个promise 是 里面的 resolve
+        console.log(r)
+    })
+    console.log(4);
+    // 最终结果为:  2 4 3 undefined 1 6 5
+</script>

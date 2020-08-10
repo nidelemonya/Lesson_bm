@@ -1,0 +1,45 @@
+<body></body>
+<script>
+    // 宏任务 1 号
+    document.body.style.backgroundColor = 'red';
+
+    // 宏任务 2 号
+    setTimeout (() => {
+        document.body.style.backgroundColor = 'orange';
+    }, 0)
+    // 两个宏任务之间  有可能  夹杂着渲染 (有可能有 有可能没有) 看两个宏任务执行的间隔
+    // red -> orange
+    // orange
+
+    document.addEventListener('click', () => {
+        console.log(1);
+        Promise.resolve(2).then(console.log)
+    })
+    document.addEventListener('click', () => {
+        console.log(3);
+        Promise.resolve(4).then(console.log)
+    })
+    // 1 2 3 4
+    // macrotask:[click1, click2] 宏任务
+    // microtask:[.then1] [.then2] 微任务
+
+
+    console.log(1)
+
+    setTimeout(function() {
+        console.log(2)
+    })
+
+    new Promise(function (resolve) {
+        console.log(3)
+        resolve()
+    }).then(function () {
+        console.log(4)
+    }).then(function() {
+        console.log(5)
+    })
+    console.log(6)
+
+    // 1 3 6 4 5 2
+
+</script>

@@ -1,0 +1,68 @@
+<script>
+    
+    //async函数返回一个 Promise 对象，可以使用then方法添加回调函数。
+    //当函数执行的时候，一旦遇到await就会先返回，
+    //等到异步操作完成，再接着执行函数体内后面的语句。
+
+
+    // async 是一个通过异步执行并隐式返回 Promise 作为结果的函数。
+    // async 函数返回的是一个 Promise 对象
+
+
+    // 当执行到await 100时，会默认创建一个 Promise 对象，代码如下所示：
+
+    // let promise_ = new Promise((resolve,reject){
+    //   resolve(100)
+    // })
+    // 在这个 promise_ 对象创建的过程中，我们可以看到在 executor 函数中调用了 resolve 函数，JavaScript 引擎会将该任务提交给微任务队列（上一篇文章中我们讲解过）。
+
+    // 然后 JavaScript 引擎会暂停当前协程的执行，将主线程的控制权转交给父协程执行，同时会将 promise_ 对象返回给父协程。
+
+    // 主线程的控制权已经交给父协程了，这时候父协程要做的一件事是调用 promise_.then 来监控 promise 状态的改变。
+
+    // 接下来继续执行父协程的流程，这里我们执行console.log(3)，并打印出来 3。随后父协程将执行结束，在结束之前，会进入微任务的检查点，然后执行微任务队列，微任务队列中有resolve(100)的任务等待执行，执行到这里的时候，会触发 promise_.then 中的回调函数，如下所示：
+
+    // promise_.then((value)=>{
+    //    // 回调函数被激活后
+    //   // 将主线程控制权交给 foo 协程，并将 vaule 值传给协程
+    // })
+    // 该回调函数被激活以后，会将主线程的控制权交给 foo 函数的协程，并同时将 value 值传给该协程。
+
+    // foo 协程激活之后，会把刚才的 value 值赋给了变量 a，然后 foo 协程继续执行后续语句，执行完成之后，将控制权归还给父协程。
+
+    // 以上就是 await/async 的执行流程。正是因为 async 和 await 在背后为我们做了大量的工作，所以我们才能用同步的方式写出异步代码来。
+
+
+
+    async function async1() {
+        console.log('async1 start'); // 2
+        await async2();
+        // awit 下面的语句 会停下来
+        console.log('async1 end'); // 等待： 被放到 Promise.then 里面去 相当于.then //6
+    }
+    async function async2() {
+        console.log('async2'); // 3 
+    }
+    console.log('script start'); // 1
+    setTimeout(function () {
+        console.log('setTimeout'); // 8
+    }, 0);
+    async1();
+    new Promise(function (resolve) {
+            console.log('promise1'); // 4
+            resolve();
+        })
+        .then(function () {
+            console.log('promise2');// 7
+        });
+    console.log('script end'); // 5
+
+    // script start
+    // async1 start
+    // async2
+    // promise1
+    // script end
+    // async1 end
+    // promise2
+    // setTimeout
+</script>
