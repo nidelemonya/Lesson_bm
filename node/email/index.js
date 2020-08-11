@@ -26,7 +26,7 @@ async function main() {
     secure: true, // true for 465, false for other ports
     auth: {
       user: '1239941131@qq.com', // generated ethereal user
-      pass: 'mfgpwptouwpbiibf', // generated ethereal password
+      pass: '授权码', // generated ethereal password
     },
   });
 

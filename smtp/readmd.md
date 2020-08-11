@@ -4,7 +4,7 @@ telnet smtp.qq.com 25
 helo qq 建立连接
 auth login 登录账户 
 1239941131@qq.com (base64加密) MTIzOTk0MTEzMUBxcS5jb20=
-授权码 (base64加密) bWZncHdwdG91d3BiaWliZg==
+授权码 (base64加密) 
 
 mail from:<1239941131@qq.com>  
 rcpt to:<1239941131@qq.com> 
