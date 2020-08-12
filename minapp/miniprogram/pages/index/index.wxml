@@ -1,0 +1,13 @@
+<!-- <view>
+  div {{name}}
+</view> -->
+<view class="container">
+  <van-button type="primary" block class="big-btn">
+    {{name}}
+  </van-button>
+</view>
+<view class="container">
+  <van-button type="primary" block class="big-btn" bindtap="upload">
+    上传图片
+  </van-button>
+</view>
