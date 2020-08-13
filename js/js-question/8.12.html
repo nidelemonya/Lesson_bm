@@ -1,0 +1,27 @@
+<script>
+    // 数组拍平
+    let a = [1, 2, [3, [4, [5]]]]
+    let map = new Map()
+    a.push(a)
+    // [1,2,3,4,5]
+    function flat(arr) {
+        // todo
+        let res = [];
+        // 处理循环依赖
+        if (map.get(arr)) return map.get(arr);
+        map.set(arr, res)
+        for (let a of arr) {
+            if (Array.isArray(a)){
+                res.push(...flat(a))
+                // res = res.concat(flat(a));
+            }
+            else {
+                res.push(a)
+                // res = res.concat(a);
+            }
+        }
+        return res;
+    }
+    console.log(flat(a))
+    console.log(a)
+</script>
