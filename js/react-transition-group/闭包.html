@@ -1,0 +1,22 @@
+<script>
+    var theThing = null;
+    var replaceThing = function () {
+        var originalThing = theThing;
+        var unused = function () {
+            if (originalThing) // 'originalThing'的引用
+                console.log("嘿嘿嘿");
+        };
+        theThing = {
+            longStr: new Array(1000000).join('*'),
+            someMethod: function () {
+                console.log("哈哈哈");
+            }
+        };
+        // debugger;
+    };
+    // 在 V8 中，一旦不同的作用域位于同一个父级作用域下，那么它们会共享这个父级作用域。
+    // 第一次 我们的 theThing = { someMethod 闭包里面有一个 originalThing null}
+    // 第二次 我们 originalThing = 上一次的 thething
+    // 闭包里面依然是 originalThing theThing = {someMethod 闭包里面也有一个 originalThing null}
+    setInterval(replaceThing, 20);
+</script>
