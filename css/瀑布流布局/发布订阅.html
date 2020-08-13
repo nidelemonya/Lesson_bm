@@ -1,0 +1,70 @@
+<script>
+    // document.addEventListener('click', () => {})
+    // document.addEventListener('click', () => {})
+    // document.addEventListener('click', () => {})
+    // document.onClick = () => {
+
+    // }
+    // http.createServer((req,res) => {
+    //     res.on('data', () => {
+
+    //     })
+    // })
+
+    let listeners = {}
+    let price1 = () => {
+        console.log('price1')
+    }
+    let price2 = () => {
+        console.log('price2')
+    }
+    let blog1 = () => {
+        console.log('blog1')
+    }
+    let blog2 = () => {
+        console.log('blog2')
+    }
+
+    function on(name, fn) {
+        // listeners 结构 和下面一样
+        if (!listeners[name]) {
+            listeners[name] = []
+        }
+        listeners[name].push(fn)
+    }
+    function emit(name) {
+        // 已知listeners 结构
+        // 找到 name 下面所有订阅者 并执行 (通知它们)
+        // ?. 可选列表
+        const listen = listeners[name] || []
+        listeners[name]?.map(m => {
+            m()
+        })
+        listeners[name] = listen.filter(listen => !listen.once)
+    }
+    function off(name, fn) {
+        let listen = listeners[name] || []
+        listeners[name] = listen.filter(listen => listen != fn)
+    }
+    function once(name, fn) {
+        fn.once = true; // 是否执行一次
+        on (name, fn)
+    }
+    on('price',price1);
+    on('price',price2);
+    once('price',price2)
+    // 订阅发布博客
+    on('blog',() => {
+        console.log('blog update')
+    })
+    off('price',price1)
+    emit('price')
+    emit('price')
+    setTimeout(() => {
+        emit('blog')
+    },3000)
+    // {
+    //     'price': [price1,price2],
+    //     'blog':[blog1,blog2]
+    // }
+</script>
