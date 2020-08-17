@@ -1,0 +1,8 @@
+.swiper-container {
+    outline: 1px solid orange;
+}
+/* 标签没有模块化 */
+img {
+    width: 200px;
+    height: 200px;
+}
