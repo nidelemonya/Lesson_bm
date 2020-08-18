@@ -1,0 +1,30 @@
+<script>
+    // 手写一个 promise
+    function MyPromise(fn) {
+        this.value = undefined; // 传递 resolve 完成的结果 放在 this 上以便于 其他函数 都能访问到
+        let self = this; // 防止 this 丢失
+
+        function resolve(value) {
+            self.value = value;
+            console.log(value)
+        }
+        function reject() {
+
+        }
+        fn(resolve, reject)
+    }
+    MyPromise.prototype.then = function(onFulfilled, onRejected) {
+        // onFulfilled(resolve 的结果) 这里是立即调用的 没有等待 resolve调用 就执行 所以为 undefined
+        onFulfilled(this.value)
+    }
+
+    // 原 promise
+    new MyPromise((resolve, reject) => {
+        // setTimeout(() => {
+            resolve(1) // this 指向哪 看在哪里调用 这里指向 window => undefined
+        // },2000)
+    })
+    .then((res) => {
+        console.log(res)
+    },() => {})
+</script>

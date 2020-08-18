@@ -1,0 +1,69 @@
+<script>
+    // 拓展 promise 链式调用 
+    // 手写一个 promise
+    // 三种状态
+    const PENDING = Symbol('PENDING')
+    const FULFILLED = Symbol('FULFILLED')
+    const REJECTED = Symbol('REJECTED')
+    function MyPromise(fn) {
+        this.value = undefined; // 传递 resolve 完成的结果 放在 this 上以便于 其他函数 都能访问到
+        this.status = PENDING; // 默认状态
+        this.onFulfilled = []; // 成功时候的回调 改成数组 存放多个成功的回调
+        let self = this; // 防止 this 丢失
+
+        function resolve(value) {
+            self.value = value;
+            self.status = FULFILLED; // 调用 resolve 表明成功
+            // console.log(value);
+            self.onFulfilled.forEach(fn => {
+                fn(value)
+            }); // 存着多个回调
+        }
+        function reject() {
+
+        }
+        fn(resolve, reject)
+    }
+    MyPromise.prototype.then = function(onFulfilled, onRejected) {
+        // onFulfilled(resolve 的结果) 这里是立即调用的
+        if(this.status === FULFILLED) onFulfilled(this.value)
+        else if (this.status === PENDING) {
+            // this.onFulfilled.push(onFulfilled); // 把参数onFulfilled 存进this.onFulfilled 数组
+
+            // 每一个 then 都要返回 promise 这样才支持链式调用
+            // then方法返回一个新的Promise   Promise的then方法返回一个新的 Promise，而不是返回this，
+            return new MyPromise((resolve, reject) => {
+                // ...
+                // resolve()
+                this.onFulfilled.push((value)=> { // 这里的 value 来自于 18行 的 fn(value)
+                    let x = onFulfilled(value); // 执行 then 的回调 需要知道 返回值
+                    if (x instanceof MyPromise) {
+                        x.then(resolve, reject) // 等 x 成功 才调用
+                    }
+                    // resolve(); // 当前 promise 需要 resolve 下一个 then 才会被调用
+                })
+            })
+        }
+        else onRejected()
+        // return this; 要使 上一个 then 返回一个 promise
+    }
+
+    // 调用 promise
+    // 每一个 then 都返回 promise
+    new MyPromise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(1) // this 指向哪 看在哪里调用 这里指向 window => undefined
+        },2000)
+    })
+    .then((res) => { // 成功时的回调
+        console.log(res)
+        return new MyPromise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(2)
+            },2000)
+        })
+    },() => {}) // 失败时的回调
+    .then((res)=>{
+        console.log(res)
+    })
+</script>

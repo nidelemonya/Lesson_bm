@@ -1,0 +1,13 @@
+<script>
+    // 大致过程如下
+    function Promise(cb1) {
+      function fn(a) {
+        console.log(a);
+      }
+      cb1(fn);
+    }
+    Promise((resolve) => {
+      resolve(3333);
+    })
+  </script>
+  

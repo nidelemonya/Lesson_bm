@@ -1,0 +1,22 @@
+<Script>
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(1)
+        }, 2000)
+    })
+    .then(r => {
+        // 根据不同的 返回值 做不同的处理 (决议)
+        // Promise
+        // 具有 then 属性的对象
+        return {
+            // 返回是一个 对象的话  这里的 then 是一个 方法
+            then: (resolve, reject) => {
+                console.log(resolve);
+                resolve(123)
+            }
+        }
+    })
+    .then(r => {
+        console.log(r)
+    })
+</Script>
