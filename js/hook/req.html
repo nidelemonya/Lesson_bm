@@ -1,0 +1,27 @@
+<script>
+    // 无痕埋点
+    // xhr
+    // 保存一份 重写方法 引入这段脚本 可以监听用户的操作
+    const _XMLHttpRequest = window.XMLHttpRequest; // 保存全局的类
+    window.XMLHttpRequest = function XMLHttpRequest() {
+        const _xhr = new _XMLHttpRequest()
+        // 加入额外的逻辑
+        _xhr.addEventListener('readystatechange', function() {
+            if (_xhr.readyState === 4) {
+                console.log(_xhr.responseURL, '请求成功了');
+            }
+        })
+        //不与用户的onreadystatechange冲突
+        // _xhr.onreadystatechange = function () {
+        // }
+        return _xhr
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open();
+    xhr.onreadystatechange= ()=> {
+
+    };
+    xhr.end();
+
+</script>
