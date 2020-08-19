@@ -1,6 +1,6 @@
 <script>
     // 题目
-    // 实现 trim
+    // 实现 trim 去除一个字符串的头尾空格
     function trim(str) {
         // todo
         // s 表示空格 + 表示次数不限
@@ -8,4 +8,12 @@
     }
     // '    1   '   => '1'
     console.log(trim('    1   '))
+
+    var trim = function (str) {
+        return str.replace(/\s*/g, "");
+    }
+    str.replace(/\s*/g, ""); //去除字符串内所有的空格
+    str.replace(/^\s*|\s*$/g, ""); //去除字符串内两头的空格
+    str.replace(/^\s*/, ""); //去除字符串内左侧的空格
+    str.replace(/(\s*$)/g, ""); //去除字符串内右侧的空格
 </script>
