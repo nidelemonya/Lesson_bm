@@ -1,0 +1,25 @@
+<script>
+    // 函数即对象
+    // 构造函数
+    function Foo() {
+        Foo.a = function () {
+            console.log(1)
+        }
+        this.a = function () {
+            console.log(2)
+        }
+        return this // 如果没有返回对象 则返回 this
+    }
+    Foo.prototype.a = function () {
+        console.log(3)
+    }
+    Foo.a = function () {
+        console.log(4)
+    }
+    // 查找 Foo 上 的 a()属性
+    Foo.a(); // 4
+    let obj = new Foo();
+    console.log(obj);
+    obj.a(); // 2
+    Foo.a(); // 1
+</script>

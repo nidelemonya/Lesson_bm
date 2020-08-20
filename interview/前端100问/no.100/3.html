@@ -1,0 +1,26 @@
+<script>
+    // Object.create()
+    // 从面向对象聊继承 Object.create()
+    const person = {
+        isHuman: false,
+        printIntroduction: function () {
+            console.log(`My name is ${this.name}, Am I human?${this.isHuman}`)
+        }
+    }
+    // 最简单的继承方案
+    const zhaoboy = Object.create(person);
+    console.log(zhaoboy);
+    zhaoboy.name = '酷吧你我他';
+    zhaoboy.isHuman = true;
+    zhaoboy.printIntroduction();
+    console.log(zhaoboy.__proto__);
+    console.log(zhaoboy.__proto__ === person);
+    console.log(zhaoboy.__proto__.__proto__ === Object.prototype)
+    console.log(zhaoboy.__proto__.__proto__.__proto__ === null)
+
+    const zhaoboy1 = Object.create(null);
+    console.log(zhaoboy1);
+    zhaoboy1.name = '酷吧你我他';
+    zhaoboy1.isHuman = true;
+    console.log(zhaoboy1.__proto__); // 原型对象为空
+</script>

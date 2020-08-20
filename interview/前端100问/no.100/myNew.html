@@ -1,0 +1,8 @@
+<script>
+    // 手写 new
+    function myNew(fn, ...arg) {
+        const obj = Object.create(fn.prototype)
+        const res = fn.apply(obj, arg); // 判断构造函数是否存在返回值
+        return res instanceof Object ? res : obj;
+    }
+</script>
