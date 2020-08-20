@@ -1,0 +1,16 @@
+<script>
+    function Foo() {
+        // 3
+        this.a = 1
+        this.b = 2
+    }
+
+    let a = new Foo();
+    console.log(a.__proto__ === Foo.prototype)
+    console.log(Foo.prototype.__proto__ === Object.prototype)
+    console.log(Object.prototype.__proto__=== null)
+    console.log(Object.__proto__ === Function.prototype)
+    console.log(Function.prototype.__proto__ === Object.prototype)
+    console.log(Function.__proto__ === Function.prototype)
+    console.log(a)
+</script>

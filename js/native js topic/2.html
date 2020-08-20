@@ -1,0 +1,23 @@
+<script>
+    function myNew(Constructor) {
+        let obj = {}
+        obj.__proto__ = Constructor.prototype
+        let res = Constructor.apply(obj)
+        return typeof res === 'obj' ? res : obj
+    }
+
+    function _new(fn, ...arg) {
+        const obj = Object.create(fn.prototype)
+        const res = fn.apply(obj, arg)
+        return res instanceof Object ? res : obj
+    }
+
+    function Person(name) {
+        this.name = name;
+        this.age = 18;
+    }
+    let p = new Person('WO');
+    let p1 = myNew(Person);
+    let p2 = _new(Person,'WO')
+    console.log(p, p1, p2)
+</script>
