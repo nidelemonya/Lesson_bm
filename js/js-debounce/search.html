@@ -73,8 +73,10 @@
             let timeout;
             // 具有防抖功能
             // 有防抖功能的函数长什么样
+            console.log(this);
             return function(event){
                 // 传递 event 参数
+                console.log(this);
                 if(timeout){
                     clearTimeout(timeout);
                 }
@@ -97,6 +99,11 @@
             // 用 debounce this -> window 需要使用call方法
             console.log(e.target.value);
         }),500);
+        // search2.addEventListener('input',function(e){
+        //     console.log(this); // 不用 debounce this -> search 2
+        //     // 用 debounce this -> window 需要使用call方法
+        //     console.log(e.target.value);
+        // },500);
     </script>
 </body>
 </html>
