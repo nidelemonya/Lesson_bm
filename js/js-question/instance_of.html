@@ -1,0 +1,15 @@
+<script>
+    function instance_of(L, R) {
+        var O = R.prototype // 取R的显示原型
+        L = L.__proto__ // 取 L 的隐式原型
+        while (true) {
+            if (L === O) return true // 如果找到了返回 true
+            if (L === null) return false // 如果找到顶点还没找到 返回false
+            L = L.__proto__ // 没找到 继续查找上一层
+        }
+    }
+    console.log(String instanceof Function, instance_of(String, Function))
+    console.log(Boolean instanceof Function, instance_of(Boolean, Function))
+    console.log(Array instanceof Function, instance_of(Array, Function))
+    console.log(Number instanceof Function, instance_of(Number, Function))
+</script>
