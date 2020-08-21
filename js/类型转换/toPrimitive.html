@@ -1,0 +1,29 @@
+<script>
+    // ToPrimitive(A)通过尝试调用 A 的A.toString() 
+    // 和 A.valueOf() 方法，将参数 A 转换为原始值（Primitive）。
+    let obj = {
+        [Symbol.toPrimitive]: (hint) => { // 如果使用这个 方法 不管位置如何 都会覆盖 (即便是 自己所写的方法)
+            console.log('转换为', hint) // 即当使用toString() valueOf() 时 都会使用这一种方法
+            return 'lemon'
+        },
+        toString() { // 重写 toString 方法
+            return 'str'
+        },
+        valueOf() { // 重写 valueOf 方法
+            return 0
+        },
+    }
+    // Object.prototype.toString
+    console.log(obj == 0 )
+    console.log(Number(obj))
+    console.log(String(obj))
+    // 类型判断方法
+    console.log(Object.prototype.toString.call('123'))
+    console.log(Object.prototype.toString.apply(/s/))
+
+    // 特例
+    console.log(NaN === NaN) // ->  为 false 即 NaN 与 NaN 不等
+
+    // 但是 新的 api 
+    // Object.is(NaN, NaN) 为 true
+</script>
