@@ -1,0 +1,26 @@
+<script>
+    // 防抖
+    const debounce = (fn, delay) => {
+        let timeout = null;
+        return (...arg) => {
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                fn.apply(this, arg)
+            }, delay)
+        }
+    }
+
+    // 节流
+    const throttle = (fn, delay=500) => {
+        let flag = true;
+        return (...arg) => {
+            if (!flag) return
+            flag = false
+            setTimeout(() => {
+                fn.apply(this, arg)
+                flag = true
+            },delay)
+        }
+    }
+    
+</script>
