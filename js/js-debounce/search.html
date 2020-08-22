@@ -74,6 +74,7 @@
             // 具有防抖功能
             // 有防抖功能的函数长什么样
             console.log(this);
+            // return function(...arg){
             return function(event){
                 // 传递 event 参数
                 console.log(this);
@@ -83,6 +84,7 @@
                 timeout = setTimeout(()=>{
                     // 写什么？
                     // 参数
+                    // func.call(this,...arg);
                     func.call(this,event);// 实现的功能
                     // 用 call 重新绑定回 this 并调用函数， 指向当前组件而不是 window
                     // 这里用bind 不行 因为不会调用函数
