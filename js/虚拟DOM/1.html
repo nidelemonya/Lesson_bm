@@ -1,0 +1,44 @@
+<!-- <div>
+  <ul class="wrap">
+    <li>1</li>
+    <li>2</li>
+  </ul>
+</div> -->
+<div id="root"></div>
+<script>
+    // React.createElement 返回的就是 虚拟 DOM
+    let Vnode = {
+    type: 'div',
+    props: {
+      children: [
+        {
+          type: 'ul', props: {
+            className: 'wrap',
+            children: [
+              { type: 'li', props: { children: ['1'] }},
+              { type: 'li', props: { children: ['2'] }},
+            ]
+          }
+        }
+      ]
+    }
+  }
+    // Vnode,props.children 虚拟 dom 优势: 1.跨平台(Node Browser) 2. 保证性能下限
+    // document.querySelector('div').childNodes
+
+    // jsx => createElement => 虚拟dom (babel 完成)
+    // 虚拟dom => 渲染出来
+    function render(vnode, container) {
+        const { type, props } = vnode
+        if(!type) {
+            container.textContent = vnode
+            return
+        }
+        const dom = document.createElement(type)
+        props?.children?.forEach(child => {
+            render(child, dom)
+        })
+        container.appendChild(dom)
+    }
+    render(Vnode, document.getElementById('root'))
+</script>
