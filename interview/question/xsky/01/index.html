@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #Ele{
+            color: orangered;
+        }
+        #ele {
+            Color: blue;
+        }
+        .bgRed {
+            background-color: blueviolet;
+            text-align: Center;
+        }
+        .BgRed {
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div id="ele" class="bgRed">
+        lesson
+    </div>
+    <script>
+        // css 标签名, 属性名 属性值 不敏感
+        // 类名 id名 敏感
+        console.log(document.querySelector('#Ele'))
+    </script>
+</body>
+</html>
