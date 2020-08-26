@@ -1,0 +1,41 @@
+<script>
+    // 当iterable参数里的任意一个子promise被成功或失败后，
+    // 父promise马上也会用子promise的成功返回值或失败详情作为参数调用父promise绑定的相应句柄，
+    // 并返回该promise对象。
+    const p1 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 1000)
+        })
+    }
+    const p2 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 2000)
+        })
+    }
+    const p3 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 3000)
+        })
+    }
+    Promise.myRace = function(promises) {
+        return new Promise((resolve,reject) => {
+            for (let p of promises) {
+                // p.then((r) =>{resolve(r)})
+                // .catch(reject)
+                p.then(resolve)
+                .catch(reject)
+            }
+        })
+    }
+    Promise.myRace([p1(), p2(), p3()]) // 接受多个 Promise 返回一个 Promise
+    .then(console.log)
+    .catch(res => {
+            console.log('err');
+        })
+</script>

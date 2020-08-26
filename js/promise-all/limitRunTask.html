@@ -1,0 +1,75 @@
+<script>
+    function limitRunTask(tasks, limit) {
+        return new Promise((resolve, reject) => {
+            // res 存放成功的结果
+            // finish 已经启动完成的数量
+            // index 正在启动时候的索引
+            // running 正在运行的 promise 的数量
+            let finish = 0,
+                res = []
+            let index = 0,
+                running = 0
+
+            function run() {
+                if (finish >= tasks.length) {
+                    resolve(res)
+                    return
+                }
+                while (running < limit && index < tasks.length) {
+                    // 启动异步任务
+                    // 存在稀疏数组的问题
+                    let curIndex = index // 存每次循环时的 index 利用到了 let 的块级作用域
+                    const p = tasks[index]()
+                    p.then(r => {
+                        finish++
+                        res[curIndex] = r
+                        running-- // 每当有任务完成时 running --
+                        run() // 有空位置再进行递归哦
+                    })
+                    index++
+                    running++
+                }
+            }
+            run()
+        })
+    }
+
+
+    function createTask(ms) {
+        return () => {
+            console.log('start', ms);
+            return new Promise(r => setTimeout(() => {
+                console.log('end', ms);
+                r(ms);
+            }, ms));
+        }
+    }
+    const tasks = Array(5).fill(null).map((_, i) => createTask(i * 1000));
+    limitRunTask(tasks, 2).then(console.log)
+
+
+
+    // 分割线---------------------------------------------------------------------------
+    const p1 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 1000)
+        })
+    }
+    const p2 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 2000)
+        })
+    }
+    const p3 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 3000)
+        })
+    }
+    // limitRunTask([p1, p2, p3], 2).then(console.log)
+</script>

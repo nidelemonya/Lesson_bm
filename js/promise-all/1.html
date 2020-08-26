@@ -1,0 +1,25 @@
+<script>
+    function createTask(ms) {
+        return () => {
+            console.log('start', ms);
+            return new Promise(r => setTimeout(() => {
+                console.log('end', ms);
+                r(ms);
+            }, ms));
+        }
+    }
+    const tasks = Array(5).fill(null).map((_, i) => createTask(i * 1000));
+    // 0 1000 2000 3000 4000
+    Promise.all(tasks.map(task => task()))
+    .then(console.log);
+    // 等 0s
+    // 0
+    // 等 1s
+    // 1000
+    // 等 1s
+    // 2000
+    // 等 1s
+    // 3000
+    // 等 1s
+    // 4000
+</script>
