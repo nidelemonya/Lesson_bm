@@ -1,6 +1,12 @@
 <template>
   <div class="hello">
-    <el-button type="primary" circle @click="doLogin">默认按钮</el-button>
+    <!-- <el-button type="primary" circle @click="doLogin">默认按钮</el-button> -->
+    <el-button type="primary" loading>ddfff</el-button>
+    <el-button-group>
+      <el-button type="primary" icon="el-icon-edit">666</el-button>
+      <el-button type="primary" icon="el-icon-share"></el-button>
+      <el-button type="primary" icon="el-icon-delete"></el-button>
+    </el-button-group>
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -35,6 +41,7 @@
 <script>
 // el-button ？ components 手写element-ui
 import ElButton from './ElButton.vue';
+import ElButtonGroup from '@/components/ElButtonGroup.vue';
 
 export default {
   name: 'HelloWorld',
@@ -47,7 +54,8 @@ export default {
     }
   },
   components: {
-    ElButton
+    ElButton,
+    "el-button-group":ElButtonGroup
   }
 }
 </script>
