@@ -1,0 +1,50 @@
+<script>
+    // 以单链表的形式表达一棵树
+    const a1 = { name: 'a1' };
+    const b1 = { name: 'b1' };
+    const b2 = { name: 'b2' };
+    const b3 = { name: 'b3' };
+    const c1 = { name: 'c1' };
+    const c2 = { name: 'c2' };
+    const d1 = { name: 'd1' };
+    const d2 = { name: 'd2' };
+
+    a1.child = b1; b1.return = a1;
+    b1.sibling = b2; b2.return = a1;
+    b2.sibling = b3; b3.return = a1;
+
+    b2.child = c1; c1.return = b2;
+
+    c1.child = d1; d1.return = c1;
+    d1.sibling = d2; d2.return = c1;
+
+    b3.child = c2; c2.return = b3;
+
+    console.log(a1);
+    // 以循环的方式 遍历这棵树 
+
+    function walk(node, deadLine) {
+        // 浏览器有空闲的时候 才执行
+        // while (true) {
+        console.log('批次-----------------')
+        while (deadLine.timeRemaining() > 0) {
+            console.log(node.name)
+            let child = node.child;
+            if (child) {
+                node = child;
+                continue;
+            }
+            // 如果没有 sibling 取 return
+            while(!node.sibling) {
+                if(node.return === a1 || !node.return) {
+                    return;
+                }
+                node = node.return
+            }
+            // 如果没有 child 取 sibling
+            node = node.sibling
+        }
+    }
+    // walk(a1)
+    requestIdleCallback(walk.bind(this, a1))  
+</script>
