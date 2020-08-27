@@ -1,0 +1,6 @@
+{
+  "name": "llll",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  }
+}
