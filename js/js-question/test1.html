@@ -1,0 +1,39 @@
+<script>
+    const sleep = (time) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve()
+            }, time)
+        })
+    }
+    sleep(1000).then(() => {
+        console.log('哈哈哈哈哈哈啊哈')
+    })
+
+
+    const sleep1 = (time) => {
+        return new Promise(resolve =>
+            setTimeout(resolve, time)
+        )
+    }
+
+    async function sleepAsync() {
+        console.log('我要开始睡觉了')
+        await sleep(1000)
+        console.log('睡了1000毫秒')
+    }
+
+    sleepAsync()
+
+    sleep(1000).then(() => {
+        console.log('哈哈哈哈哈哈啊哈')
+    })
+
+
+    function* sleepGenerator(time) {
+        yield new Promise((resolve, reject) => setTimeout(resolve, time))
+    }
+    sleepGenerator(1000).next().value.then(() => {
+        console.log('是骚操作')
+    })
+</script>

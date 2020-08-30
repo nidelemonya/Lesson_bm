@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Function.prototype.myCall = function (context) {
+            context = context ? Object(context) : window;
+            context.fn = this;
+
+            let args = [...arguments].slice(1);
+            let result = context.fn(...args);
+
+            delete context.fn;
+            return result;
+        }
+
+        Function.prototype.myapply = function (context, arr) {
+            var context = Object(context) || window;
+            context.fn = this;
+
+            var result;
+            if (!arr) {
+                result = context.fn()
+            } else {
+                result = context.fn(...arr)
+                // var args = []
+                // for (let i = 0, len = arr.length; i < len; i++) {
+                //     args.push('arr[' + i + ']')
+                // }
+                // result = eval('context.fn(' + args + ')')
+            }
+            delete context.fn
+            return result
+        }
+
+
+        let person = {
+            fullName: function (city, country) {
+                return this.firstName + ' ' + this.lastName + ',' + city + "," + country
+            }
+        }
+        var person1 = {
+            firstName: '尼古拉斯',
+            lastName: '子寒'
+        }
+        console.log(person.fullName.call(person1, '中国', '南昌'))
+        console.log(person.fullName.myCall(person1, '中国', '南昌'))
+        console.log(person.fullName.apply(person1, ['中国', '南昌']))
+        console.log(person.fullName.myapply(person1, ['中国', '南昌']))
+    </script>
+</body>
+
+</html>
