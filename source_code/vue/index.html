@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <title>Document</title>
+    <!-- cdn -->
+</head>
+<body>
+    <div id="root">
+        <div @click="changeData">切换数据</div>
+        <li v-for="item in list" :key= "item.id">{{item.text}}</li>
+    </div>
+    <script>
+        // 1. js 文件是个静态资源 http 1.0 text/js
+        // image/png
+        // text/html
+        // text/css
+        // 动态资源 database 服务器压力很大
+        // TCP 连接 -> http 请求、响应
+        // 连接上线 多线程 nginx 启动进程
+
+        // 2. bootcdn.cn 动态 服务器上找数据的
+        // node 读 mysql -> template
+        // 用户量和访问量 大了以后
+        // nginx 负载均衡 proxy
+        // 分布式 主从关系
+        // 用户怎么会来？ ip =>  url
+        // 分流 两个域名 静态资源 动态资源
+
+        // 动态 ip -> computer mac地址
+        // mac 地址 代表物理层
+
+        // MVVM 的范围
+        new Vue({
+            el: '#root',
+            data() {
+                return {
+                    // diff
+                    list: [],  // 数据 vnode diff -> DOM 更新
+                    list1: [], // oldState DOM 当前页面
+                    list2: [], // newState
+                    nowDate: '',
+                    upDateTime: ''
+                }
+            },
+            methods: {
+                changeData() {
+                    this.nowDate = Date.now();
+                    this.list = this.list2;
+                }
+            },
+            created() {
+                for (let i =0; i<=10000; i++) {
+                    this.list1.push({
+                        id: i,
+                        text:i
+                    })
+                    this.list2.push({
+                        id:i*2,
+                        text: 10000-i
+                    })
+                }
+                this.list = this.list1
+            },
+            updated() {
+                const date = Date.now();
+                console.log(`updateTime: ${date - this.nowDate}`)
+            }
+        })
+    </script>
+</body>
+</html>
