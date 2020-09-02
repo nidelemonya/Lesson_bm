@@ -1,0 +1,1 @@
+- 安装包 cnpm i @babel/core @babel/cli webpack webpack-cli react react-dom html-webpack-plugin -D
