@@ -1,0 +1,19 @@
+<script>
+    for (var i=0; i<5; i++) {
+        // setTimeout(() => {
+        //     console.log(i)
+        // }, 1000 * i)
+        function createTimer(a) { // 创建块级作用域
+            setTimeout(() => {
+                console.log(a)
+            }, 1000 * a)
+        }
+        createTimer(i);
+    }
+
+    for (let i=0; i<5; i++) {
+        setTimeout(() => {
+            console.log(i)
+        }, 1000 * i);
+    }
+</script>
