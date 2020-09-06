@@ -1,6 +1,6 @@
 import Stack from './lib/Stack'
 
-const decimalToBinary = function (decNumber) {
+const decimalToBinary = function (decNumber :number) :string{
     const stack = new Stack()
     let number = decNumber;
     let rem ; // 余数

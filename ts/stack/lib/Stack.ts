@@ -24,7 +24,7 @@ export default class Stack {
     pop() {
         return this.items.pop()
     }
-    peek(): any {
+    peek(): any { // 获取栈顶元素
         return this.items[this.items.length - 1]
     }
     isEmpty(): Boolean {
