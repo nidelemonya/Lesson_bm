@@ -1,0 +1,21 @@
+<script>
+    function sum(a, b, c) { 
+        console.log(this, a + b + c)
+    }
+    // 函数柯里化
+    Function.prototype
+    .mybind = function(THIS, ...arg1) {
+        let fn = this;
+        function test(...arg2) {
+            let args = arg1.concat(arg2)
+            // 谁 bind 调用谁 ?
+            return fn.apply(THIS, args); // obj.xxx
+        }
+        // 谁继承谁
+        test.prototype = Object.create(this.prototype);
+        return test;
+
+    }
+    let sum10 = sum.mybind(null, 10);
+    sum10(20,30)
+</script>

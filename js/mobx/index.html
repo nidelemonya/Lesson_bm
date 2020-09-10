@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="showValue"></div>
+    <script src="https://unpkg.com/mobx@5.15.6/lib/mobx.umd.js"></script>
+    <script>
+        // observerable 可观测的
+        let obj = {
+            a: 1,
+            b: 2
+        }
+        // proxy defineProperty
+        let proxyObj = mobx.observable(obj);
+        // 初始化的 autorun 统一执行一次 后面才会智能的判断 autorun是否需要执行
+        mobx.autorun(() => {
+            console.log('run 1')
+            document.getElementById('showValue')
+                .innerHTML = proxyObj.a; // get
+        })
+        // 收集依赖： 知道哪个 autorun 需要 哪个 key
+        mobx.autorun(() => {
+            console.log('run 2')
+            console.log(proxyObj.b)
+        })
+        setInterval(() => {
+            proxyObj.a++; // set
+            // proxyObj.a = ++ proxyObj.a ;
+        }, 1000);
+
+        /*
+            {
+                xxxObj: {
+                    a: [ run1 ]
+                    b: [ run2 ]
+                }
+            }
+        */
+    </script>
+</body>
+
+</html>

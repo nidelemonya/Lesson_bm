@@ -1,0 +1,44 @@
+<script>
+    // 保存老的 -> 监听 -> 返回原来的
+    // 监听数组的 push
+    // 
+    // console xhr  h5 页面的跳转
+    // let originPush = Array.prototype.push
+    // Array.prototype.push = function() {
+    //     // 监听
+    //     return originPush();
+    // }
+
+    // get set delete
+    let obj = { a: 1, b :2 };
+    let handlers = [];
+    let pObj = new Proxy(obj, {
+        set(obj, prop, val) {
+            console.log('set')
+            return Reflect.set(obj, prop, val)
+        },
+        get(obj, prop) {
+            console.log('get')
+            handlers.push([obj, prop])
+            return Reflect.get(obj, prop)
+        }
+    })
+    pObj.a = 123;
+    // console.log(pObj.a)
+    console.log(pObj.b)
+    let objs= new Map();
+    function autoRun(handler) {
+        console.log(handlers)
+        for (let [obj, prop] of handlers) {
+            let arr = []
+            arr.push(prop)
+            let map = new Map();
+            map.set(prop, arr)
+            objs.set(obj, map)
+        }
+    }
+    autoRun(() => {
+        console.log(pObj.a)
+        console.log(pObj.b)
+    })
+</script>

@@ -1,0 +1,35 @@
+<script>
+    function Animal(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    Animal.prototype.say = function () {
+        return `I'm a ${this.color} ${this.name}`;
+    };
+    
+    Function.prototype
+    .mybind = function(THIS, ...arg1) {
+        let fn = this;
+        function test(...arg2) {
+            let args = arg1.concat(arg2)
+            // 谁 bind 调用谁 ?
+            // 如果 被 new this 指向实例 怎么判断一个函数 被 new
+            // cat instanceOf Cat
+            let isNewCall = new.target === test;
+            return fn.apply(isNewCall ? this : THIS, args); // obj.xxx
+        }
+        // 谁继承谁
+        test.prototype = Object.create(this.prototype);
+        return test;
+
+    }
+    // call apply 绑定 this 调用函数 
+    // bind 绑定 this 传参
+    const Cat = Animal.mybind(null, 'cat');
+    const cat = new Cat('white');
+    // Cat 内部 指向 cat
+    // new > bind /call/apply > obj.xxx
+    if (cat.say() === 'I\'m a white cat' && cat instanceof Cat && cat instanceof Animal) {
+        console.log('success');
+    }
+</script>
