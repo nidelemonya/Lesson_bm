@@ -1,0 +1,22 @@
+<script>
+    // babel 插件(AST) === webpack loader(文本)
+    let chains = [
+        () => {
+            console.log(1)
+            return {}
+        },
+        () => {
+            const xhr = new XMLHttpRequest();
+            console.log('axios 发出正式的请求')
+            return {code: 0}
+        }
+    ]
+    let p = Promise.resolve();
+    while(chains.length) {
+        p = p.then(chains.shift())
+    }
+    // xhr
+    // xhr.send(请求体)
+    // node 后端发 http 请求
+    // xhr = xhr +node(http 模块) 同构
+</script>
