@@ -1,0 +1,15 @@
+<script>
+    const originPush = Array.prototype.push;
+
+    Array.prototype.push = function() {
+        // 注入
+        console.log('监听到了')
+        return originPush.apply(this)
+    }
+    // hook
+    // @observer
+    
+    let arr = []
+    arr.push(1)
+    // Proxy
+</script>
