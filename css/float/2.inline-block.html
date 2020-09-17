@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            float: left;
+            /* 脱离文档流（需要清除浮动） 让块级的元素 在一行 */
+        }
+
+        /* 清除浮动法 1、 */
+        /* 最完美的清除浮动的方法：使用 伪元素的方式 */
+        /* .clear::after {
+            content: '';
+            clear: both;
+            display: block;
+        } */
+
+        /* .cls {
+            clear: left;  */
+        /* 会往前找 float: left 找到那个最大(最高)的 float为left 将 div 紧紧的贴在下面 然后div 默认包裹整个图片，清除浮动*/
+        /* 让元素不再绕排 */
+        /* } */
+
+        /* 清除浮动法 2、 */
+
+        .clear {
+            /* BFC: 计算父高度 float 元素参与在内 
+            overflow: hidden; 不为 visible 就会创建 BFC*/
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- clear CSS 属性指定一个元素是否必须移动(清除浮动后)到在它之前的浮动元素下面。clear 属性适用于浮动和非浮动元素。 -->
+    <div style="border: 2px solid blue; padding:3px;" class="clear">
+        <img src="https://aecpm.alicdn.com/tfscom/TB1B8q1iP39YK4jSZPcXXXrUFXa.jpg" />
+        <img
+            src="https://img.alicdn.com/tps/i4/https://img.alicdn.com/tps/i4//TB1tjr.e4vbeK8jSZPfSuuriXXa.jpg_400x400q90.jpg" />
+        <!-- <div class="clear"></div> -->
+        <div class="cls">hahah</div>
+        <!-- 但是这种方法不优雅 添加了一个空的 div -->
+    </div>
+    <script>
+        // 值
+        // none 元素不会向下移动清除之前的浮动。
+        // left 元素被向下移动用于清除之前的左浮动。
+        // right 元素被向下移动用于清除之前的右浮动。
+        // both 元素被向下移动用于清除之前的左右浮动。
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .out {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .in {
+            width: 20px;
+            height: 20px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <!-- stylus/less：预处理器 -> css -> postcss ： 后处理器(可以理解为js 里面的babel) -->
+    <div class="out">
+        <div class="in"></div>
+    </div>
+    <script>
+        const out = document.querySelector('.out')
+        const inDom = document.querySelector('.in')
+        inDom.addEventListener('click', (event) => {
+            // event.currentTarget === inDom
+            // event.preventDefault() 阻止默认事件
+            console.log(event.currentTarget)
+        })
+        out.addEventListener('click', (event) => {
+            // event.currentTarget 事件绑定给谁 指向谁
+            // event.target 鼠标点中哪个元素 指向谁
+            // event.currentTarget === out
+            console.log(event.target)
+        })
+    </script>
+</body>
+</html>
